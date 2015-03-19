@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import uefs.redes.define.Constants;
+import uefs.redes.define.Pack;
+
 public class Servidor implements Runnable{
 
 	
@@ -19,13 +22,36 @@ public class Servidor implements Runnable{
 	{
 		try	
 		{
-			String x ;
+			Pack x ;
+			ObjectInputStream in;
 			do
 			{
-				ObjectInputStream in;
 				in =  new  ObjectInputStream(socket.getInputStream());
-				 x = (String) in.readObject();
-				System.out.println(x+" OK");
+				 x = (Pack) in.readObject();
+
+				switch(x.getCODE()) {
+				case Constants.LOGIN_REQ:
+					System.out.println("login");
+					break;
+				case Constants.LOGOUT_REQ:
+					System.out.println("logout");
+					break;
+				case Constants.REGISTER_REQ:
+					System.out.println("register");
+					break;
+				case Constants.SEARCH_REQ:
+					System.out.println("search");
+					break;
+				case Constants.DOWNLOAD_REQ:
+					System.out.println("register");
+					break;
+				default:
+					
+					break;
+					
+				
+				}
+				
 			}
 			while(!x.equals("0"));
 			

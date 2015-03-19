@@ -20,7 +20,7 @@ public class MyPackage {
 	public int getType() {
 		return type;
 	}
-	public List<Object> getItems() {
+	public List<Object> getINFO() {
 		return items;
 	}
 	
