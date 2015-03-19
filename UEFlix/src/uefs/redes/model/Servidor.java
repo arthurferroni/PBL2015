@@ -24,7 +24,7 @@ public class Servidor implements Runnable{
 			{
 				in =  new  ObjectInputStream(socket.getInputStream());
 				String x = (String) in.readObject();
-				System.out.println(x);
+				System.out.println(x+" OK");
 			}
 			while(socket.getInputStream() != null);
 			
