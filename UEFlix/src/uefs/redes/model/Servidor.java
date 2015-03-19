@@ -2,6 +2,7 @@ package uefs.redes.model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
@@ -10,11 +11,12 @@ public class Servidor implements Runnable{
 
 	
 	private Socket socket;
+	private ArrayList<VideoInfo> videos;
 	
 	public Servidor(Socket s) throws IOException
 	{
 		this.socket = s;
-
+		//iniciar array de videos do pc (arquivo)
 	}
 	
 	@Override

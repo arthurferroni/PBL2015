@@ -14,8 +14,8 @@ public class ControllerCliente {
 	
 	private Cliente cliente;
 	private Socket socket_cliente ;
-	private ArrayList<Object>filmes = new  ArrayList();
-	private ArrayList<Object>historico = new  ArrayList();
+	private ArrayList<Object>filmes = new  ArrayList<>();
+	private ArrayList<Object>historico = new  ArrayList<>();
 	
 	
 	
@@ -41,13 +41,16 @@ public class ControllerCliente {
 		login_reqs.addOneByOne(senha);
 		this.enviar(login_reqs);
 	}
-	public void buscar()
+	public void buscar(String metadados) throws IOException, InterruptedException
 	{
-		
+		Pack search = new Pack(Constants.SEARCH_REQ);
+		search.addOneByOne(metadados);
+		this.enviar(search);
 	}
-	public void logout()
+	public void logout() throws IOException, InterruptedException
 	{
-		
+		Pack log_out = new Pack(Constants.LOGOUT_REQ);
+		this.enviar(log_out);
 	}
 	
 }
