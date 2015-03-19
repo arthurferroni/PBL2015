@@ -1,6 +1,7 @@
 package uefs.redes.model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class Servidor implements Runnable{
 		{
 			Pack x ;
 			ObjectInputStream in;
+			ObjectOutputStream out;
 			do
 			{
 				in =  new  ObjectInputStream(socket.getInputStream());
@@ -33,7 +35,11 @@ public class Servidor implements Runnable{
 
 				switch(x.getCODE()) {
 				case Constants.LOGIN_REQ:
-					System.out.println("login");
+					
+					System.out.println("login-REQ");
+					x.setCODE(Constants.LOGIN_REP);
+					out = new ObjectOutputStream(socket.getOutputStream());
+					out.writeObject(x);
 					break;
 				case Constants.LOGOUT_REQ:
 					System.out.println("logout");
@@ -55,7 +61,7 @@ public class Servidor implements Runnable{
 				}
 				
 			}
-			while(!x.equals("0"));
+			while(socket!=null);
 			
 		} 
 		catch (Exception e)

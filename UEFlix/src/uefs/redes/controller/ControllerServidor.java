@@ -33,44 +33,5 @@ public class ControllerServidor {
 		}
 	
 	}
-	
-	public void retornar(Pack pacote){
-		if (pacote.getCODE() == Constants.LOGIN_REQ){
-			pacote.setCODE(Constants.LOGIN_REP);
-			this.conferirLogin(pacote.getINFO());
-		}
-		else if (pacote.getCODE() == Constants.SEARCH_REQ){
-			pacote.setCODE(Constants.SEARCH_REP);
-		}
-		else if (pacote.getCODE() == Constants.DOWNLOAD_REQ){
-			pacote.setCODE(Constants.DOWNLOAD_REP);
-		}
-		else if (pacote.getCODE() == Constants.LOGOUT_REQ){
-			pacote.setCODE(Constants.LOGOUT_REP);
-		}
-		else {
-			//excessão
-		}
-	}
-	
-	public void conferirLogin(ArrayList<Object> info){
-		String nick = (String)info.get(0);
-		String pass = (String)info.get(1);
-		//conferir onde os usuarios são salvos
-	}
-	
-	public ArrayList<VideoInfo> retornarBusca(ArrayList<Object> info){
-		String metadado = (String) info.get(0);
-		
-		return null;
-		
-	}
-	
-	public String confirmarDownload (ArrayList<Object> info){
-		String cod = (String) info.get(0);
-		
-		return null;
-	}
-	
 }
 
