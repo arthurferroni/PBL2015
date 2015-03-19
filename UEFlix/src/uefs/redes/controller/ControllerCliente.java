@@ -22,14 +22,16 @@ public class ControllerCliente {
 	{
 		this.socket_cliente = new Socket (Constants.HOST,Constants.PORT);
 		cliente = new Cliente(this.socket_cliente);
-		cliente.run();
+		Thread y = new Thread(cliente);
+		y.start();
+		
 		
 	}
 	public void Enviar() throws IOException, InterruptedException
 	{
 		ObjectOutputStream out = new ObjectOutputStream(socket_cliente.getOutputStream());
 		out.writeObject("OLA MUNDO");
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 	}
 	public void Login()
 	{

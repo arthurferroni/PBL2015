@@ -19,14 +19,15 @@ public class Servidor implements Runnable{
 	{
 		try	
 		{
-			ObjectInputStream in;
-			in =  new  ObjectInputStream(socket.getInputStream());
+			String x ;
 			do
 			{
-				String x = (String) in.readObject();
+				ObjectInputStream in;
+				in =  new  ObjectInputStream(socket.getInputStream());
+				 x = (String) in.readObject();
 				System.out.println(x+" OK");
 			}
-			while(socket !=null);
+			while(!x.equals("0"));
 			
 		} 
 		catch (Exception e)

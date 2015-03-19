@@ -8,9 +8,13 @@ public class Main2 {
 		// TODO Auto-generated method stub
 		ControllerCliente x = new ControllerCliente();
 		x.Conectar();
+		
+		System.out.println("ok");
+		
 		x.Enviar();
 		x.Enviar();
 		x.Enviar();
+		
 		
 	}
 

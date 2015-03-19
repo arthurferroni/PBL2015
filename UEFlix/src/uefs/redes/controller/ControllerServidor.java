@@ -27,7 +27,6 @@ public class ControllerServidor {
 			Servidor chat = new Servidor(s);				//	CREATE A NEW CLIENT OBJECT
 			Thread t = new Thread(chat);				//	MAKE A NEW THREAD
 			t.start();		
-		
 		}
 	
 	}
