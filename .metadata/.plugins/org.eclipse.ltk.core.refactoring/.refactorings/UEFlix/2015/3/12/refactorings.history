@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Pack.java&apos; to &apos;UEFlix/src/uefs.redes.define&apos;&#x0D;&#x0A;- Original project: &apos;UEFlix&apos;&#x0D;&#x0A;- Destination element: &apos;UEFlix/src/uefs.redes.define&apos;&#x0D;&#x0A;- Original element: &apos;uefs.redes.model.Pack.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;uefs.redes.define" element1="/src&lt;uefs.redes.model{Pack.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1426724493421" units="1" version="1.0"/>
+</session>

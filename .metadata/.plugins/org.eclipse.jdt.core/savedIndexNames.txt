@@ -15,6 +15,5 @@ INDEX VERSION 1.127+C:\Users\Arthur\Desktop\PBL2015\.metadata\.plugins\org.eclip
 881895235.index
 881303192.index
 248351807.index
-2686062213.index
 844601494.index
 3176364129.index
