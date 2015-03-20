@@ -71,7 +71,7 @@ public class Servidor implements Runnable{
 						
 						
 						// CODIGO 
-						x.setCODE(Constants.SEARCH_REP);
+						x.setCODE(Constants.SEARCH_REQ);
 						out = new ObjectOutputStream(socket.getOutputStream());
 						out.writeObject(x);
 						break;
@@ -91,9 +91,11 @@ public class Servidor implements Runnable{
 						
 					
 					}
-							
+					
+						
+				
 			}
-			while(true);
+			while(socket.getOOBInline());
 			
 			
 		} 

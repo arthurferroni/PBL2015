@@ -60,7 +60,7 @@ public class Cliente implements Runnable {
 				}
 				
 			}
-			while(true);
+			while(socket!=null);
 			
 		}
 		catch (Exception e)

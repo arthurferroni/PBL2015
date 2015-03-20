@@ -60,7 +60,7 @@ public class Cliente implements Runnable {
 				}
 				
 			}
-			while(true);
+			while(x.getCODE() == 0 );
 			
 		}
 		catch (Exception e)
