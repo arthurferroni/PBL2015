@@ -93,7 +93,7 @@ public class Servidor implements Runnable{
 					}
 				
 			}
-			while(socket.getOOBInline());
+			while(socket!=null);
 			
 		} 
 		catch (Exception e)

@@ -30,7 +30,12 @@ public class Servidor implements Runnable{
 			ObjectOutputStream out;
 			do
 			{
-				
+				if(socket.getOOBInline())
+				{
+					System.out.println("Desconectou");
+				}
+				else
+				{
 					in =  new  ObjectInputStream(socket.getInputStream());
 					 x = (Pack) in.readObject();
 	
@@ -91,9 +96,9 @@ public class Servidor implements Runnable{
 						
 					
 					}
-				
+				}
 			}
-			while(socket.getOOBInline());
+			while(socket!=null);
 			
 		} 
 		catch (Exception e)

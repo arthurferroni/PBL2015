@@ -30,8 +30,13 @@ public class Servidor implements Runnable{
 			ObjectOutputStream out;
 			do
 			{
-				
-					in =  new  ObjectInputStream(socket.getInputStream());
+				if(socket.getInputStream()==null)
+				{
+					
+				}
+				else
+				{
+					in =  new  ObjectInputStream();
 					 x = (Pack) in.readObject();
 	
 					switch(x.getCODE()) {
@@ -91,9 +96,9 @@ public class Servidor implements Runnable{
 						
 					
 					}
-				
+				}
 			}
-			while(socket.getOOBInline());
+			while(socket!=null);
 			
 		} 
 		catch (Exception e)
