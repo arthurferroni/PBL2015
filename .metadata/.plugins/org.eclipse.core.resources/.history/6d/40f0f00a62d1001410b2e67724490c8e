@@ -1,0 +1,72 @@
+package uefs.redes.controller;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import uefs.redes.define.Constants;
+import uefs.redes.define.Pack;
+import uefs.redes.model.ClientAcess;
+import uefs.redes.servidorArquivo.ClientTransfer;
+
+public class ControllerCliente {
+	
+	private ClientAcess client_acess;
+	private Socket client_socket ;
+	
+	public void connect() throws UnknownHostException, IOException
+	{
+		this.client_socket = new Socket (Constants.HOST,Constants.PORT_ACESS);
+		client_acess = new ClientAcess(this.client_socket,this);
+		Thread threadClient = new Thread(client_acess);
+		threadClient.start();
+	}
+
+	public void sendPack(Object pack) throws IOException, InterruptedException
+	{
+		ObjectOutputStream out = new ObjectOutputStream(client_socket.getOutputStream());
+		out.writeObject(pack);
+		out.flush();
+		//Thread.sleep(1000);
+	}
+	public void do_login(String name, String password) throws IOException, InterruptedException
+	{
+		Pack login_pack = new Pack(Constants.LOGIN_REQ);
+		login_pack.addOneByOne(name);
+		login_pack.addOneByOne(password);
+		this.sendPack(login_pack);
+	}
+	
+	public void do_search(String datagrams) throws IOException, InterruptedException
+	{
+		Pack search_pack = new Pack(Constants.SEARCH_REQ);
+		search_pack.addOneByOne(datagrams);
+		this.sendPack(search_pack);
+	}
+	public void logout() throws IOException, InterruptedException
+	{
+		Pack log_out = new Pack(Constants.LOGOUT_REQ);
+		this.sendPack(log_out);
+	}
+	public void assistirfilme() throws UnknownHostException, IOException, InterruptedException
+	{
+		Pack log_out = new Pack(Constants.DOWNLOAD_REQ);
+		
+		ClientTransfer clis = enviarReqFILE(log_out);
+		
+		clis.getFileFromServeR();
+		
+		//this.enviar(log_out);
+	
+	}
+	public ClientTransfer enviarReqFILE(Object pacote) throws IOException, InterruptedException
+	{
+		Socket cli = new Socket(Constants.HOST,Constants.PORT_FILE);
+		ClientTransfer clis= new ClientTransfer(cli);		
+		ObjectOutputStream out = new ObjectOutputStream(cli.getOutputStream());
+		out.writeObject(pacote);
+		out.flush();
+		return clis;
+	}
+}

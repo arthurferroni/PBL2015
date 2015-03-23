@@ -1,0 +1,32 @@
+package uefs.redes.model;
+
+import java.util.ArrayList;
+
+public class MovieInformation {
+	
+	private static final long serialVersionUID = 1L;
+	private String name_file = null; 
+	private ArrayList< String > tags_file = new ArrayList< String >();
+	private String description = null;
+	private int quantity = 0;
+	private String category = null;
+	
+	
+	public MovieInformation( String name, ArrayList< String > tags, String description,int quantity,String category )
+	{
+		this.name_file = name;
+		this.tags_file = tags;
+		this.description = description;
+		this.quantity = quantity;
+		this.category = category;
+	}
+	public MovieInformation( String name, String description,int quantity,String category )
+	{
+		this.name_file = name;
+		this.description = description;
+		this.quantity = quantity;
+		this.category = category;
+	}
+	
+
+}

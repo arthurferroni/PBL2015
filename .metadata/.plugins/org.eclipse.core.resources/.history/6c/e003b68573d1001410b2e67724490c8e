@@ -1,0 +1,7 @@
+package uefs.redes.model;
+
+public class ClientInformation {
+	
+	private String name,login,password;
+	
+}

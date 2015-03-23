@@ -1,0 +1,14 @@
+package uefs.redes.controller;
+
+import java.io.IOException;
+
+public class mai {
+
+	public static void main(String[] args) throws IOException {
+		
+		ControllerServer y = new ControllerServer();
+		y.to_start_server_file();
+
+	}
+
+}

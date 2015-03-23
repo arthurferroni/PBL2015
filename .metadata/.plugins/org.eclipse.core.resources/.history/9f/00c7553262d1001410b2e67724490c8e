@@ -1,0 +1,23 @@
+package uefs.redes.controller;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main2 {
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+		// TODO Auto-generated method stub
+		ControllerCliente x = new ControllerCliente();
+		x.connect();
+		
+		System.out.println("ok");
+		Scanner c = new Scanner(System.in);
+		x.do_login("Arthur", "arthur");
+		x.do_search("Ok");
+		x.do_logout();
+		x.to_watch();
+		
+		x.to_watch();
+	}
+
+}

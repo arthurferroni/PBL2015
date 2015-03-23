@@ -1,0 +1,54 @@
+package uefs.redes.controller;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+import uefs.redes.define.Constants;
+import uefs.redes.define.Pack;
+import uefs.redes.model.MovieInformation;
+import uefs.redes.servidorAcesso.ServerAcess;
+import uefs.redes.servidorArquivo.ServerFile;
+
+
+
+public class ControllerServidor {
+	
+	private ServerSocket socket_servidor ;
+	private Socket client;
+	
+	public void start() throws IOException
+	{
+		socket_servidor = new ServerSocket(Constants.PORT_ACESS);	//	SET PORT NUMBER
+		System.out.println("Waiting for clients...");	//	AT THE START PRINT THIS
+	
+		while (true) 									//	WHILE THE PROGRAM IS RUNNING
+		{												
+			Socket s = socket_servidor.accept();					//	ACCEPT SOCKETS(CLIENTS) TRYING TO CONNECT
+			System.out.println("Client connected from " + s.getLocalAddress().getHostName());	//	TELL THEM THAT THE CLIENT CONNECTED
+			
+			ServerAcess chat = new ServerAcess(s);				//	CREATE A NEW CLIENT OBJECT
+			Thread t = new Thread(chat);				//	MAKE A NEW THREAD
+			t.start();		
+		}
+	
+	}
+	public void startFILE() throws IOException
+	{
+		socket_servidor = new ServerSocket(Constants.PORT_FILE);	//	SET PORT NUMBER
+		System.out.println("Waiting for clients...");	//	AT THE START PRINT THIS
+	
+		while (true) 									//	WHILE THE PROGRAM IS RUNNING
+		{												
+			Socket s = socket_servidor.accept();					//	ACCEPT SOCKETS(CLIENTS) TRYING TO CONNECT
+			System.out.println("Client connected from " + s.getLocalAddress().getHostName());	//	TELL THEM THAT THE CLIENT CONNECTED
+			
+			ServerFile chat = new ServerFile(s);				//	CREATE A NEW CLIENT OBJECT
+			Thread t = new Thread(chat);				//	MAKE A NEW THREAD
+			t.start();		
+		}
+	
+	}
+}
+
