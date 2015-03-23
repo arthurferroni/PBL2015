@@ -1,0 +1,5 @@
+package uefs.redes.model;
+
+public class ClienteArq {
+
+}

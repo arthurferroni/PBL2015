@@ -9,6 +9,7 @@ import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
 import uefs.redes.model.Servidor;
 import uefs.redes.model.VideoInfo;
+import uefs.redes.transporte.ServidorFILE;
 
 
 
@@ -19,7 +20,7 @@ public class ControllerServidor {
 	
 	public void start() throws IOException
 	{
-		socket_servidor = new ServerSocket(Constants.PORT );	//	SET PORT NUMBER
+		socket_servidor = new ServerSocket(Constants.PORT_ACESS);	//	SET PORT NUMBER
 		System.out.println("Waiting for clients...");	//	AT THE START PRINT THIS
 	
 		while (true) 									//	WHILE THE PROGRAM IS RUNNING
@@ -28,6 +29,22 @@ public class ControllerServidor {
 			System.out.println("Client connected from " + s.getLocalAddress().getHostName());	//	TELL THEM THAT THE CLIENT CONNECTED
 			
 			Servidor chat = new Servidor(s);				//	CREATE A NEW CLIENT OBJECT
+			Thread t = new Thread(chat);				//	MAKE A NEW THREAD
+			t.start();		
+		}
+	
+	}
+	public void startFILE() throws IOException
+	{
+		socket_servidor = new ServerSocket(Constants.PORT_FILE);	//	SET PORT NUMBER
+		System.out.println("Waiting for clients...");	//	AT THE START PRINT THIS
+	
+		while (true) 									//	WHILE THE PROGRAM IS RUNNING
+		{												
+			Socket s = socket_servidor.accept();					//	ACCEPT SOCKETS(CLIENTS) TRYING TO CONNECT
+			System.out.println("Client connected from " + s.getLocalAddress().getHostName());	//	TELL THEM THAT THE CLIENT CONNECTED
+			
+			ServidorFILE chat = new ServidorFILE(s);				//	CREATE A NEW CLIENT OBJECT
 			Thread t = new Thread(chat);				//	MAKE A NEW THREAD
 			t.start();		
 		}

@@ -1,0 +1,16 @@
+package uefs.redes.controller;
+
+import uefs.redes.model.ServidorArquivos;
+
+public class main3 {
+
+	public static void main(String[] args) {
+
+		ServidorArquivos servTrans = new ServidorArquivos();
+		String nomeFilme= "they";
+		
+		servTrans.requestFile();
+
+	}
+
+}

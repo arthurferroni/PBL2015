@@ -22,7 +22,8 @@ public class Constants {
 	public final static int REGISTER_REP = 50;
 	public final static int REGISTER_RER = 500;
 	
-	public final static int PORT = 6677;
+	public final static int PORT_ACESS = 6677;
+	public final static int PORT_FILE = 13267;
 	public final static String HOST = "localhost";
 	
 	

@@ -1,0 +1,11 @@
+package uefs.redes.transporte;
+
+public class ClientTrans implements Runnable  {
+	private Socket socket;
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

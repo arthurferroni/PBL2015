@@ -1,12 +1,11 @@
 package uefs.redes.model;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
-
+import uefs.redes.controller.ControllerCliente;
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
 
@@ -16,7 +15,13 @@ public class Cliente implements Runnable {
 	private Socket socket;
 	private ArrayList<Object>filmes = new  ArrayList<>();
 	private ArrayList<Object>historico = new  ArrayList<>();
+	private ControllerCliente controll_cliente = null;
 	
+	public Cliente(Socket s, ControllerCliente x) throws IOException
+	{
+		socket = s;	
+		controll_cliente = x;
+	}
 	public Cliente(Socket s) throws IOException
 	{
 		socket = s;	
@@ -28,9 +33,9 @@ public class Cliente implements Runnable {
 	{
 		try
 		{
-			Pack x ;
-			ObjectInputStream in;
-			ObjectOutputStream out;
+			Pack x  = null;
+			ObjectInputStream in = null;
+			ObjectOutputStream out = null;
 			do
 			{
 				in =  new  ObjectInputStream(socket.getInputStream());
@@ -39,21 +44,22 @@ public class Cliente implements Runnable {
 				switch(x.getCODE()) {
 				case Constants.LOGIN_REP:
 					System.out.println("login-REP");
+	
 					break;
 				case Constants.LOGOUT_REP:
-					System.out.println("logout");
+					System.out.println("logout-REP");
 					break;
 				case Constants.REGISTER_REP:
-					System.out.println("register");
+					System.out.println("register-REP");
 					break;
 				case Constants.SEARCH_REP:
-					System.out.println("search");
+					System.out.println("search-REP");
 					break;
 				case Constants.DOWNLOAD_REP:
-					System.out.println("register");
+					System.out.println("donw-REP");
+					
 					break;
 				default:
-					
 					break;
 					
 				

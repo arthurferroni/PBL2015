@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.net.SocketException"/>
+<fullyQualifiedTypeName name="uefs.redes.model.ClientTransfer"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="uefs.redes.model.ServidorArquivos"/>
+<fullyQualifiedTypeName name="uefs.redes.model.ServerArq"/>
+<fullyQualifiedTypeName name="uefs.redes.model.ClienteTransferencia"/>
+<fullyQualifiedTypeName name="uefs.redes.controller.ControllerSerivdorArquivo"/>
+<fullyQualifiedTypeName name="uefs.redes.define.Constants"/>
+<fullyQualifiedTypeName name="uefs.redes.model.ClienteArq"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="uefs.redes.transporte.ClientTrans"/>
+<fullyQualifiedTypeName name="uefs.redes.transporte.ServeFILE"/>
+<fullyQualifiedTypeName name="uefs.redes.controller.ControllerFILE"/>
+<fullyQualifiedTypeName name="uefs.redes.transporte.ClientTransfer"/>
+<fullyQualifiedTypeName name="uefs.redes.transporte.ServerTransfer"/>
+<fullyQualifiedTypeName name="uefs.redes.transporte.ServidorFILE"/>
+</qualifiedTypeNameHistroy>

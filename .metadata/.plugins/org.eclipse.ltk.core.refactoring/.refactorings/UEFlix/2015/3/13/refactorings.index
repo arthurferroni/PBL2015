@@ -1,0 +1,20 @@
+1427034259723	Rename type 'ClientTransfer'
+1427034845029	Rename field 'PORT'
+1427036684830	Delete element
+1427037105630	Rename method 'waitForClient'
+1427056519324	Rename type 'ServerAARq'
+1427058622470	Move compilation units
+1427058631891	Move compilation unit
+1427060136532	Copy compilation unit
+1427060149239	Rename type 'CopyOfControllerServidor'
+1427061242868	Delete elements
+1427061258723	Delete element
+1427061395851	Delete elements
+1427072207664	Copy compilation unit
+1427072241203	Rename type 'Servidor'
+1427072669596	Rename type 'ClientTrand'
+1427073806471	Delete elements
+1427073812463	Delete element
+1427073815354	Delete element
+1427074466856	Copy compilation unit
+1427074490087	Rename type 'Servidor'

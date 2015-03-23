@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
 import uefs.redes.model.Cliente;
+import uefs.redes.transporte.ClientTransfer;
 
 public class ControllerCliente {
 	
@@ -17,12 +17,12 @@ public class ControllerCliente {
 	
 	public void conectar() throws UnknownHostException, IOException
 	{
-		this.socket_cliente = new Socket (Constants.HOST,Constants.PORT);
-		cliente = new Cliente(this.socket_cliente);
+		this.socket_cliente = new Socket (Constants.HOST,Constants.PORT_ACESS);
+		cliente = new Cliente(this.socket_cliente,this);
 		Thread y = new Thread(cliente);
 		y.start();
 	}
-	
+
 	public void enviar(Pack pacote) throws IOException, InterruptedException
 	{
 		ObjectOutputStream out = new ObjectOutputStream(socket_cliente.getOutputStream());
@@ -37,6 +37,7 @@ public class ControllerCliente {
 		login_reqs.addOneByOne(senha);
 		this.enviar(login_reqs);
 	}
+	
 	public void buscar(String metadados) throws IOException, InterruptedException
 	{
 		Pack search = new Pack(Constants.SEARCH_REQ);
@@ -47,6 +48,23 @@ public class ControllerCliente {
 	{
 		Pack log_out = new Pack(Constants.LOGOUT_REQ);
 		this.enviar(log_out);
+	}
+	public void assistirfilme() throws UnknownHostException, IOException, InterruptedException
+	{
+		
+		Socket cli = new Socket(Constants.HOST,Constants.PORT_FILE);
+		ClientTransfer clis= new ClientTransfer(cli);
+		
+		
+		Pack log_out = new Pack(Constants.DOWNLOAD_REQ);
+		ObjectOutputStream out = new ObjectOutputStream(cli.getOutputStream());
+		out.writeObject(log_out);
+		out.flush();
+		
+		clis.getFileFromServeR();
+		
+		//this.enviar(log_out);
+	
 	}
 	
 }

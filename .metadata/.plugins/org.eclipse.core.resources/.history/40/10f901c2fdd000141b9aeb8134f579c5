@@ -1,0 +1,11 @@
+package uefs.redes.controller;
+
+public class mai {
+
+	public static void main(String[] args) {
+		ControllerServidor y = new ControllerServidor();
+		y.startFILE();
+
+	}
+
+}

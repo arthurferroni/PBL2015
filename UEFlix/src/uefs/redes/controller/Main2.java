@@ -12,12 +12,12 @@ public class Main2 {
 		
 		System.out.println("ok");
 		Scanner c = new Scanner(System.in);
-	
 		x.login("Arthur", "arthur");
-		
 		x.buscar("Ok");
 		x.logout();
+		x.assistirfilme();
 		
+		x.assistirfilme();
 	}
 
 }
