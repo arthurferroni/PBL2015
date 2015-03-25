@@ -6,8 +6,8 @@ public class mai {
 
 	public static void main(String[] args) throws IOException {
 		
-		ControllerServidor y = new ControllerServidor();
-		y.startFILE();
+		ControllerServers y = new ControllerServers();
+		y.start_server_file();
 
 	}
 

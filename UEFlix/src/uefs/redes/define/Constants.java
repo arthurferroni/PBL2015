@@ -2,29 +2,29 @@ package uefs.redes.define;
 
 public class Constants {
 	
-	public final static int LOGIN_REQ = 1;
-	public final static int LOGIN_REP = 10;
-	public final static int LOGIN_RER = 100;
 	
-	public final static int LOGOUT_REQ = 2;
-	public final static int LOGOUT_REP = 20;
-	public final static int LOGOUT_RER = 200;
-	
-	public final static int SEARCH_REQ = 3;
-	public final static int SEARCH_REP = 30;
-	public final static int SEARCH_RER = 300;
-	
-	public final static int DOWNLOAD_REQ = 4;
-	public final static int DOWNLOAD_REP = 40;
-	public final static int DOWNLOAD_RER = 400;
-	
-	public final static int REGISTER_REQ = 5;
-	public final static int REGISTER_REP = 50;
-	public final static int REGISTER_RER = 500;
-	
-	public final static int PORT_ACESS = 6677;
-	public final static int PORT_FILE = 13267;
-	public final static String HOST = "localhost";
+	public final static int LOGIN_REQ = 1,
+							LOGIN_REP = 2,
+							LOGIN_RER = 3,
+							LOGOUT_REQ = 4,
+							LOGOUT_REP = 5,
+							LOGOUT_RER = 6,
+							SEARCH_REQ = 7,
+							SEARCH_REP = 8,
+							SEARCH_RER = 9,
+							DOWNLOAD_REQ = 10,
+							DOWNLOAD_REP = 11,
+							DOWNLOAD_RER = 12,
+							REGISTER_REQ = 13,
+							REGISTER_REP = 14,
+							REGISTER_RER = 15,
+							
+							PORT_ACESS = 6677,
+							PORT_FILE = 13267;
+	public final static String 	HOST = "localhost",
+								MESSAGE_ERROR = "Houve um Erro ao relalizar ",
+								MESSAGE_INFORMATION = "Você conseguiu realizar  "
+							;
 	
 	
 }
