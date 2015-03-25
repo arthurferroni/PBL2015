@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/UEFlix/src/uefs/redes/servidorArquivo/ServerTransfer.java"/>
+<listEntry value="/UEFlix/src/uefs/redes/transporte/ServerTransfer.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="uefs.redes.servidorArquivo.ServerTransfer"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="uefs.redes.transporte.ServerTransfer"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="UEFlix"/>
 </launchConfiguration>

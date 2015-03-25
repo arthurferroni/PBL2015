@@ -4,27 +4,33 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Pack implements Serializable {
-
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	private int code;
-	private ArrayList< Object > information = new ArrayList< Object >();
+	private int CODE;
+	private ArrayList< Object > INFO = new ArrayList< Object >();
 	
 	
 	public Pack (int CODE){
-		this.code = CODE;
+		this.CODE = CODE;
+		}
+	public int getCODE(){
+		return this.CODE;
 	}
-	public int getCode(){
-		return this.code;
+	public void setCODE(int CODE){
+		this.CODE = CODE;
 	}
-	public void setCode(int CODE){
-		this.code = CODE;
+	public void setINFO(ArrayList<Object> INFO){
+		this.INFO = INFO;
 	}
-	public void addInformation(Object o){
-		this.information.add(o);		
+	public void addOneByOne(Object o){
+		this.INFO.add(o);		
 	}
-	public Object getInformation(int index){
-		
-		return this.information.get(index);		
+	public ArrayList< Object > getINFO()
+	{
+		return this.INFO;
 	}
 	
 	

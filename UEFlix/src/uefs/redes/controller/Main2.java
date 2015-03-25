@@ -5,20 +5,19 @@ import java.util.Scanner;
 
 public class Main2 {
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-		ControllerClient x = new ControllerClient();
-		x.connect();
+		ControllerCliente x = new ControllerCliente();
+		x.conectar();
 		
 		System.out.println("ok");
 		Scanner c = new Scanner(System.in);
-		x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
-		x.login("Arthur-LOGIN","Arthur-PASS");
-		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
-		//x.search("Ok");
-		//x.logout();
+		x.login("Arthur", "arthur");
+		x.buscar("Ok");
+		x.logout();
+		x.assistirfilme();
 		
+		x.assistirfilme();
 	}
 
 }
