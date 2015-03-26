@@ -41,10 +41,12 @@ public class ControllerClient {
 	public void search(String datagrams) throws IOException, InterruptedException
 	{
 		Pack search_pack = new Pack(Constants.SEARCH_REQ);
-		
+			
 		search_pack.addInformation(datagrams);
 		
 		this.send_pack(search_pack);
+		System.out.println("aa"  );
+		
 	}
 	public void logout(String login) throws IOException, InterruptedException
 	{

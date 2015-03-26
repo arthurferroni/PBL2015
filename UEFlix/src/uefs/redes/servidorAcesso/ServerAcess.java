@@ -25,6 +25,12 @@ public class ServerAcess implements Runnable{
 	@Override
 	public void run()
 	{
+		MovieInformation o = new MovieInformation("FILME NOME","DESCRI",1,"TERRO");
+		o.addOneByOne("tag1");
+		o.addOneByOne("tag2");
+		o.addOneByOne("tag3");
+		
+		moviesInformation.add(o);
 		try	
 		{
 			Pack pack_reqs ;
@@ -124,22 +130,28 @@ public class ServerAcess implements Runnable{
 						System.out.println("search-REQ");
 						//
 					String tag_movie = (String)pack_reqs.getInformation(0);
-						ArrayList<MovieInformation> movieslist = searchMovies(tag_movie);
-						if(movieslist==null)
+					System.out.println(tag_movie);
+					ArrayList<MovieInformation> movieslist = searchMovies(tag_movie);
+						System.out.println(movieslist.size());
+						
+						if(movieslist.isEmpty())
 						{
 							pack_reqs = new Pack(Constants.SEARCH_RER);
-							pack_reqs.addInformation(Constants.MESSAGE_ERROR);
+							pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Search");
+							System.out.println("AQUI");
 						}
 						else
 						{
 							pack_reqs = new Pack(Constants.SEARCH_REP);
-							pack_reqs.addInformation(Constants.MESSAGE_INFORMATION);
+							pack_reqs.addInformation(Constants.MESSAGE_INFORMATION + "Search");
+							
 							pack_reqs.addInformation(movieslist);
+						
 						}
 						
 						// CODIGO 
-						
 						this.send_pack(pack_reqs);
+						
 						break;
 					case Constants.DOWNLOAD_REQ:
 						System.out.println("DONW-REQ");
@@ -181,7 +193,7 @@ public class ServerAcess implements Runnable{
 	private ArrayList<MovieInformation> searchMovies(String tag_movie)
 	{
 		boolean hasMovie = false;
-		ArrayList<MovieInformation> list = new ArrayList<>();
+		ArrayList<MovieInformation> list = new ArrayList<MovieInformation>();
 		for(MovieInformation movies:this.moviesInformation)
 		{
 			ArrayList<String> x = movies.getTags_file();
@@ -194,6 +206,6 @@ public class ServerAcess implements Runnable{
 					}
 			}
 		}
-		return hasMovie ? list : null;
+		return list;
 	}
 }

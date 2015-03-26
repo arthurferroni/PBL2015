@@ -1,8 +1,9 @@
 package uefs.redes.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MovieInformation {
+public class MovieInformation implements Serializable {
 	
 	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
@@ -36,6 +37,10 @@ public class MovieInformation {
 	}
 	public ArrayList<String> getTags_file() {
 		return tags_file;
+	}
+	public void addOneByOne(String nameTag)
+	{
+		tags_file.add(nameTag);
 	}
 	public void setTags_file(ArrayList<String> tags_file) {
 		this.tags_file = tags_file;

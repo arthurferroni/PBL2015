@@ -74,7 +74,6 @@ public class ClientAcess implements Runnable {
 				case Constants.REGISTER_RER:
 					System.out.println("register-REER");
 					
-
 					String y1 = (String) pack_reqs.getInformation(0);
 					System.out.println(y1 );
 					/*
@@ -84,6 +83,10 @@ public class ClientAcess implements Runnable {
 					break;
 				case Constants.SEARCH_REP:
 					System.out.println("search-REP");
+					String y2 = (String) pack_reqs.getInformation(0);
+					
+					System.out.println(y2  );
+					System.out.println("ss");
 					break;
 				case Constants.DOWNLOAD_REP:
 					System.out.println("donw-REP");

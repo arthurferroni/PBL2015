@@ -13,14 +13,17 @@ public class Main2 {
 		
 		System.out.println("ok");
 		Scanner c = new Scanner(System.in);
-		x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
+	//	x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
 		
-		x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
+		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
 		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
 		//x.login("Arthur-LOGINs","Arthur-PASS");
 		//x.logout();
 		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
-		//x.search("Ok");
+		  x.search("tag1");
+		  System.out.println("s");
+		  x.search("tags");
+		
 		//
 		
 	}
