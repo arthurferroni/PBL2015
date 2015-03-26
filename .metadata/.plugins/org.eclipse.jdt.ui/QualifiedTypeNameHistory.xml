@@ -16,4 +16,5 @@
 <fullyQualifiedTypeName name="uefs.redes.transporte.ClientTransfer"/>
 <fullyQualifiedTypeName name="uefs.redes.transporte.ServerTransfer"/>
 <fullyQualifiedTypeName name="uefs.redes.transporte.ServidorFILE"/>
+<fullyQualifiedTypeName name="uefs.redes.model.MovieInformation"/>
 </qualifiedTypeNameHistroy>
