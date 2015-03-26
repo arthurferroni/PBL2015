@@ -1,7 +1,12 @@
 package uefs.redes.servidorAcesso;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -31,6 +36,7 @@ public class ServerAcess implements Runnable{
 		o.addOneByOne("tag3");
 		
 		moviesInformation.add(o);
+		
 		try	
 		{
 			Pack pack_reqs ;
@@ -188,6 +194,15 @@ public class ServerAcess implements Runnable{
 	}
 	private void load_movies()
 	{
+		
+	}
+	private void save_movies() throws SecurityException, IOException
+	{
+		
+		
+		
+		
+		
 		
 	}
 	private ArrayList<MovieInformation> searchMovies(String tag_movie)

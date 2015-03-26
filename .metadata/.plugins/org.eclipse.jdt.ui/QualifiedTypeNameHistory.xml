@@ -17,4 +17,7 @@
 <fullyQualifiedTypeName name="uefs.redes.transporte.ServerTransfer"/>
 <fullyQualifiedTypeName name="uefs.redes.transporte.ServidorFILE"/>
 <fullyQualifiedTypeName name="uefs.redes.model.MovieInformation"/>
+<fullyQualifiedTypeName name="uefs.redes.define.Pack"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
 </qualifiedTypeNameHistroy>

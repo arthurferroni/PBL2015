@@ -18,3 +18,9 @@
 1427073815354	Delete element
 1427074466856	Copy compilation unit
 1427074490087	Rename type 'Servidor'
+1427330702841	Rename method 'watch_movie'
+1427332925380	Move compilation unit
+1427332947594	Move compilation unit
+1427332952453	Delete element
+1427332982833	Rename method 'waitForClient'
+1427332992683	Rename method 'send_to_movie'

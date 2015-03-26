@@ -14,7 +14,7 @@ public class ClientTransferation {
 		sockServer = s;
 	}
 
-	public  void getFileFromServeR() {
+	public  void getFileFromServeR(String name) {
 		
 		FileOutputStream fos = null;
 		InputStream is = null;
@@ -26,8 +26,7 @@ public class ClientTransferation {
 			is = sockServer.getInputStream();
 
 			// Cria arquivo local no cliente
-			fos = new FileOutputStream(new File("c:\\Teste1\\they.avi"));
-			System.out.println("Arquivo Local Criado c:\\temp\\source-copy.zip");
+			fos = new FileOutputStream(new File("c:\\Teste1\\"+name+".avi"));
 			
 			// Prepara variaveis para transferencia
 			byte[] cbuffer = new byte[1024];

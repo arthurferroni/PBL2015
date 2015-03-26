@@ -20,9 +20,10 @@ public class Main2 {
 		//x.login("Arthur-LOGINs","Arthur-PASS");
 		//x.logout();
 		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
-		  x.search("tag1");
-		  System.out.println("s");
-		  x.search("tags");
+		 // x.search("tag1");
+		//  System.out.println("s");
+		//  x.search("tags");
+		x.donwload_movie("ss", "s");
 		
 		//
 		

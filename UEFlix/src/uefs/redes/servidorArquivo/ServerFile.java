@@ -40,9 +40,10 @@ public class ServerFile implements Runnable{
 						case Constants.DOWNLOAD_REQ:
 							System.out.println("DONW-REQ");
 							//
+							String x = (String) pack_reqs.getInformation(0);
 						
 							
-							waitForClient();
+							sendMovie(x);
 							// CODIGO 
 							pack_reqs.setCode(Constants.DOWNLOAD_REP);
 							out = new ObjectOutputStream(socket.getOutputStream());
@@ -66,12 +67,12 @@ public class ServerFile implements Runnable{
 		}	
 	}
 	@SuppressWarnings("unused")
-	public void waitForClient() {
+	public void sendMovie(String name_file) {
 		// Checa se a transferencia foi completada com sucesso
 		 OutputStream socketOut = null;
 		 ServerSocket servsock = null;
 		 FileInputStream fileIn = null;
-		 String name_file = "they";
+		
 
 		try {
 			
@@ -81,7 +82,7 @@ public class ServerFile implements Runnable{
 			int bytesRead;
 
 			// Criando arquivo que sera transferido pelo servidor
-			File file = new File("c:\\Teste\\they.avi");
+			File file = new File("c:\\Teste\\"+name_file+".avi");
 			fileIn = new FileInputStream(file);
 			System.out.println("Lendo arquivo...");
 			
@@ -126,5 +127,70 @@ public class ServerFile implements Runnable{
 			}
 		}
 	}
+
+
+
+	public void sendPictures(String name_file) {
+		// Checa se a transferencia foi completada com sucesso
+		 OutputStream socketOut = null;
+		 ServerSocket servsock = null;
+		 FileInputStream fileIn = null;
+		
+
+		try {
+			
+
+			// Criando tamanho de leitura
+			byte[] cbuffer = new byte[1024];
+			int bytesRead;
+
+			// Criando arquivo que sera transferido pelo servidor
+			File file = new File("c:\\Teste\\"+name_file+".png");
+			fileIn = new FileInputStream(file);
+			System.out.println("Lendo arquivo...");
+			
+			
+			// Criando canal de transferencia
+			socketOut = socket.getOutputStream();
+
+			// Lendo arquivo criado e enviado para o canal de transferencia
+			System.out.println("Enviando Arquivo...");
+			while ((bytesRead = fileIn.read(cbuffer)) != -1) {
+				socketOut.write(cbuffer, 0, bytesRead);
+				socketOut.flush();
+			}
+
+			System.out.println("Arquivo Enviado!");
+		} catch (Exception e) {
+			// Mostra erro no console
+			e.printStackTrace();
+		} finally {
+			if (socketOut != null) {
+				try {
+					socketOut.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (servsock != null) {
+				try {
+					servsock.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (fileIn != null) {
+				try {
+					fileIn.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+
 
 }

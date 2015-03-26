@@ -33,7 +33,6 @@ public class ControllerClient {
 	public void login(String name, String password) throws IOException, InterruptedException
 	{
 		Pack login_pack = new Pack(Constants.LOGIN_REQ);
-		
 		login_pack.addInformation(name);
 		login_pack.addInformation(password);
 		this.send_pack(login_pack);
@@ -41,11 +40,8 @@ public class ControllerClient {
 	public void search(String datagrams) throws IOException, InterruptedException
 	{
 		Pack search_pack = new Pack(Constants.SEARCH_REQ);
-			
 		search_pack.addInformation(datagrams);
-		
 		this.send_pack(search_pack);
-		System.out.println("aa"  );
 		
 	}
 	public void logout(String login) throws IOException, InterruptedException
@@ -54,24 +50,24 @@ public class ControllerClient {
 		logout_pack.addInformation(login);
 		this.send_pack(logout_pack);
 	}
-	public void watch_movie() throws UnknownHostException, IOException, InterruptedException
+	public void donwload_movie(String name, String type) throws UnknownHostException, IOException, InterruptedException
 	{
+		name = name+"-"+type;
+		name = "they";
 		Pack download_pack = new Pack(Constants.DOWNLOAD_REQ);
-		
+		download_pack.addInformation(name);
 		ClientTransferation client_channel = send_pack_file(download_pack);
 		
-		client_channel.getFileFromServeR();
+		client_channel.getFileFromServeR(name);
+		// pedir pra assistir o filme
 	}
 	public ClientTransferation send_pack_file(Object pack) throws IOException, InterruptedException
 	{
 		Socket client_socket_file = new Socket(Constants.HOST,Constants.PORT_FILE);
-		
 		ClientTransferation client_channel= new ClientTransferation(client_socket_file);		
 		ObjectOutputStream out = new ObjectOutputStream(client_socket_file.getOutputStream());
-		
 		out.writeObject(pack);
 		out.flush();
-		
 		return client_channel;
 	}
 	public void register(String name, String login, String password) throws IOException, InterruptedException
