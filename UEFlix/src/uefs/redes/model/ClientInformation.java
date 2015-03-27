@@ -1,6 +1,7 @@
 package uefs.redes.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ClientInformation implements Serializable {
 	
@@ -10,7 +11,7 @@ public class ClientInformation implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String name,login,password;
-
+	private ArrayList<MovieInformation>history = new  ArrayList<MovieInformation>();
 	
 	public ClientInformation(String name, String login, String password)
 	{
@@ -25,6 +26,26 @@ public class ClientInformation implements Serializable {
 		this.name="NULL";
 		this.login = login;
 		this.password =password;
+	}
+	
+	public void addMoiveHistory(MovieInformation x )
+	{
+		if(!history.contains(x))
+		{
+			this.history.add(x);
+		}else
+		{
+			int i = 0 ;
+			for(MovieInformation y:this.history)
+			{
+				if(y.getName_file().equals(x.getName_file()))
+				{
+					history.remove(x);
+					break;
+				}
+			}
+			history.add(x);
+		}
 	}
 	public String getName() {
 		return name;

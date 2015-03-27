@@ -16,7 +16,7 @@ import uefs.redes.model.MovieInformation;
 
 public class ServerAcess implements Runnable{
 
-	
+	private ClientInformation client_information = null;
 	private Socket socket;
 	@SuppressWarnings("unused")
 	private ArrayList<MovieInformation> moviesInformation = new ArrayList<MovieInformation>();
@@ -41,6 +41,7 @@ public class ServerAcess implements Runnable{
 				String name;
 				String pass;
 				String login_name;
+				
 				boolean hasClient = false;
 					in =  new  ObjectInputStream(socket.getInputStream());
 					 pack_reqs = (Pack) in.readObject();
@@ -52,7 +53,7 @@ public class ServerAcess implements Runnable{
 						 name = (String)pack_reqs.getInformation(0);
 						 pass = (String)pack_reqs.getInformation(1);
 						
-						 ClientInformation client_information = null;
+						 
 						
 						for(ClientInformation xClient:this.clients)
 						{
@@ -120,8 +121,8 @@ public class ServerAcess implements Runnable{
 						 hasClient = false;
 						break;
 					case Constants.SEARCH_REQ:
-						
-						String tag_movie = (String)pack_reqs.getInformation(0);
+						String tag_movie;
+						tag_movie = (String)pack_reqs.getInformation(0);
 						System.out.println(tag_movie);
 						
 						ArrayList<MovieInformation> movieslist = searchMovies(tag_movie);
@@ -143,7 +144,11 @@ public class ServerAcess implements Runnable{
 							
 						break;
 					case Constants.DOWNLOAD_REQ:
+						String tag_movie1;
 						
+						tag_movie1 = (String) pack_reqs.getInformation(0);
+						MovieInformation movieslists = getMovies(tag_movie1);
+						client_information.addMoiveHistory(movieslists);
 					//	pack_reqs.setCode(Constants.DOWNLOAD_REP);
 					//	this.send_pack(pack_reqs);
 						break;
@@ -184,6 +189,19 @@ public class ServerAcess implements Runnable{
 					if(!list.contains(movies))
 						list.add(movies);
 			}
+		}
+		return list;
+	}
+	private MovieInformation getMovies(String tag_movie)
+	{
+		
+		MovieInformation list = null;
+		for(MovieInformation movies:this.moviesInformation)
+		{
+			String x = (String) movies.getName_file();
+			
+				if(x.equals(tag_movie))
+					list = movies;
 		}
 		return list;
 	}
