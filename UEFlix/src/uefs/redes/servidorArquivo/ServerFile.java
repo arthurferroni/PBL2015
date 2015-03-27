@@ -7,15 +7,17 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
+import uefs.redes.model.MovieInformation;
 
 public class ServerFile implements Runnable{
 
 	
 	private Socket socket;
-	
+
 	public ServerFile(Socket sock) throws IOException
 	{
 		this.socket = sock;
@@ -41,9 +43,15 @@ public class ServerFile implements Runnable{
 							System.out.println("DONW-REQ");
 							//
 							String x = (String) pack_reqs.getInformation(0);
-						
-							
 							sendMovie(x);
+							// CODIGO 
+							pack_reqs.setCode(Constants.DOWNLOAD_REP);
+							out = new ObjectOutputStream(socket.getOutputStream());
+							out.writeObject(pack_reqs);
+							break;
+						case Constants.DOWNLOAD_IMAGE_REQ:
+							String x1 = (String) pack_reqs.getInformation(0);
+							sendPictures(x1);
 							// CODIGO 
 							pack_reqs.setCode(Constants.DOWNLOAD_REP);
 							out = new ObjectOutputStream(socket.getOutputStream());
@@ -66,6 +74,7 @@ public class ServerFile implements Runnable{
 		System.out.println("cliente desco");								
 		}	
 	}
+	
 	@SuppressWarnings("unused")
 	public void sendMovie(String name_file) {
 		// Checa se a transferencia foi completada com sucesso
@@ -82,7 +91,8 @@ public class ServerFile implements Runnable{
 			int bytesRead;
 
 			// Criando arquivo que sera transferido pelo servidor
-			File file = new File("c:\\Teste\\"+name_file+".avi");
+			String x = (String) new File("").getAbsolutePath();
+			File file = new File( x + "\\movie\\" + name_file + ".avi");
 			fileIn = new FileInputStream(file);
 			System.out.println("Lendo arquivo...");
 			
@@ -145,7 +155,8 @@ public class ServerFile implements Runnable{
 			int bytesRead;
 
 			// Criando arquivo que sera transferido pelo servidor
-			File file = new File("c:\\Teste\\"+name_file+".png");
+			String x = (String) new File("").getAbsolutePath();
+			File file = new File(x+"\\picture\\"+name_file+".png");
 			fileIn = new FileInputStream(file);
 			System.out.println("Lendo arquivo...");
 			

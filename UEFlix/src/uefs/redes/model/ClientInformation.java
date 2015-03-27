@@ -1,8 +1,14 @@
 package uefs.redes.model;
 
-public class ClientInformation {
+import java.io.Serializable;
+
+public class ClientInformation implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name,login,password;
 
 	

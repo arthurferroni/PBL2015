@@ -4,24 +4,27 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
 import uefs.redes.model.ClientAcess;
 import uefs.redes.model.ClientTransferation;
+import uefs.redes.model.MovieInformation;
 
 public class ControllerClient {
 	
 	private ClientAcess client_acess;
 	private Socket client_socket ;
+	private ArrayList<MovieInformation> moviesInformation = new ArrayList<MovieInformation>();
 	
-	public void connect() throws UnknownHostException, IOException
+	public void connect() throws UnknownHostException, IOException, InterruptedException
 	{
 		this.client_socket = new Socket (Constants.HOST,Constants.PORT_ACESS);
 		client_acess = new ClientAcess(this.client_socket,this);
-		
 		Thread threadClient = new Thread(client_acess);
-		threadClient.start();
+		threadClient.start();	
+		
 	}
 	public void send_pack(Object pack) throws IOException, InterruptedException
 	{
@@ -36,6 +39,19 @@ public class ControllerClient {
 		login_pack.addInformation(name);
 		login_pack.addInformation(password);
 		this.send_pack(login_pack);
+		
+	}
+	public void getImage() throws IOException, InterruptedException
+	{
+		for(MovieInformation xMovie: this.moviesInformation)
+		{
+			String movie_name = xMovie.getName_file();
+			
+				Pack pack_image = new Pack(Constants.DOWNLOAD_IMAGE_REQ);
+				pack_image.addInformation(movie_name);
+				ClientTransferation client_channel = this.send_pack_file(pack_image);
+				client_channel.getFileFromeServerImage(movie_name);
+		}
 	}
 	public void search(String datagrams) throws IOException, InterruptedException
 	{
@@ -78,6 +94,9 @@ public class ControllerClient {
 		// codigo para encryp
 		register_pack.addInformation(password);
 		this.send_pack(register_pack);
+	}
+	public void setMoviesInformation(ArrayList<MovieInformation> moviesInformation) {
+		this.moviesInformation = moviesInformation;
 	}
 
 
