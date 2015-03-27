@@ -52,14 +52,14 @@ public class ClientAcess implements Runnable {
 				switch(pack_reqs.getCode()) {
 				case Constants.LOGIN_REP:
 					ClientInformation client_info = (ClientInformation) pack_reqs.getInformation(0);
-					message = (String) pack_reqs.getInformation(1);
+					message = (String) pack_reqs.getInformation(2);
 					
 					System.out.println(message);
 					// da a mensagem na interface.
 					
-					ArrayList<MovieInformation> moviesInformation = null;
+					ArrayList<MovieInformation> moviesInformation =  (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
 					controll_client.setMoviesInformation(moviesInformation);
-					controll_client.getImage();
+					
 					
 					// modifica para a tela de filmes 
 					break;

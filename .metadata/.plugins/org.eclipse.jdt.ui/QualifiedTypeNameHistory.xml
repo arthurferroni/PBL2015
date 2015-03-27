@@ -20,5 +20,6 @@
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
 <fullyQualifiedTypeName name="uefs.redes.model.ClientInformation"/>
+<fullyQualifiedTypeName name="uefs.redes.controller.ControllerServers"/>
 <fullyQualifiedTypeName name="uefs.redes.model.MovieInformation"/>
 </qualifiedTypeNameHistroy>

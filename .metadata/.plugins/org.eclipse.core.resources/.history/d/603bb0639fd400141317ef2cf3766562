@@ -1,0 +1,20 @@
+package uefs.redes.controller;
+
+import java.util.ArrayList;
+
+public class videos {
+
+	public static void main(String[] args) {
+		ControllerServers x = new ControllerServers();
+		
+		
+		String des = "Batman v Superman: Dawn of Justice é um vindouro filme americano baseado nos personagens Superman, Batman e Mulher-Maravilha da DC Comics.";
+		ArrayList< String > tags = new ArrayList< String > ();
+		tags.add("Batman");
+		tags.add("Superman");
+		tags.add("Contra");
+		x.addMovies("Batman_Contra_Superman",tags,des , 1, "Ação");
+
+	}
+
+}

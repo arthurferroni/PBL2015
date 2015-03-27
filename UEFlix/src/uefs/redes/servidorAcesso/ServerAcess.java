@@ -68,6 +68,7 @@ public class ServerAcess implements Runnable{
 						{
 							pack_reqs = new Pack(Constants.LOGIN_REP);
 							pack_reqs.addInformation(client_information);
+							pack_reqs.addInformation(moviesInformation);
 							pack_reqs.addInformation(Constants.MESSAGE_INFORMATION+"Login.");
 						}
 						else{
@@ -205,6 +206,7 @@ public class ServerAcess implements Runnable{
 		}
 		return list;
 	}
+	
 	public void setDatas(ArrayList<ClientInformation> x, ArrayList<MovieInformation> y)
 	{
 		this.clients = x;

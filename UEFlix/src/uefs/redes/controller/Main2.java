@@ -17,7 +17,7 @@ public class Main2 {
 		
 		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
 		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
-		x.login("Arthur-LOGIN","Arthur-PASS");
+		x.login("Arthur-LOGINs","Arthur-PASS");
 		//x.logout();
 		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
 		 // x.search("tag1");

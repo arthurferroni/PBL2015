@@ -1,0 +1,13 @@
+package uefs.redes.controller;
+
+public class videos {
+
+	public static void main(String[] args) {
+		ControllerServers x = new ControllerServers();
+		
+		
+		x.addMovies("Batman_Contra_Superman-high", tags, description, quantity, category);
+
+	}
+
+}

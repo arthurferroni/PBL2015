@@ -61,7 +61,7 @@ public class ControllerServers {
 		}
 	
 	}
-	private void load_movies() throws FileNotFoundException, IOException, ClassNotFoundException
+	public void load_movies() throws FileNotFoundException, IOException, ClassNotFoundException
 	{
 		File arq = new File ("dataServer.dat");
 		ObjectInputStream getIn;
@@ -69,9 +69,11 @@ public class ControllerServers {
 		this.clients = (ArrayList<ClientInformation>)getIn.readObject();
 		this.moviesInformation = (ArrayList<MovieInformation>)getIn.readObject();
 		getIn.close();
+		System.out.println(moviesInformation.size());
+		
 		
 	}
-	private void save_movies() throws SecurityException, IOException
+	public void save_movies() throws SecurityException, IOException
 	{
 		File arq = new File ("dataServer.dat");
 		ObjectOutputStream out; 
@@ -85,8 +87,8 @@ public class ControllerServers {
 	{
 		// faz um spli do tags e do nome do filme
 		// for colando com addonebyone
-		name = name+"-"+category;
-		MovieInformation movie = new MovieInformation(name, description, quantity, category);
+		
+		MovieInformation movie = new MovieInformation(name,tags ,description, quantity, category);
 		this.moviesInformation.add(movie);
 	}
 	

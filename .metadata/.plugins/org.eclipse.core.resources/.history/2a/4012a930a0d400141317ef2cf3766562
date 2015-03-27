@@ -1,0 +1,41 @@
+package uefs.redes.controller;
+
+import java.util.ArrayList;
+
+public class videos {
+
+	public static void main(String[] args) {
+		ControllerServers x = new ControllerServers();
+		
+		
+		String des = "Batman v Superman: Dawn of Justice é um vindouro filme americano baseado nos personagens Superman, Batman e Mulher-Maravilha da DC Comics.";
+		ArrayList< String > tags = new ArrayList< String > ();
+		tags.add("Batman");
+		tags.add("Superman");
+		tags.add("Contra");
+		tags.add("Batman Contra Superman");
+		x.addMovies("Batman_Contra_Superman",tags,des , 1, "Ação");
+		
+		des = "Capitão Planeta é um super-herói criado no começo dos anos 1990 pelo empresário americano Ted Turner como uma forma de alerta e interação para com seus telespectadores, que em sua maioria são crianças e adolescentes.";
+		 
+		tags.add("Captain");
+		tags.add("Planet");
+		tags.add("Capitão");
+		tags.add("Planeta");
+		tags.add("Captain Planet");
+		tags.add("Capitão Planeta");
+		x.addMovies("Captain_Planet",tags,des , 1, "Ação");
+		
+		des = "Dragon Ball Z é uma série de anime produzida pela Toei Animation Baseada na série de mangá Dragon Ball escrita por Akira Toriyama.";
+		tags.add("Dragon");
+		tags.add("Ball");
+		tags.add("Z");
+		tags.add("Dragon Ball Z");
+		tags.add("Dragon Ball");
+		tags.add("Ball Z");
+		x.addMovies("DragonBallZ",tags,des , 1, "Ação");
+		
+
+	}
+
+}
