@@ -18,7 +18,8 @@ public class Constants {
 							REGISTER_REQ = 13,
 							REGISTER_REP = 14,
 							REGISTER_RER = 15,
-							
+							DOWNLOAD_IMAGE_REQ = 16,
+							DOWNLOAD_IMAGE_REP =17,
 							PORT_ACESS = 6677,
 							PORT_FILE = 13267;
 	public final static String 	HOST = "localhost",

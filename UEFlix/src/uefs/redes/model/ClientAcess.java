@@ -19,11 +19,8 @@ public class ClientAcess implements Runnable {
 	private String login_client;
 	private String pass_client;
 	
-
-	private ArrayList<Object>movies = new  ArrayList<>();
-	private ArrayList<Object>history = new  ArrayList<>();
 	private ControllerClient controll_client = null;
-	
+	private ArrayList<MovieInformation>history = new  ArrayList<MovieInformation>();
 	
 	
 	
@@ -46,6 +43,7 @@ public class ClientAcess implements Runnable {
 			Pack pack_reqs  = null;
 			ObjectInputStream in = null;
 			ObjectOutputStream out = null;
+			String message;
 			do
 			{
 				in =  new  ObjectInputStream(socket.getInputStream());
@@ -53,44 +51,62 @@ public class ClientAcess implements Runnable {
 
 				switch(pack_reqs.getCode()) {
 				case Constants.LOGIN_REP:
-				
-					System.out.println("login-REP");
-	
+					ClientInformation client_info = (ClientInformation) pack_reqs.getInformation(0);
+					message = (String) pack_reqs.getInformation(1);
+					
+					System.out.println(message);
+					// da a mensagem na interface.
+					
+					ArrayList<MovieInformation> moviesInformation = null;
+					controll_client.setMoviesInformation(moviesInformation);
+					controll_client.getImage();
+					
+					// modifica para a tela de filmes 
+					break;
+				case Constants.LOGIN_RER:
+					
+					message = (String) pack_reqs.getInformation(0);
+					System.out.println(message);
+					// apresenta a messagem e 
+					// muda para a interface de fazer login 
+					
 					break;
 				case Constants.LOGOUT_REP:
-					System.out.println("logout-REP");
+					
+					message = (String) pack_reqs.getInformation(0);
+					System.out.println(message);
+					// apresenta a messagem e 
+					// muda para a interface de fazer login 
+					
 					break;
 				case Constants.REGISTER_REP:
-					System.out.println("register-REPP");
-				
-					String y = (String) pack_reqs.getInformation(0);
-					System.out.println(y );
-					/*
-					 	interface muda para login e colocar um Joptionpanel dizendo cadastrado com sucesso 
-					  
-					 */
-					
+					message = (String) pack_reqs.getInformation(0);
+					System.out.println(message);
+					// apresenta a messagem e 
+					// muda para a interface de fazer login 
 					break;
 				case Constants.REGISTER_RER:
-					System.out.println("register-REER");
-					
-					String y1 = (String) pack_reqs.getInformation(0);
-					System.out.println(y1 );
-					/*
-					 	interface muda para login e colocar um Joptionpanel dizendo que nao cadastrado. 
-					*/
+					message = (String) pack_reqs.getInformation(0);
+					System.out.println(message);
+					// apresenta a messagem e 
+					// muda para a interface de fazer Cadastro
 					
 					break;
 				case Constants.SEARCH_REP:
-					System.out.println("search-REP");
-					String y2 = (String) pack_reqs.getInformation(0);
-					
-					System.out.println(y2  );
-					System.out.println("ss");
+					message = (String) pack_reqs.getInformation(0);
+					System.out.println(message);
+					ArrayList<MovieInformation> listMovies = (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
+					// apresenta a messagem e 
+					// muda para a interface apresentando a lista de filmes envontrados
+					break;
+				case Constants.SEARCH_RER:
+					message = (String) pack_reqs.getInformation(0);
+					System.out.println(message);
+					// apresenta a messagem e 
+					// muda para a interface de fazer Cadastro
 					break;
 				case Constants.DOWNLOAD_REP:
 					System.out.println("donw-REP");
-					
 					break;
 				default:
 					break;
@@ -104,7 +120,8 @@ public class ClientAcess implements Runnable {
 		}
 		catch (Exception e)
 		{
-			System.out.println("vc foi descon");
+			// apresenta a messagem e  que o client foi desconectado
+			// tela de login
 		} 
 	}
 	

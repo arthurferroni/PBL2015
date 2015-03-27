@@ -1,12 +1,11 @@
 package uefs.redes.servidorAcesso;
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -22,6 +21,7 @@ public class ServerAcess implements Runnable{
 	@SuppressWarnings("unused")
 	private ArrayList<MovieInformation> moviesInformation = new ArrayList<MovieInformation>();
 	private ArrayList<ClientInformation> clients = new  ArrayList<ClientInformation>();
+
 	public ServerAcess(Socket sock) throws IOException
 	{
 		this.socket = sock;
@@ -30,13 +30,7 @@ public class ServerAcess implements Runnable{
 	@Override
 	public void run()
 	{
-		MovieInformation o = new MovieInformation("FILME NOME","DESCRI",1,"TERRO");
-		o.addOneByOne("tag1");
-		o.addOneByOne("tag2");
-		o.addOneByOne("tag3");
-		
-		moviesInformation.add(o);
-		
+			
 		try	
 		{
 			Pack pack_reqs ;
@@ -55,17 +49,14 @@ public class ServerAcess implements Runnable{
 					case Constants.LOGIN_REQ:
 						System.out.println("login-REQ");
 						//
-				
-						
 						 name = (String)pack_reqs.getInformation(0);
 						 pass = (String)pack_reqs.getInformation(1);
 						
-						 ClientInformation client_information = new ClientInformation(name,pass);
-						
+						 ClientInformation client_information = null;
 						
 						for(ClientInformation xClient:this.clients)
 						{
-							if(xClient.equals(client_information))
+							if(xClient.getLogin().equals(name))
 							{
 								client_information = xClient;
 								hasClient = true;
@@ -86,16 +77,14 @@ public class ServerAcess implements Runnable{
 						this.send_pack(pack_reqs);
 						break;
 					case Constants.LOGOUT_REQ:
-						System.out.println("logout-REQ");
-						// CODIGO 
+						
 						pack_reqs.setCode(Constants.LOGOUT_REP);
 						pack_reqs.addInformation(Constants.MESSAGE_INFORMATION+"Logout.");
 						this.send_pack(pack_reqs);
 						socket.close();
 						break;
 					case Constants.REGISTER_REQ:
-						 System.out.println("register-REQ");
-						//
+						 
 						 name = (String) pack_reqs.getInformation(0);
 						 login_name = (String) pack_reqs.getInformation(1);
 						 pass = (String) pack_reqs.getInformation(2);
@@ -117,57 +106,46 @@ public class ServerAcess implements Runnable{
 								clients.add(clientInfor);
 								pack_reqs = new Pack(Constants.REGISTER_REP);
 								pack_reqs.addInformation(Constants.MESSAGE_INFORMATION+"Cadastro.");
-								System.out.println("SC");
 								
 							}
 							else{
 								
 								pack_reqs = new Pack(Constants.REGISTER_RER);
 								pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Cadastrado Usuário já existe.");
-								System.out.println("ERRO");
+								
 								
 							}
-						
 						  // CODIGO
 						 this.send_pack(pack_reqs);
-						
+						 hasClient = false;
 						break;
 					case Constants.SEARCH_REQ:
-						System.out.println("search-REQ");
-						//
-					String tag_movie = (String)pack_reqs.getInformation(0);
-					System.out.println(tag_movie);
-					ArrayList<MovieInformation> movieslist = searchMovies(tag_movie);
-						System.out.println(movieslist.size());
 						
-						if(movieslist.isEmpty())
-						{
-							pack_reqs = new Pack(Constants.SEARCH_RER);
-							pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Search");
-							System.out.println("AQUI");
-						}
-						else
-						{
-							pack_reqs = new Pack(Constants.SEARCH_REP);
-							pack_reqs.addInformation(Constants.MESSAGE_INFORMATION + "Search");
+						String tag_movie = (String)pack_reqs.getInformation(0);
+						System.out.println(tag_movie);
+						
+						ArrayList<MovieInformation> movieslist = searchMovies(tag_movie);
 							
-							pack_reqs.addInformation(movieslist);
 						
-						}
-						
-						// CODIGO 
-						this.send_pack(pack_reqs);
-						
+							if(movieslist.isEmpty())
+							{
+								pack_reqs = new Pack(Constants.SEARCH_RER);
+								pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Search não há videos com essa tag");
+							}
+							else
+							{
+								pack_reqs = new Pack(Constants.SEARCH_REP);
+								pack_reqs.addInformation(Constants.MESSAGE_INFORMATION + "Search");
+								pack_reqs.addInformation(movieslist);
+							}
+							// CODIGO 
+							this.send_pack(pack_reqs);
+							
 						break;
 					case Constants.DOWNLOAD_REQ:
-						System.out.println("DONW-REQ");
-						//
-					
 						
-						
-						// CODIGO 
-						pack_reqs.setCode(Constants.DOWNLOAD_REP);
-						this.send_pack(pack_reqs);
+					//	pack_reqs.setCode(Constants.DOWNLOAD_REP);
+					//	this.send_pack(pack_reqs);
 						break;
 					default:
 						
@@ -192,22 +170,10 @@ public class ServerAcess implements Runnable{
 		out = new ObjectOutputStream(socket.getOutputStream());
 		out.writeObject(pack);
 	}
-	private void load_movies()
-	{
-		
-	}
-	private void save_movies() throws SecurityException, IOException
-	{
-		
-		
-		
-		
-		
-		
-	}
+	
 	private ArrayList<MovieInformation> searchMovies(String tag_movie)
 	{
-		boolean hasMovie = false;
+		
 		ArrayList<MovieInformation> list = new ArrayList<MovieInformation>();
 		for(MovieInformation movies:this.moviesInformation)
 		{
@@ -216,11 +182,14 @@ public class ServerAcess implements Runnable{
 			{
 				if(y.equals(tag_movie))
 					if(!list.contains(movies))
-					{	list.add(movies);
-						hasMovie = true;
-					}
+						list.add(movies);
 			}
 		}
 		return list;
+	}
+	public void setDatas(ArrayList<ClientInformation> x, ArrayList<MovieInformation> y)
+	{
+		this.clients = x;
+		this.moviesInformation = y;
 	}
 }
