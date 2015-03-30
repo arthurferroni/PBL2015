@@ -1,8 +1,12 @@
 package uefs.redes.application;
 
+import javax.swing.event.ChangeListener;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,48 +19,33 @@ import uefs.redes.property.*;
 public class InitialScreenApp extends Application{
 	
 	private AnchorPane pane;
-	private TextField txPesquisa;
-	private TableView<MovieProperty> tbInitial;
-	private TableColumn<MovieProperty, String> columnVideo;
-	private TableColumn<MovieProperty, String> columnName;
-	private static ObservableList<MovieProperty> listMovies = FXCollections.observableArrayList();
-	private static Favorites watched;
+	private TextField txSearch;
+	private Button btSearch;
+	private static Watched watched;
+	private static Stage stage;
 	
 	@Override
-	public void start(Stage arg0) throws Exception {
-		// TODO Auto-generated method stub
+	public void start(Stage stage) throws Exception {
+		this.stage = stage;
 		initComponents();
-		initMovies();
+		pane.getChildren().addAll(txSearch, btSearch);
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.setTitle("Login - UEFSFlix");
+		stage.show();
 		
 	}
 	
 	private void initComponents(){
 		pane = new AnchorPane();
 		pane.setPrefSize(800, 600);
-		txPesquisa = new TextField();
-		txPesquisa.setPromptText("Digite o item para pesquisa");
-		tbInitial = new TableView<MovieProperty>();
-		tbInitial.setPrefSize(780, 550);
-		columnVideo = new TableColumn<MovieProperty, String>();
-		columnName = new TableColumn<MovieProperty, String>();
-		tbInitial.getColumns().addAll(columnVideo, columnName);
-		pane.getChildren().addAll(txPesquisa, tbInitial);
-		watched = new Favorites();
-		
-		columnVideo.setCellValueFactory(
-				new PropertyValueFactory<MovieProperty, String>("Movie"));
-		columnName.setCellValueFactory(
-				new PropertyValueFactory<MovieProperty, String>("Name"));
-	}
-	
-	private void initMovies(){
-		InitialScreen is = new InitialScreen();
-		is.addMovies(/*new Movie("Bola Topper", 15.00), new Produto(
-		"Luvas Umbro", 9.00), new Produto("Camisa Esportiva", 40.00),
-		new Produto("Chuteira Nike Mercurial", 199.00), new Produto(
-		"Caneleira Topper", 10.00)*/);
-		for (MovieInformation m : is.getMovies())
-			listMovies.add(new MovieProperty(m.getName_file(), m.getCategory()));
+		txSearch = new TextField();
+		txSearch.setPromptText("Digite o item para pesquisa");
+		btSearch = new Button("Pesquisar");	
+		watched = new Watched();
 	}
 
+	public static Watched getWatched(){
+		return watched;
+	}
 }

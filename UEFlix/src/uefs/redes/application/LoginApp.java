@@ -2,6 +2,7 @@ package uefs.redes.application;
 
 import javax.swing.JOptionPane;
 
+import uefs.redes.controller.ControllerClient;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +19,7 @@ public class LoginApp extends Application{
 	private PasswordField txSenha;
 	private Button btEntrar, btSair;
 	private static Stage stage;
-	
+	private ControllerClient controlClient;
 	
 	public void start(Stage stage) throws Exception{
 		LoginApp.stage = stage;
@@ -28,9 +29,11 @@ public class LoginApp extends Application{
 		stage.setScene(scene);
 		stage.setResizable(false);
 		//Title for the screen
-		stage.setTitle("Login - UEFlix");
+		stage.setTitle("Login - UEFSFlix");
 		stage.show();
 		initLayout();
+		initListeners();
+		controlClient = new ControllerClient();
 	}
 	
 	private void initComponents(){
@@ -75,15 +78,23 @@ public class LoginApp extends Application{
 		btEntrar.setOnAction(new EventHandler<ActionEvent>(){
 							@Override
 							public void handle(ActionEvent event) {
-								logar();
+								try {
+									toLogIn();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 							}
 				});
 	}
 	
-	private void logar(){
+	private void toLogIn() throws Exception{
+		//controlClient.login(txLogin.getText(), txSenha.getText());
+		InitialScreenApp initial = new InitialScreenApp();
 		if (txLogin.getText().equals("admin") &&
 				txSenha.getText().equals("casadocodigo")) {
-				// TODO Abrir a tela VitrineApp
+			
+			initial.start(new Stage());
+			LoginApp.getStage().close();
 		} else {
 			JOptionPane.showMessageDialog(null, "Login e/ou senha inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
 		}

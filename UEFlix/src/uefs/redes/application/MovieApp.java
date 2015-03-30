@@ -12,10 +12,11 @@ public class MovieApp extends Application{
 	
 	private AnchorPane pane;
 	private ImageView imgItem;
-	private Label lbPreco, lbDescricao;
-	private Button btAddCarrinho;
+	private Label lbName, lbDescricao;
+	private Button btWatchLow;
+	private Button btWatchHigh;	
 	private static Stage stage;
-	private static MovieInformation pmovie;
+	private static MovieInformation movie;
 	
 	@Override
 	public void start(Stage stage) throws Exception {

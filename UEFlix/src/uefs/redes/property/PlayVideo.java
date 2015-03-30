@@ -1,5 +1,7 @@
 package uefs.redes.property;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -10,17 +12,14 @@ import javafx.stage.Stage;
 
 public class PlayVideo extends Application {
 
-	 private String VIDEO_URL = getClass().getResource(
-	   "file:///Bibliotecas\\Vídeos\\AA.mp4").toString();
-
 	 public static void main(String[] args) {
-	  launch();
+		 launch();
 	 }
 
-	 @Override
 	 public void start(Stage palco) throws Exception {
-
-	  Media media = new Media(VIDEO_URL); // 1
+		 File file = new File(new File("").getAbsolutePath()+"AA.mp4");
+		 System.out.println(file.exists());
+	  Media media = new Media(file.getAbsolutePath()); // 1
 	  MediaPlayer mediaPlayer = new MediaPlayer(media); // 2
 	  MediaView mediaView = new MediaView(mediaPlayer); // 3
 
