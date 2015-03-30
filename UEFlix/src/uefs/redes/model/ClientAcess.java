@@ -6,6 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+import uefs.redes.application.*;
+
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
@@ -18,10 +21,9 @@ public class ClientAcess implements Runnable {
 	private String name_client;
 	private String login_client;
 	private String pass_client;
-	
+	private int en_req;
 	private ControllerClient controll_client = null;
 	private ArrayList<MovieInformation>history = new  ArrayList<MovieInformation>();
-	
 	
 	
 	public ClientAcess(Socket sock, ControllerClient cCLient) throws IOException
@@ -33,7 +35,18 @@ public class ClientAcess implements Runnable {
 	{
 		socket = sock;
 	}
-	
+	public int req()
+        {
+            return en_req;
+        }
+        public String getLogin()
+        {
+            return login_client;
+        }
+        public Socket getSocket()
+        {
+            return socket;
+        }
 	@SuppressWarnings("unused")
 	@Override
 	public void run() 											//	INHERIT THE RUN METHOD FROM THE Runnable INTERFACE
@@ -53,15 +66,15 @@ public class ClientAcess implements Runnable {
 				case Constants.LOGIN_REP:
 					ClientInformation client_info = (ClientInformation) pack_reqs.getInformation(0);
 					message = (String) pack_reqs.getInformation(2);
-					
 					System.out.println(message);
+                                        login_client = client_info.getLogin();
+                                        name_client = client_info.getName();
+                                        pass_client = client_info.getPassword();
 					// da a mensagem na interface.
-					
 					ArrayList<MovieInformation> moviesInformation =  (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
 					controll_client.setMoviesInformation(moviesInformation);
-					
-					
 					// modifica para a tela de filmes 
+                                        en_req = Constants.LOGIN_REP;
 					break;
 				case Constants.LOGIN_RER:
 					
@@ -69,20 +82,23 @@ public class ClientAcess implements Runnable {
 					System.out.println(message);
 					// apresenta a messagem e 
 					// muda para a interface de fazer login 
-					
+                                       en_req = Constants.LOGIN_RER;
 					break;
 				case Constants.LOGOUT_REP:
 					
 					message = (String) pack_reqs.getInformation(0);
 					System.out.println(message);
+                                        en_req = Constants.LOGOUT_REP;
 					// apresenta a messagem e 
 					// muda para a interface de fazer login 
-					
+                                        socket.close();
 					break;
 				case Constants.REGISTER_REP:
 					message = (String) pack_reqs.getInformation(0);
 					System.out.println(message);
+                                        
 					// apresenta a messagem e 
+                                        
 					// muda para a interface de fazer login 
 					break;
 				case Constants.REGISTER_RER:

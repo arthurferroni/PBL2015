@@ -25,7 +25,6 @@ public class ServerAcess implements Runnable{
 	public ServerAcess(Socket sock) throws IOException
 	{
 		this.socket = sock;
-		//iniciar array de videos do pc (arquivo)
 	}
 	@Override
 	public void run()
@@ -73,7 +72,7 @@ public class ServerAcess implements Runnable{
 						}
 						else{
 							pack_reqs = new Pack(Constants.LOGIN_RER);
-							pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Login verifique as informações.");
+							pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Login verifique as informaï¿½ï¿½es.");
 						}
 						// CODIGO 
 						this.send_pack(pack_reqs);
@@ -83,7 +82,6 @@ public class ServerAcess implements Runnable{
 						pack_reqs.setCode(Constants.LOGOUT_REP);
 						pack_reqs.addInformation(Constants.MESSAGE_INFORMATION+"Logout.");
 						this.send_pack(pack_reqs);
-						socket.close();
 						break;
 					case Constants.REGISTER_REQ:
 						 
@@ -113,7 +111,7 @@ public class ServerAcess implements Runnable{
 							else{
 								
 								pack_reqs = new Pack(Constants.REGISTER_RER);
-								pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Cadastrado Usuário já existe.");
+								pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Cadastrado Usuï¿½rio jï¿½ existe.");
 								
 								
 							}
@@ -132,7 +130,7 @@ public class ServerAcess implements Runnable{
 							if(movieslist.isEmpty())
 							{
 								pack_reqs = new Pack(Constants.SEARCH_RER);
-								pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Search não há videos com essa tag");
+								pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Search nï¿½o hï¿½ videos com essa tag");
 							}
 							else
 							{

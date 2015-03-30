@@ -22,4 +22,6 @@
 <fullyQualifiedTypeName name="uefs.redes.model.ClientInformation"/>
 <fullyQualifiedTypeName name="uefs.redes.controller.ControllerServers"/>
 <fullyQualifiedTypeName name="uefs.redes.model.MovieInformation"/>
+<fullyQualifiedTypeName name="uefs.redes.controller.ControllerClient"/>
+<fullyQualifiedTypeName name="uefs.redes.application.Login"/>
 </qualifiedTypeNameHistroy>

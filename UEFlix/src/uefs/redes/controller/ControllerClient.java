@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-
+import uefs.redes.exceptions.*;
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
 import uefs.redes.model.ClientAcess;
@@ -15,7 +15,8 @@ import uefs.redes.model.MovieInformation;
 public class ControllerClient {
 	
 	private ClientAcess client_acess;
-	private Socket client_socket ;
+	static private Socket client_socket ;
+        private int REP_REQS = 0;
 	private ArrayList<MovieInformation> moviesInformation = new ArrayList<MovieInformation>();
 	
 	public void connect() throws UnknownHostException, IOException, InterruptedException
@@ -23,9 +24,13 @@ public class ControllerClient {
 		this.client_socket = new Socket (Constants.HOST,Constants.PORT_ACESS);
 		client_acess = new ClientAcess(this.client_socket,this);
 		Thread threadClient = new Thread(client_acess);
-		threadClient.start();	
+		threadClient.start();
 		
 	}
+        public ClientAcess getClient()
+        {
+            return client_acess;
+        }
 	public void send_pack(Object pack) throws IOException, InterruptedException
 	{
 		ObjectOutputStream out = new ObjectOutputStream(client_socket.getOutputStream());
@@ -33,14 +38,23 @@ public class ControllerClient {
 		out.flush();
 		
 	}
-	public void login(String name, String password) throws IOException, InterruptedException
+	public void login(String name, String password) throws IOException, InterruptedException, LoginSucessException, LoginFailException
 	{
 		Pack login_pack = new Pack(Constants.LOGIN_REQ);
 		login_pack.addInformation(name);
 		login_pack.addInformation(password);
 		this.send_pack(login_pack);
+                Thread.sleep(1000);
+               if( client_acess.req() == Constants.LOGIN_REP)
+               {
+                   this.getImage();
+                   throw new LoginSucessException();
+               }
+               else
+               {
+                   throw new LoginFailException();
+               }
 		
-		this.getImage();
 		
 	}
 	public void getImage() throws IOException, InterruptedException
@@ -55,6 +69,7 @@ public class ControllerClient {
 				pack_image.addInformation(movie_name);
 				ClientTransferation client_channel = this.send_pack_file(pack_image);
 				client_channel.getFileFromeServerImage(movie_name);
+                                Thread.sleep(2000);
 		}
 	}
 	public void search(String datagrams) throws IOException, InterruptedException
@@ -64,11 +79,18 @@ public class ControllerClient {
 		this.send_pack(search_pack);
 		
 	}
-	public void logout(String login) throws IOException, InterruptedException
+	public void logout(String login) throws IOException, InterruptedException, LogoutSucessException, LogoutFailException
 	{
 		Pack logout_pack = new Pack(Constants.LOGOUT_REQ);
 		logout_pack.addInformation(login);
 		this.send_pack(logout_pack);
+                Thread.sleep(1000);
+                 if( client_acess.req() == Constants.LOGOUT_REP)
+                   throw new LogoutSucessException();
+               else
+                    throw new LogoutFailException();
+                
+                
 	}
 	public void donwload_movie(String name, String type) throws UnknownHostException, IOException, InterruptedException
 	{
@@ -101,6 +123,10 @@ public class ControllerClient {
 	public void setMoviesInformation(ArrayList<MovieInformation> moviesInformation) {
 		this.moviesInformation = moviesInformation;
 	}
-
+        public void setREP(int x)
+        {
+            REP_REQS = x;
+        }
+        
 
 }
