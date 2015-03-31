@@ -112,12 +112,14 @@ public class ClientAcess implements Runnable {
 					message = (String) pack_reqs.getInformation(0);
 					System.out.println(message);
 					ArrayList<MovieInformation> listMovies = (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
-					// apresenta a messagem e 
+					 en_req = Constants.SEARCH_REP;
+                                        // apresenta a messagem e 
 					// muda para a interface apresentando a lista de filmes envontrados
 					break;
 				case Constants.SEARCH_RER:
 					message = (String) pack_reqs.getInformation(0);
 					System.out.println(message);
+                                         en_req = Constants.SEARCH_RER;
 					// apresenta a messagem e 
 					// muda para a interface de fazer Cadastro
 					break;
