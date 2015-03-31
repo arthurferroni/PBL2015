@@ -13,10 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import uefs.redes.controller.ControllerClient;
-import uefs.redes.exceptions.LogoutFailException;
-import uefs.redes.exceptions.LogoutSucessException;
-import uefs.redes.exceptions.SearchFailException;
-import uefs.redes.exceptions.SearchSucessException;
+import uefs.redes.exceptions.*;
 import uefs.redes.model.MovieInformation;
 
 /**
