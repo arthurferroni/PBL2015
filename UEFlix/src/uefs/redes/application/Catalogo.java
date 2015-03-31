@@ -268,48 +268,12 @@ public class Catalogo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
-    
-    private void initComp()
-    {
-        moviePanel1.setBackground(new java.awt.Color(0, 0, 0));
-        moviePanel1.setPreferredSize(new java.awt.Dimension(178, 252));
-        String name = "s";
-        String x = (String) new File("").getAbsolutePath();
-        movie1.setForeground(new java.awt.Color(204, 204, 204));
-        movie1.setIcon(new javax.swing.ImageIcon( x+"\\clientpicture\\"+name+".png"));
-        movie1.setPreferredSize(new java.awt.Dimension(158, 230));
-        movie1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                movie1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout moviePanel1Layout = new javax.swing.GroupLayout(moviePanel1);
-        moviePanel1.setLayout(moviePanel1Layout);
-        moviePanel1Layout.setHorizontalGroup(
-            moviePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(moviePanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(movie1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        moviePanel1Layout.setVerticalGroup(
-            moviePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(moviePanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(movie1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-    }
-    
+  
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
        try {
            // TODO add your handling code here:
            
            String search =  searchField.getText().trim();
-           
-           
            clientController.search(search);
        } catch (IOException ex) {
            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
@@ -437,7 +401,6 @@ public class Catalogo extends javax.swing.JFrame {
         });
     }
     private ControllerClient clientController ;
-   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JPanel geralPanel;
