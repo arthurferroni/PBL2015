@@ -76,12 +76,16 @@ public class ControllerClient {
                                 Thread.sleep(500);
 		}
 	}
-	public void search(String datagrams) throws IOException, InterruptedException
+	public void search(String datagrams) throws IOException, InterruptedException, SearchSucessException, SearchFailException
 	{
 		Pack search_pack = new Pack(Constants.SEARCH_REQ);
 		search_pack.addInformation(datagrams);
 		this.send_pack(search_pack);
-		
+                 Thread.sleep(500);
+		if( client_acess.req() == Constants.SEARCH_REP)
+                   throw new SearchSucessException();
+                else
+                    throw new SearchFailException();
 	}
 	public void logout(String login) throws IOException, InterruptedException, LogoutSucessException, LogoutFailException
 	{
@@ -89,7 +93,7 @@ public class ControllerClient {
 		logout_pack.addInformation(login);
 		this.send_pack(logout_pack);
                 Thread.sleep(500);
-                 if( client_acess.req() == Constants.LOGOUT_REP)
+               if( client_acess.req() == Constants.LOGOUT_REP)
                    throw new LogoutSucessException();
                else
                     throw new LogoutFailException();

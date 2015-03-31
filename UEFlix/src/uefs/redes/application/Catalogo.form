@@ -238,6 +238,9 @@
                   <Dimension value="[158, 230]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="movie2ActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="x = (String) new File(&quot;&quot;).getAbsolutePath();"/>
               </AuxValues>
@@ -284,6 +287,9 @@
                   <Connection code="new javax.swing.ImageIcon(x+&quot;\\clientpicture\\Batman_Contra_Superman.png&quot;)" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="movie3ActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="x = (String) new File(&quot;&quot;).getAbsolutePath();"/>
               </AuxValues>

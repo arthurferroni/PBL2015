@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.exceptions.LogoutFailException;
 import uefs.redes.exceptions.LogoutSucessException;
+import uefs.redes.exceptions.SearchFailException;
+import uefs.redes.exceptions.SearchSucessException;
 import uefs.redes.model.MovieInformation;
 
 /**
@@ -118,6 +120,11 @@ public class Catalogo extends javax.swing.JFrame {
         movie2.setForeground(new java.awt.Color(204, 204, 204));
         movie2.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Captain_Planet.png"));
         movie2.setPreferredSize(new java.awt.Dimension(158, 230));
+        movie2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movie2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout moviePanel2Layout = new javax.swing.GroupLayout(moviePanel2);
         moviePanel2.setLayout(moviePanel2Layout);
@@ -142,6 +149,11 @@ public class Catalogo extends javax.swing.JFrame {
         x = (String) new File("").getAbsolutePath();
         movie3.setForeground(new java.awt.Color(204, 204, 204));
         movie3.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Batman_Contra_Superman.png"));
+        movie3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movie3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout moviePanel3Layout = new javax.swing.GroupLayout(moviePanel3);
         moviePanel3.setLayout(moviePanel3Layout);
@@ -256,13 +268,29 @@ public class Catalogo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
+       try {
+           // TODO add your handling code here:
+           
+           String search =  searchField.getText().trim();
+           
+           
+           clientController.search(search);
+       } catch (IOException ex) {
+           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (InterruptedException ex) {
+           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (SearchSucessException ex) {
+           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (SearchFailException ex) {
+           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+       }
+           
+    
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void movie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie1ActionPerformed
         MovieInformation movieInfo1 = movies.get(0);
         System.out.print(movieInfo1);
-        
         new MovieDesc(clientController, movieInfo1).setVisible(true);
     }//GEN-LAST:event_movie1ActionPerformed
 
@@ -323,6 +351,20 @@ public class Catalogo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void movie2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie2ActionPerformed
+        // TODO add your handling code here:
+        MovieInformation movieInfo1 = movies.get(1);
+        System.out.print(movieInfo1);
+        new MovieDesc(clientController, movieInfo1).setVisible(true);
+    }//GEN-LAST:event_movie2ActionPerformed
+
+    private void movie3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie3ActionPerformed
+        // TODO add your handling code here:
+        MovieInformation movieInfo1 = movies.get(2);
+        System.out.print(movieInfo1);
+        new MovieDesc(clientController, movieInfo1).setVisible(true);
+    }//GEN-LAST:event_movie3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -355,7 +397,6 @@ public class Catalogo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Catalogo().setVisible(true);
-                
             }
         });
     }
