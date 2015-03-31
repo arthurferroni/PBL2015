@@ -21,6 +21,7 @@ public class InitialScreenApp extends Application{
 	private AnchorPane pane;
 	private TextField txSearch;
 	private Button btSearch;
+	//botões para imagens
 	private static Watched watched;
 	private static Stage stage;
 	

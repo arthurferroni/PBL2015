@@ -3,6 +3,7 @@ package uefs.redes.application;
 import javax.swing.JOptionPane;
 
 import uefs.redes.controller.ControllerClient;
+import uefs.redes.property.Watched;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +20,7 @@ public class LoginApp extends Application{
 	private PasswordField txSenha;
 	private Button btEntrar, btSair;
 	private static Stage stage;
+	private Scene initialScreen;
 	private ControllerClient controlClient;
 	
 	public void start(Stage stage) throws Exception{
@@ -38,7 +40,7 @@ public class LoginApp extends Application{
 	
 	private void initComponents(){
 		pane = new AnchorPane();
-		pane.setPrefSize(400, 300);
+		pane.setPrefSize(800, 600);
 		txLogin = new TextField();
 		txLogin.setPromptText("Digite aqui seu login");
 		txSenha = new PasswordField();
@@ -89,12 +91,14 @@ public class LoginApp extends Application{
 	
 	private void toLogIn() throws Exception{
 		//controlClient.login(txLogin.getText(), txSenha.getText());
-		InitialScreenApp initial = new InitialScreenApp();
+		//InitialScreenApp initial = new InitialScreenApp();
 		if (txLogin.getText().equals("admin") &&
 				txSenha.getText().equals("casadocodigo")) {
+			stage.setTitle("Página Inicial");
 			
-			initial.start(new Stage());
-			LoginApp.getStage().close();
+			this.initInitialScreen();
+			//initial.start(new Stage());
+			//LoginApp.getStage().
 		} else {
 			JOptionPane.showMessageDialog(null, "Login e/ou senha inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
@@ -102,5 +106,18 @@ public class LoginApp extends Application{
 	
 	private void closeApp(){
 		System.exit(0);
+	}
+	
+	private void initInitialScreen(){
+		pane = new AnchorPane();
+		pane.setPrefSize(800, 600);
+		TextField txSearch = new TextField();
+		txSearch.setPromptText("Digite o item para pesquisa");
+		Button btSearch = new Button("Pesquisar");	
+		Watched watched = new Watched();
+		pane.getChildren().addAll(txSearch, btSearch);
+		initialScreen = new Scene(pane);
+		stage.setScene(initialScreen);
+		stage.show();
 	}
 }
