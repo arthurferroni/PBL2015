@@ -5,7 +5,11 @@
  */
 package uefs.redes.application;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import uefs.redes.controller.ControllerClient;
+import uefs.redes.model.MovieInformation;
 
 /**
  *
@@ -16,12 +20,19 @@ public class MovieDesc extends javax.swing.JFrame {
     /**
      * Creates new form MovieDesc
      */
+    private MovieInformation infMov;
     public MovieDesc() {
         initComponents();
     }
-     public void MovieDesc(ControllerClient x)
+
+     public MovieDesc(ControllerClient x, MovieInformation y)
     {
         clientController = x;
+        
+        infMov = y;
+        System.out.print(infMov.getName_file()+" "+infMov.getDescription());
+        initComponents();
+        textAreaDesc.setText(infMov.getDescription());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +46,7 @@ public class MovieDesc extends javax.swing.JFrame {
         geralPanel = new javax.swing.JPanel();
         pictureMovie = new javax.swing.JPanel();
         fieldDescrition = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAreaDesc = new javax.swing.JTextArea();
         movieDescription = new javax.swing.JLabel();
         secondPanel = new javax.swing.JPanel();
         combQualMovie = new javax.swing.JComboBox();
@@ -63,9 +74,10 @@ public class MovieDesc extends javax.swing.JFrame {
             .addGap(0, 219, Short.MAX_VALUE)
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        fieldDescrition.setViewportView(jTextArea1);
+        textAreaDesc.setColumns(20);
+        textAreaDesc.setRows(5);
+        textAreaDesc.setText("aaaaaaaaaaa");
+        fieldDescrition.setViewportView(textAreaDesc);
 
         movieDescription.setText("Descrição do filme");
 
@@ -188,6 +200,22 @@ public class MovieDesc extends javax.swing.JFrame {
 
     private void watchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchButtonActionPerformed
         // TODO add your handling code here:
+        
+        String x = (String) combQualMovie.getSelectedItem();
+        System.out.print(x);
+        if(x.equals("Alta"))
+            x = "high";
+        else
+            x = "low";
+        
+        try {
+            clientController.donwload_movie(infMov.getName_file(),x);
+        } catch (IOException ex) {
+            Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
     }//GEN-LAST:event_watchButtonActionPerformed
 
     private void closerWindowsMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closerWindowsMovieActionPerformed
@@ -235,11 +263,11 @@ public class MovieDesc extends javax.swing.JFrame {
     private javax.swing.JComboBox combQualMovie;
     private javax.swing.JScrollPane fieldDescrition;
     private javax.swing.JPanel geralPanel;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMovie;
     private javax.swing.JLabel movieDescription;
     private javax.swing.JPanel pictureMovie;
     private javax.swing.JPanel secondPanel;
+    private javax.swing.JTextArea textAreaDesc;
     private javax.swing.JButton watchButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,6 +31,10 @@ public class ControllerClient {
         {
             return client_acess;
         }
+        public ArrayList<MovieInformation> getMovies()
+        {
+            return moviesInformation;
+        }
 	public void send_pack(Object pack) throws IOException, InterruptedException
 	{
 		ObjectOutputStream out = new ObjectOutputStream(client_socket.getOutputStream());
@@ -44,7 +48,7 @@ public class ControllerClient {
 		login_pack.addInformation(name);
 		login_pack.addInformation(password);
 		this.send_pack(login_pack);
-                Thread.sleep(1000);
+                Thread.sleep(500);
                if( client_acess.req() == Constants.LOGIN_REP)
                {
                    this.getImage();
@@ -69,7 +73,7 @@ public class ControllerClient {
 				pack_image.addInformation(movie_name);
 				ClientTransferation client_channel = this.send_pack_file(pack_image);
 				client_channel.getFileFromeServerImage(movie_name);
-                                Thread.sleep(2000);
+                                Thread.sleep(500);
 		}
 	}
 	public void search(String datagrams) throws IOException, InterruptedException
@@ -84,7 +88,7 @@ public class ControllerClient {
 		Pack logout_pack = new Pack(Constants.LOGOUT_REQ);
 		logout_pack.addInformation(login);
 		this.send_pack(logout_pack);
-                Thread.sleep(1000);
+                Thread.sleep(500);
                  if( client_acess.req() == Constants.LOGOUT_REP)
                    throw new LogoutSucessException();
                else

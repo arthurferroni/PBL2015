@@ -5,7 +5,9 @@
  */
 package uefs.redes.application;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.exceptions.LogoutFailException;
 import uefs.redes.exceptions.LogoutSucessException;
+import uefs.redes.model.MovieInformation;
 
 /**
  *
@@ -23,15 +26,21 @@ public class Catalogo extends javax.swing.JFrame {
     /**
      * Creates new form Catalógo
      */
+   private ArrayList<MovieInformation> movies;
     public Catalogo() {
         initComponents();
+        movies = clientController.getMovies();
+        backButton.setVisible(false);
     }
 
    
     public Catalogo(ControllerClient x)
     {
+       
         clientController = x;
           initComponents();
+          backButton.setVisible(false);
+           movies = clientController.getMovies();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,8 +60,8 @@ public class Catalogo extends javax.swing.JFrame {
         movie2 = new javax.swing.JButton();
         moviePanel3 = new javax.swing.JPanel();
         movie3 = new javax.swing.JButton();
-        moviePanel4 = new javax.swing.JPanel();
-        movie4 = new javax.swing.JButton();
+        moreButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         historyButton = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenu();
@@ -70,9 +79,15 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
 
-        geralPanel.setBackground(new java.awt.Color(240, 140, 240));
+        geralPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        movie1.setText("jButton2");
+        moviePanel1.setBackground(new java.awt.Color(0, 0, 0));
+        moviePanel1.setPreferredSize(new java.awt.Dimension(178, 252));
+
+        String x = (String) new File("").getAbsolutePath();
+        movie1.setForeground(new java.awt.Color(204, 204, 204));
+        movie1.setIcon(new javax.swing.ImageIcon( x+"\\clientpicture\\DragonBallZ.png"));
+        movie1.setPreferredSize(new java.awt.Dimension(158, 230));
         movie1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 movie1ActionPerformed(evt);
@@ -83,83 +98,114 @@ public class Catalogo extends javax.swing.JFrame {
         moviePanel1.setLayout(moviePanel1Layout);
         moviePanel1Layout.setHorizontalGroup(
             moviePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addGroup(moviePanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(movie1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         moviePanel1Layout.setVerticalGroup(
             moviePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+            .addGroup(moviePanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(movie1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        moviePanel2.setPreferredSize(new java.awt.Dimension(150, 219));
+        moviePanel2.setBackground(new java.awt.Color(0, 0, 0));
+        moviePanel2.setPreferredSize(new java.awt.Dimension(178, 252));
 
-        movie2.setText("jButton3");
+        x = (String) new File("").getAbsolutePath();
+        movie2.setForeground(new java.awt.Color(204, 204, 204));
+        movie2.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Captain_Planet.png"));
+        movie2.setPreferredSize(new java.awt.Dimension(158, 230));
 
         javax.swing.GroupLayout moviePanel2Layout = new javax.swing.GroupLayout(moviePanel2);
         moviePanel2.setLayout(moviePanel2Layout);
         moviePanel2Layout.setHorizontalGroup(
             moviePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addGroup(moviePanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(movie2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         moviePanel2Layout.setVerticalGroup(
             moviePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(moviePanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(movie2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        moviePanel3.setPreferredSize(new java.awt.Dimension(150, 219));
+        moviePanel3.setBackground(new java.awt.Color(0, 0, 0));
+        moviePanel3.setPreferredSize(new java.awt.Dimension(178, 252));
 
-        movie3.setText("jButton4");
+        x = (String) new File("").getAbsolutePath();
+        movie3.setForeground(new java.awt.Color(204, 204, 204));
+        movie3.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Batman_Contra_Superman.png"));
 
         javax.swing.GroupLayout moviePanel3Layout = new javax.swing.GroupLayout(moviePanel3);
         moviePanel3.setLayout(moviePanel3Layout);
         moviePanel3Layout.setHorizontalGroup(
             moviePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie3, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addGroup(moviePanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(movie3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         moviePanel3Layout.setVerticalGroup(
             moviePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie3, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+            .addGroup(moviePanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(movie3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        moviePanel4.setPreferredSize(new java.awt.Dimension(150, 219));
+        moreButton.setText("Mais");
+        moreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreButtonActionPerformed(evt);
+            }
+        });
 
-        movie4.setText("jButton5");
-
-        javax.swing.GroupLayout moviePanel4Layout = new javax.swing.GroupLayout(moviePanel4);
-        moviePanel4.setLayout(moviePanel4Layout);
-        moviePanel4Layout.setHorizontalGroup(
-            moviePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie4, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-        );
-        moviePanel4Layout.setVerticalGroup(
-            moviePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(movie4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout geralPanelLayout = new javax.swing.GroupLayout(geralPanel);
         geralPanel.setLayout(geralPanelLayout);
         geralPanelLayout.setHorizontalGroup(
             geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(geralPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(moviePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(moviePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(moviePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, geralPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(moviePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(moviePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(moviePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(moviePanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(moreButton)
                 .addContainerGap())
         );
         geralPanelLayout.setVerticalGroup(
             geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(geralPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(moviePanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(moviePanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(moviePanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(moviePanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(moviePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(moviePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(moviePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moreButton)
+                    .addComponent(backButton))
+                .addContainerGap())
         );
 
         historyButton.setText("Historico");
@@ -185,11 +231,10 @@ public class Catalogo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(geralPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(geralPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -203,8 +248,8 @@ public class Catalogo extends javax.swing.JFrame {
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(geralPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(geralPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -215,8 +260,10 @@ public class Catalogo extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void movie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie1ActionPerformed
-       
-        new MovieDesc().setVisible(true);
+        MovieInformation movieInfo1 = movies.get(0);
+        System.out.print(movieInfo1);
+        
+        new MovieDesc(clientController, movieInfo1).setVisible(true);
     }//GEN-LAST:event_movie1ActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
@@ -242,6 +289,39 @@ public class Catalogo extends javax.swing.JFrame {
         new CatalogoHistory(clientController).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_historyButtonMouseClicked
+
+    private void moreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreButtonActionPerformed
+        // TODO add your handling code here:
+        
+               
+                movie1.setVisible(false);
+                movie2.setVisible(false);
+                movie3.setVisible(false);
+               
+               // String  x = (String) new File("").getAbsolutePath();
+                //movie3.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Captain_Planet.png"));
+                
+                backButton.setVisible(true);
+                moreButton.setVisible(false);
+        
+    }//GEN-LAST:event_moreButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        
+                 movie1.setVisible(true);
+                movie2.setVisible(true);
+                movie3.setVisible(true);
+               
+               // String  x = (String) new File("").getAbsolutePath();
+                //movie3.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Captain_Planet.png"));
+                
+                backButton.setVisible(false);
+                moreButton.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,24 +355,25 @@ public class Catalogo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Catalogo().setVisible(true);
-             
+                
             }
         });
     }
     private ControllerClient clientController ;
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JPanel geralPanel;
     private javax.swing.JMenu historyButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu logoutButton;
+    private javax.swing.JButton moreButton;
     private javax.swing.JButton movie1;
     private javax.swing.JButton movie2;
     private javax.swing.JButton movie3;
-    private javax.swing.JButton movie4;
     private javax.swing.JPanel moviePanel1;
     private javax.swing.JPanel moviePanel2;
     private javax.swing.JPanel moviePanel3;
-    private javax.swing.JPanel moviePanel4;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables

@@ -20,14 +20,14 @@ public class ClientTransferation {
 		InputStream is = null;
 
 		try {
-			// Criando conexão com o servidor
+			// Criando conexï¿½o com o servidor
 			System.out.println("Conectando com Servidor porta 13267");
 			
 			is = sockServer.getInputStream();
 
 			// Cria arquivo local no cliente
 			String x = (String) new File("").getAbsolutePath();
-			fos = new FileOutputStream(new File(x+"\\clientmovie\\"+name+".avi"));
+			fos = new FileOutputStream(new File(x+"\\clientmovie\\"+name+".mp4"));
 			
 			// Prepara variaveis para transferencia
 			byte[] cbuffer = new byte[1024];
@@ -77,7 +77,7 @@ public class ClientTransferation {
 		InputStream is = null;
 
 		try {
-			// Criando conexão com o servidor
+			// Criando conexï¿½o com o servidor
 			System.out.println("Conectando com Servidor porta 13267");
 			
 			is = sockServer.getInputStream();

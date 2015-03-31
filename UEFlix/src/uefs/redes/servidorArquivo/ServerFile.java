@@ -92,7 +92,7 @@ public class ServerFile implements Runnable{
 
 			// Criando arquivo que sera transferido pelo servidor
 			String x = (String) new File("").getAbsolutePath();
-			File file = new File( x + "\\movie\\" + name_file + ".avi");
+			File file = new File( x + "\\movie\\" + name_file + ".mp4");
 			fileIn = new FileInputStream(file);
 			System.out.println("Lendo arquivo...");
 			
@@ -156,6 +156,7 @@ public class ServerFile implements Runnable{
 
 			// Criando arquivo que sera transferido pelo servidor
 			String x = (String) new File("").getAbsolutePath();
+                        
 			File file = new File(x+"\\picture\\"+name_file+".png");
 			fileIn = new FileInputStream(file);
 			System.out.println("Lendo arquivo...");
