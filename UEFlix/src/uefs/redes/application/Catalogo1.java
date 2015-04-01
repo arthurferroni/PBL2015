@@ -27,18 +27,18 @@ public class Catalogo1 extends javax.swing.JFrame {
    private ArrayList<MovieInformation> movies ;
     public Catalogo1() {
         initComponents();
-        movies = clientController.getMovies();
-        backButton.setVisible(false);
+        //movies = clientController.getMovies();
+       
     }
 
    
     public Catalogo1(ControllerClient x)
     {
        
-        clientController = x;
+        //clientController = x;
           initComponents();
-          backButton.setVisible(false);
-           movies = clientController.getMovies();
+         
+           //movies = clientController.getMovies();
     }
     /**
      * This method is called from within the constructor to initialize the form.
