@@ -77,6 +77,7 @@ public class MovieDesc extends javax.swing.JFrame {
         textAreaDesc.setColumns(20);
         textAreaDesc.setRows(5);
         textAreaDesc.setText("aaaaaaaaaaa");
+        textAreaDesc.setEditable(false);
         fieldDescrition.setViewportView(textAreaDesc);
 
         movieDescription.setText("Descrição do filme");
@@ -146,11 +147,12 @@ public class MovieDesc extends javax.swing.JFrame {
                 .addComponent(pictureMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldDescrition)
+                    .addComponent(secondPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(geralPanelLayout.createSequentialGroup()
-                        .addComponent(movieDescription)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(secondPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldDescrition, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(movieDescription))
+                        .addGap(0, 0, 0)))
                 .addContainerGap())
         );
         geralPanelLayout.setVerticalGroup(
