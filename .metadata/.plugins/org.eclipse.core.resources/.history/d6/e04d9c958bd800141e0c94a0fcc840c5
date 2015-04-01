@@ -51,7 +51,7 @@ public class Janela extends javax.swing.JFrame {
         BorderLayout border = new BorderLayout();
        searchField.setMinimumSize( new Dimension (60,200));
        searchField.setPreferredSize( new Dimension (200,30));
-       gPanelScroll.setPreferredSize(new Dimension(400, 258));
+       gPanelScroll.setPreferredSize();
         searchField.setText("o");
         gPanelNorth.add(historico);
         gPanelNorth.add(sair);
@@ -90,7 +90,6 @@ public class Janela extends javax.swing.JFrame {
                   
            	gPanelScroll.add(a1);
         }
-        
         gPanelCenter.add(gPanelScroll);
         gContainer.add(BorderLayout.CENTER,gPanelCenter);
          

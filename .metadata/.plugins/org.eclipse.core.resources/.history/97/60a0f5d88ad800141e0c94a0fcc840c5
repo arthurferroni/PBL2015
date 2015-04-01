@@ -11,13 +11,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
 import uefs.redes.model.MovieInformation;
 
 /**
@@ -38,7 +35,6 @@ public class Janela extends javax.swing.JFrame {
     
     private JPanel gPanel = new JPanel();
     private JPanel gPanelCenter = new JPanel(new FlowLayout());
-    private JScrollPane gPanelScroll = new JScrollPane();
     private JPanel gPanelNorth = new JPanel();
    private int h = 0;
     
@@ -50,8 +46,8 @@ public class Janela extends javax.swing.JFrame {
        Container gContainer = getContentPane();
         BorderLayout border = new BorderLayout();
        searchField.setMinimumSize( new Dimension (60,200));
-       searchField.setPreferredSize( new Dimension (200,30));
-       gPanelScroll.setPreferredSize(new Dimension(400, 258));
+     searchField.setPreferredSize( new Dimension (200,30));
+
         searchField.setText("o");
         gPanelNorth.add(historico);
         gPanelNorth.add(sair);
@@ -80,7 +76,7 @@ public class Janela extends javax.swing.JFrame {
         gContainer.add(BorderLayout.NORTH,gPanelNorth);
         gContainer.add(BorderLayout.SOUTH, new JButton("2"));
      
-        for(int i = 0; i<210; i++)
+        for(int i = 0; i<10; i++)
         { 
             h=i;
            JButton a1 = new JButton("-"+i);
@@ -88,10 +84,8 @@ public class Janela extends javax.swing.JFrame {
            	a1.addActionListener(new MyEvent( new MovieInformation("title"+i, "dsadas", 1, "asdada")));
            
                   
-           	gPanelScroll.add(a1);
+            gPanelCenter.add(a1);
         }
-        
-        gPanelCenter.add(gPanelScroll);
         gContainer.add(BorderLayout.CENTER,gPanelCenter);
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

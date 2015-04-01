@@ -50,8 +50,8 @@ public class Janela extends javax.swing.JFrame {
        Container gContainer = getContentPane();
         BorderLayout border = new BorderLayout();
        searchField.setMinimumSize( new Dimension (60,200));
-       searchField.setPreferredSize( new Dimension (200,30));
-       gPanelScroll.setPreferredSize(new Dimension(400, 258));
+     searchField.setPreferredSize( new Dimension (200,30));
+
         searchField.setText("o");
         gPanelNorth.add(historico);
         gPanelNorth.add(sair);
@@ -88,10 +88,8 @@ public class Janela extends javax.swing.JFrame {
            	a1.addActionListener(new MyEvent( new MovieInformation("title"+i, "dsadas", 1, "asdada")));
            
                   
-           	gPanelScroll.add(a1);
+            gPanelCenter.add(a1);
         }
-        
-        gPanelCenter.add(gPanelScroll);
         gContainer.add(BorderLayout.CENTER,gPanelCenter);
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
