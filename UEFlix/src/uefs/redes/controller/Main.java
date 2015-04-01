@@ -1,6 +1,5 @@
 package uefs.redes.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 

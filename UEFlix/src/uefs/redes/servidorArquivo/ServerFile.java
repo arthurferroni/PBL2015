@@ -7,11 +7,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
-import uefs.redes.model.MovieInformation;
 
 public class ServerFile implements Runnable{
 
@@ -91,7 +88,7 @@ public class ServerFile implements Runnable{
 			int bytesRead;
 
 			// Criando arquivo que sera transferido pelo servidor
-			String x = (String) new File("").getAbsolutePath();
+			String x = new File("").getAbsolutePath();
 			File file = new File( x + "\\movie\\" + name_file + ".mp4");
 			fileIn = new FileInputStream(file);
 			System.out.println("Lendo arquivo...");
@@ -155,7 +152,7 @@ public class ServerFile implements Runnable{
 			int bytesRead;
 
 			// Criando arquivo que sera transferido pelo servidor
-			String x = (String) new File("").getAbsolutePath();
+			String x = new File("").getAbsolutePath();
                         
 			File file = new File(x+"\\picture\\"+name_file+".png");
 			fileIn = new FileInputStream(file);

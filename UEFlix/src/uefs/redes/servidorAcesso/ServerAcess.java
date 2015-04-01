@@ -1,8 +1,4 @@
 package uefs.redes.servidorAcesso;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -197,7 +193,7 @@ public class ServerAcess implements Runnable{
 		MovieInformation list = null;
 		for(MovieInformation movies:this.moviesInformation)
 		{
-			String x = (String) movies.getName_file();
+			String x = movies.getName_file();
 			
 				if(x.equals(tag_movie))
 					list = movies;

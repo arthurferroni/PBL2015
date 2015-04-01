@@ -84,7 +84,8 @@ public class MovieDesc extends javax.swing.JFrame {
 
         combQualMovie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baixa", "Alta"}));
         combQualMovie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combQualMovieActionPerformed(evt);
             }
         });
@@ -93,7 +94,8 @@ public class MovieDesc extends javax.swing.JFrame {
 
         watchButton.setText("Assistir");
         watchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 watchButtonActionPerformed(evt);
             }
         });
@@ -101,7 +103,8 @@ public class MovieDesc extends javax.swing.JFrame {
         closerWindowsMovie.setText("Fechar");
         closerWindowsMovie.setToolTipText("");
         closerWindowsMovie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closerWindowsMovieActionPerformed(evt);
             }
         });
@@ -254,7 +257,8 @@ public class MovieDesc extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new MovieDesc().setVisible(true);
             }
         });

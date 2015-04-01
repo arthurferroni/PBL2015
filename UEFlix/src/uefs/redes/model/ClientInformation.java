@@ -70,6 +70,7 @@ public class ClientInformation implements Serializable {
 	public void setLogin(String login) {
 		this.login = login;
 	}
+	@Override
 	public boolean equals(Object o)
 	{
 		if(o instanceof ClientInformation )

@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.exceptions.LogoutFailException;
@@ -68,7 +67,8 @@ public class CatalogoHistory extends javax.swing.JFrame {
 
         searchButton.setText("s");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
             }
         });
@@ -78,12 +78,13 @@ public class CatalogoHistory extends javax.swing.JFrame {
         moviePanel1.setBackground(new java.awt.Color(0, 0, 0));
         moviePanel1.setPreferredSize(new java.awt.Dimension(178, 252));
 
-        String x = (String) new File("").getAbsolutePath();
+        String x = new File("").getAbsolutePath();
         movie1.setForeground(new java.awt.Color(204, 204, 204));
         movie1.setIcon(new javax.swing.ImageIcon( x+"\\clientpicture\\DragonBallZ.png"));
         movie1.setPreferredSize(new java.awt.Dimension(158, 230));
         movie1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 movie1ActionPerformed(evt);
             }
         });
@@ -108,7 +109,7 @@ public class CatalogoHistory extends javax.swing.JFrame {
         moviePanel2.setBackground(new java.awt.Color(0, 0, 0));
         moviePanel2.setPreferredSize(new java.awt.Dimension(178, 252));
 
-        x = (String) new File("").getAbsolutePath();
+        x = new File("").getAbsolutePath();
         movie2.setForeground(new java.awt.Color(204, 204, 204));
         movie2.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Captain_Planet.png"));
         movie2.setPreferredSize(new java.awt.Dimension(158, 230));
@@ -133,7 +134,7 @@ public class CatalogoHistory extends javax.swing.JFrame {
         moviePanel3.setBackground(new java.awt.Color(0, 0, 0));
         moviePanel3.setPreferredSize(new java.awt.Dimension(178, 252));
 
-        x = (String) new File("").getAbsolutePath();
+        x = new File("").getAbsolutePath();
         movie3.setForeground(new java.awt.Color(204, 204, 204));
         movie3.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Batman_Contra_Superman.png"));
 
@@ -157,14 +158,16 @@ public class CatalogoHistory extends javax.swing.JFrame {
         moreButton.setText("Mais");
         moreButton.setActionCommand("Mais");
         moreButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moreButtonActionPerformed(evt);
             }
         });
 
         backButton.setText("Voltar");
         backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
@@ -205,7 +208,8 @@ public class CatalogoHistory extends javax.swing.JFrame {
 
         backMain.setText("Principal");
         backMain.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backMainMouseClicked(evt);
             }
         });
@@ -213,7 +217,8 @@ public class CatalogoHistory extends javax.swing.JFrame {
 
         logoutButton.setText("Sair");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseClicked(evt);
             }
         });
@@ -341,7 +346,8 @@ public class CatalogoHistory extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new CatalogoHistory().setVisible(true);
              
             }

@@ -6,9 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-import uefs.redes.application.*;
-
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;

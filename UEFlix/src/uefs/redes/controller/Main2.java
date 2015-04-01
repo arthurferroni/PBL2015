@@ -2,8 +2,6 @@ package uefs.redes.controller;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import uefs.redes.exceptions.LoginFailException;
 import uefs.redes.exceptions.LoginSucessException;
 

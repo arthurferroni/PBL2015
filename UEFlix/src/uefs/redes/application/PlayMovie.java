@@ -10,7 +10,9 @@ import javafx.scene.media.MediaView;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
-public class PlayMovie extends JFrame {
+
+
+public class PlayMovie extends javax.swing.JFrame {
  
     /**
 	 * 
@@ -21,17 +23,30 @@ public class PlayMovie extends JFrame {
     //private WebEngine engine;
  
     private final JPanel panel = new JPanel(new BorderLayout());
-    private final JLabel lblStatus = new JLabel();
+   // private final JLabel lblStatus = new JLabel();
  
-    private final JButton btnGo = new JButton("Go");
-    private final JTextField txtURL = new JTextField();
-    private final JProgressBar progressBar = new JProgressBar();
+   // private final JButton btnGo = new JButton("Go");
+   // private final JTextField txtURL = new JTextField();
+   // private final JProgressBar progressBar = new JProgressBar();
  
     public PlayMovie() {
-        super(); 
+        super();
         initComponents();
     }
  
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+ 
+            @Override
+            public void run() {
+                PlayMovie browser = new PlayMovie();
+                browser.setVisible(true);
+                browser.setResizable(false);
+                //browser.loadURL("http://oracle.com");
+            }
+        });
+    }
+    
     private void initComponents() {
         createScene();
  
@@ -45,22 +60,22 @@ public class PlayMovie extends JFrame {
        // btnGo.addActionListener(al);
      //   txtURL.addActionListener(al);
  
-        progressBar.setPreferredSize(new Dimension(150, 18));
-        progressBar.setStringPainted(true);
+     //   progressBar.setPreferredSize(new Dimension(150, 18));
+       // progressBar.setStringPainted(true);
  
-        JPanel topBar = new JPanel(new BorderLayout(5, 0));
-        topBar.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
-        topBar.add(txtURL, BorderLayout.CENTER);
-        topBar.add(btnGo, BorderLayout.EAST);
+   //     JPanel topBar = new JPanel(new BorderLayout(5, 0));
+     //   topBar.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
+       // topBar.add(txtURL, BorderLayout.CENTER);
+       // topBar.add(btnGo, BorderLayout.EAST);
  
-        JPanel statusBar = new JPanel(new BorderLayout(5, 0));
-        statusBar.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
-        statusBar.add(lblStatus, BorderLayout.CENTER);
-        statusBar.add(progressBar, BorderLayout.EAST);
+       // JPanel statusBar = new JPanel(new BorderLayout(5, 0));
+       // statusBar.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
+       // statusBar.add(lblStatus, BorderLayout.CENTER);
+        //statusBar.add(progressBar, BorderLayout.EAST);
  
-        panel.add(topBar, BorderLayout.NORTH);
+       // panel.add(topBar, BorderLayout.NORTH);
         panel.add(jfxPanel, BorderLayout.CENTER);
-        panel.add(statusBar, BorderLayout.SOUTH);
+       // panel.add(statusBar, BorderLayout.SOUTH);
  
         getContentPane().add(panel);
  
@@ -96,16 +111,5 @@ public class PlayMovie extends JFrame {
         mediaPlayer.setAutoPlay(true);
     }
         
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
- 
-            @Override
-            public void run() {
-                PlayMovie browser = new PlayMovie();
-                browser.setVisible(true);
-               // browser.setResizable(false);
-                //browser.loadURL("http://oracle.com");
-            }
-        });
-    }
+
 }

@@ -21,8 +21,8 @@ public class ControllerClient {
 	
 	public void connect() throws UnknownHostException, IOException, InterruptedException
 	{
-		this.client_socket = new Socket (Constants.HOST,Constants.PORT_ACESS);
-		client_acess = new ClientAcess(this.client_socket,this);
+		ControllerClient.client_socket = new Socket (Constants.HOST,Constants.PORT_ACESS);
+		client_acess = new ClientAcess(ControllerClient.client_socket,this);
 		Thread threadClient = new Thread(client_acess);
 		threadClient.start();
 		

@@ -26,7 +26,7 @@ public class ClientTransferation {
 			is = sockServer.getInputStream();
 
 			// Cria arquivo local no cliente
-			String x = (String) new File("").getAbsolutePath();
+			String x = new File("").getAbsolutePath();
 			fos = new FileOutputStream(new File(x+"\\clientmovie\\"+name+".mp4"));
 			
 			// Prepara variaveis para transferencia
@@ -83,7 +83,7 @@ public class ClientTransferation {
 			is = sockServer.getInputStream();
 
 			// Cria arquivo local no cliente
-			String x = (String) new File("").getAbsolutePath();
+			String x = new File("").getAbsolutePath();
 			fos = new FileOutputStream(new File(x+"\\clientpicture\\"+name+".png"));
 			
 			// Prepara variaveis para transferencia

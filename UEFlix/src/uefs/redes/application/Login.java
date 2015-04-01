@@ -68,7 +68,8 @@ public class Login extends javax.swing.JFrame {
 
         login_name_field.setText("");
         login_name_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_name_fieldActionPerformed(evt);
             }
         });
@@ -77,14 +78,16 @@ public class Login extends javax.swing.JFrame {
 
         loginButton.setText("login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
             }
         });
 
         cancelarButton.setText("cancelar");
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarButtonActionPerformed(evt);
             }
         });
@@ -179,7 +182,8 @@ public class Login extends javax.swing.JFrame {
 
         registerButton.setText("Cadastro");
         registerButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 registerButtonMouseClicked(evt);
             }
         });
@@ -269,7 +273,8 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new Login().setVisible(true);
                 
             }
