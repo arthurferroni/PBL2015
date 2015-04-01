@@ -2,13 +2,14 @@ package uefs.redes.controller;
 
 import java.io.IOException;
 import java.util.Scanner;
+
 import uefs.redes.exceptions.LoginFailException;
 import uefs.redes.exceptions.LoginSucessException;
 
 public class Main2 {
 
 	@SuppressWarnings("unused")
-	public static void main(String[] args) throws IOException, InterruptedException, LoginSucessException, LoginFailException {
+	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
 		ControllerClient x = new ControllerClient();
 		x.connect();
@@ -20,7 +21,13 @@ public class Main2 {
 		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
      
                 //x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
-                x.login("Arthur-LOGIN","Arthur-PASS");
+                try {
+					x.login("Arthur-LOGIN","Arthur-PASS");
+				} catch (IOException | InterruptedException
+						| LoginSucessException | LoginFailException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 //x.logout();
                 //x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
                 // x.search("tag1");

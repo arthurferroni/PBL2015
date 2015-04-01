@@ -8,7 +8,10 @@ package uefs.redes.application;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.exceptions.LoginFailException;
 import uefs.redes.exceptions.LoginSucessException;
@@ -241,6 +244,19 @@ public class Login extends javax.swing.JFrame {
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
         // TODO add your handling code here:
+    	
+        
+    	SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                PlayMovie browser = new PlayMovie("D:/AA.mp4", 1280, 720);
+                browser.setVisible(true);
+                browser.setResizable(false);
+                //browser.loadURL("http://oracle.com");
+            }
+        });
+    	
        
     }//GEN-LAST:event_cancelarButtonActionPerformed
 

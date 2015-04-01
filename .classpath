@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src_nathan"/>
 	<classpathentry kind="src" path="UEFlix/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JFxtras"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaX"/>
 	<classpathentry kind="output" path="UEFlix/bin"/>
