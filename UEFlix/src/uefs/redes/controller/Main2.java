@@ -2,6 +2,8 @@ package uefs.redes.controller;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import uefs.redes.exceptions.LoginFailException;
 import uefs.redes.exceptions.LoginSucessException;
@@ -12,7 +14,13 @@ public class Main2 {
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
 		ControllerClient x = new ControllerClient();
-		x.connect();
+            try {
+                x.connect();
+            } catch (IOException ex) {
+                Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		
 		System.out.println("ok");
 		Scanner c = new Scanner(System.in);

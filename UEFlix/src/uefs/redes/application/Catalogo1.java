@@ -5,12 +5,20 @@
  */
 package uefs.redes.application;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.exceptions.*;
 import uefs.redes.model.MovieInformation;
@@ -52,6 +60,7 @@ public class Catalogo1 extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        barraRolagem = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         historyButton = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenu();
@@ -68,6 +77,9 @@ public class Catalogo1 extends javax.swing.JFrame {
                 searchButtonActionPerformed(evt);
             }
         });
+
+        barraRolagem.setPreferredSize(new java.awt.Dimension(640, 400));
+        jScrollPane1.setViewportView(barraRolagem);
 
         historyButton.setText("Historico");
         historyButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,7 +107,7 @@ public class Catalogo1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 413, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,11 +121,31 @@ public class Catalogo1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        barraRolagem.setLayout(new FlowLayout());
+        jScrollPane1.setPreferredSize(new Dimension(640,409));
+        String x = new File("").getAbsolutePath();
+        JPanel d = new JPanel();
+        d.setPreferredSize(new java.awt.Dimension(158, 230));
+        for(int i = 0; i<200; i++)
+        { 
+        	
+        	JButton a1 = new JButton("");
+        	
+        	a1.setForeground(new java.awt.Color(204, 204, 204));
+        	a1.setPreferredSize(new java.awt.Dimension(158, 230));
+        	a1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\Captain_Planet.png"));
+           
+           	a1.addActionListener(new Events( new MovieInformation("title"+i, "dsadas", 1, "asdada")));
+           	d.add(a1);
+                  
+           	jScrollPane1.setViewportView(d);
+        }
+      
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,6 +234,7 @@ public class Catalogo1 extends javax.swing.JFrame {
     }
     private ControllerClient clientController ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel barraRolagem;
     private javax.swing.JMenu historyButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -209,4 +242,20 @@ public class Catalogo1 extends javax.swing.JFrame {
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
+}
+class Events implements ActionListener{
+	
+	private MovieInformation mov;
+	
+	public Events(MovieInformation xs) {
+		mov = xs;
+	}
+	
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.print(e.getID() + mov.getName_file());
+    
+    }
+    
 }
