@@ -8,7 +8,6 @@ INDEX VERSION 1.127+C:\Users\Arthur\Desktop\ESSEESTOPO\PBL2015\.metadata\.plugin
 2143716467.index
 2448026493.index
 2958705335.index
-2686062213.index
 1654984216.index
 881895235.index
 2394392208.index
