@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.define.Constants;
@@ -32,6 +33,10 @@ public class ClientAcess implements Runnable {
 	{
 		socket = sock;
 	}
+        public ArrayList<MovieInformation> getHistory()
+        {
+            return this.history;
+        }
 	public int req()
         {
             return en_req;
@@ -69,7 +74,8 @@ public class ClientAcess implements Runnable {
                                         pass_client = client_info.getPassword();
 					// da a mensagem na interface.
 					ArrayList<MovieInformation> moviesInformation =  (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
-					controll_client.setMoviesInformation(moviesInformation);
+					
+                                        controll_client.setMoviesInformation(moviesInformation);
 					// modifica para a tela de filmes 
                                         en_req = Constants.LOGIN_REP;
 					break;
@@ -123,7 +129,9 @@ public class ClientAcess implements Runnable {
 				case Constants.DOWNLOAD_REP:
 					System.out.println("donw-REP");
 					break;
+                                
 				default:
+                                   
 					break;
 					
 				
@@ -135,8 +143,7 @@ public class ClientAcess implements Runnable {
 		}
 		catch (Exception e)
 		{
-			// apresenta a messagem e  que o client foi desconectado
-			// tela de login
+			JOptionPane.showMessageDialog(null, "CONEXÇão" );
 		} 
 	}
 	

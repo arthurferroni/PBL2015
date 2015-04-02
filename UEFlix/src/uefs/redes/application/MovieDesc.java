@@ -5,6 +5,7 @@
  */
 package uefs.redes.application;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,14 +26,33 @@ public class MovieDesc extends javax.swing.JFrame {
         initComponents();
     }
 
-     public MovieDesc(ControllerClient x, MovieInformation y)
+     public MovieDesc(ControllerClient x1, MovieInformation y)
     {
-        clientController = x;
+        clientController = x1;
+        
         
         infMov = y;
         System.out.print(infMov.getName_file()+" "+infMov.getDescription());
         initComponents();
+       
         textAreaDesc.setText(infMov.getDescription());
+        
+        String x = new File("").getAbsolutePath();
+        jButton1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+infMov.getName_file()+".png"));
+        movieTitle.setText(infMov.getName_file());
+    }
+     public MovieDesc(MovieInformation y)
+    {
+        clientController = Login.clientController;
+        infMov = y;
+        System.out.print(infMov.getName_file()+" "+infMov.getDescription());
+        initComponents();
+        
+        textAreaDesc.setText(infMov.getDescription());
+        
+        String x = new File("").getAbsolutePath();
+        jButton1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+infMov.getName_file()+".png"));
+        movieTitle.setText(infMov.getName_file());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +65,7 @@ public class MovieDesc extends javax.swing.JFrame {
 
         geralPanel = new javax.swing.JPanel();
         pictureMovie = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         fieldDescrition = new javax.swing.JScrollPane();
         textAreaDesc = new javax.swing.JTextArea();
         movieDescription = new javax.swing.JLabel();
@@ -53,39 +74,53 @@ public class MovieDesc extends javax.swing.JFrame {
         labelMovie = new javax.swing.JLabel();
         watchButton = new javax.swing.JButton();
         closerWindowsMovie = new javax.swing.JButton();
+        movieTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Descrição do Filme");
+        setBackground(new java.awt.Color(153, 153, 153));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
+        geralPanel.setBackground(new java.awt.Color(204, 204, 204));
         geralPanel.setEnabled(false);
 
         pictureMovie.setBackground(new java.awt.Color(220, 240, 240));
-        pictureMovie.setPreferredSize(new java.awt.Dimension(150, 219));
+        pictureMovie.setPreferredSize(new java.awt.Dimension(160, 235));
+        pictureMovie.setRequestFocusEnabled(false);
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setPreferredSize(new java.awt.Dimension(158, 230));
 
         javax.swing.GroupLayout pictureMovieLayout = new javax.swing.GroupLayout(pictureMovie);
         pictureMovie.setLayout(pictureMovieLayout);
         pictureMovieLayout.setHorizontalGroup(
             pictureMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGroup(pictureMovieLayout.createSequentialGroup()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         pictureMovieLayout.setVerticalGroup(
             pictureMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 219, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        textAreaDesc.setBackground(new java.awt.Color(204, 204, 204));
         textAreaDesc.setColumns(20);
         textAreaDesc.setRows(5);
-        textAreaDesc.setText("aaaaaaaaaaa");
+        textAreaDesc.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textAreaDesc.setEditable(false);
         fieldDescrition.setViewportView(textAreaDesc);
+        textAreaDesc.setLineWrap(true);
 
         movieDescription.setText("Descrição do filme");
 
+        secondPanel.setBackground(new java.awt.Color(153, 153, 153));
+
         combQualMovie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baixa", "Alta"}));
         combQualMovie.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combQualMovieActionPerformed(evt);
             }
         });
@@ -94,8 +129,7 @@ public class MovieDesc extends javax.swing.JFrame {
 
         watchButton.setText("Assistir");
         watchButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 watchButtonActionPerformed(evt);
             }
         });
@@ -103,8 +137,7 @@ public class MovieDesc extends javax.swing.JFrame {
         closerWindowsMovie.setText("Fechar");
         closerWindowsMovie.setToolTipText("");
         closerWindowsMovie.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closerWindowsMovieActionPerformed(evt);
             }
         });
@@ -141,21 +174,22 @@ public class MovieDesc extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        movieTitle.setText("jLabel1");
+
         javax.swing.GroupLayout geralPanelLayout = new javax.swing.GroupLayout(geralPanel);
         geralPanel.setLayout(geralPanelLayout);
         geralPanelLayout.setHorizontalGroup(
             geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(geralPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pictureMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pictureMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(movieTitle))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(secondPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(geralPanelLayout.createSequentialGroup()
-                        .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldDescrition, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(movieDescription))
-                        .addGap(0, 0, 0)))
+                    .addComponent(fieldDescrition, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(movieDescription))
                 .addContainerGap())
         );
         geralPanelLayout.setVerticalGroup(
@@ -165,7 +199,9 @@ public class MovieDesc extends javax.swing.JFrame {
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(geralPanelLayout.createSequentialGroup()
                         .addComponent(pictureMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 59, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(movieTitle)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(geralPanelLayout.createSequentialGroup()
                         .addComponent(movieDescription)
                         .addGap(12, 12, 12)
@@ -179,21 +215,21 @@ public class MovieDesc extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 403, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(geralPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 0, 0)
+                    .addComponent(geralPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, 0)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 307, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(geralPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(12, 12, 12)
+                    .addComponent(geralPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(13, 13, 13)))
         );
 
         pack();
@@ -269,8 +305,10 @@ public class MovieDesc extends javax.swing.JFrame {
     private javax.swing.JComboBox combQualMovie;
     private javax.swing.JScrollPane fieldDescrition;
     private javax.swing.JPanel geralPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelMovie;
     private javax.swing.JLabel movieDescription;
+    private javax.swing.JLabel movieTitle;
     private javax.swing.JPanel pictureMovie;
     private javax.swing.JPanel secondPanel;
     private javax.swing.JTextArea textAreaDesc;

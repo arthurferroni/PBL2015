@@ -27,13 +27,13 @@ import uefs.redes.model.MovieInformation;
  *
  * @author Arthur
  */
-public class Catalogo extends javax.swing.JFrame {
+public class Cat extends javax.swing.JFrame {
 
     /**
      * Creates new form Catalógo
      */
    private ArrayList<MovieInformation> movies ;
-    public Catalogo() {
+    public Cat() {
         initComponents();
         movies = clientController.getMovies();
         addButtonsInter();
@@ -41,7 +41,7 @@ public class Catalogo extends javax.swing.JFrame {
     }
 
    
-    public Catalogo(ControllerClient x)
+    public Cat(ControllerClient x)
     {
        
         clientController = x;
@@ -168,13 +168,13 @@ public class Catalogo extends javax.swing.JFrame {
            String search =  searchField.getText().trim();
            clientController.search(search);
        } catch (IOException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        } catch (InterruptedException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SearchSucessException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SearchFailException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        }
            
     
@@ -187,9 +187,9 @@ public class Catalogo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, clientController.getClient().getLogin());
             clientController.logout(clientController.getClient().getLogin());
         } catch (IOException ex) {
-            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LogoutSucessException ex) {
                 JOptionPane.showMessageDialog(null, "Você foi desconectado" );
                 this.dispose();
@@ -221,14 +221,22 @@ public class Catalogo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -242,7 +250,7 @@ public class Catalogo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
 			public void run() {
-                new Catalogo().setVisible(true);
+                new Cat().setVisible(true);
             }
         });
     }

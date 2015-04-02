@@ -1,10 +1,13 @@
+package uefs.redes.application;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uefs.redes.application;
 
+
+import uefs.redes.application.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -27,27 +30,27 @@ import uefs.redes.model.MovieInformation;
  *
  * @author Arthur
  */
-public class Catalogo extends javax.swing.JFrame {
+public class Historico extends javax.swing.JFrame {
 
     /**
      * Creates new form Catalógo
      */
    private ArrayList<MovieInformation> movies ;
-    public Catalogo() {
+    public Historico() {
         initComponents();
-        movies = clientController.getMovies();
+        movies = clientController.getClient().getHistory();
         addButtonsInter();
        
     }
 
    
-    public Catalogo(ControllerClient x)
+    public Historico(ControllerClient x)
     {
        
         clientController = x;
           initComponents();
          
-           movies = clientController.getMovies();
+           movies =  clientController.getClient().getHistory();
 	           addButtonsInter();
 	    }
     /**
@@ -64,7 +67,7 @@ public class Catalogo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         barraRolagem = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        historyButton = new javax.swing.JMenu();
+        mainButton = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,13 +89,13 @@ public class Catalogo extends javax.swing.JFrame {
         barraRolagem.setPreferredSize(new java.awt.Dimension(640, 400));
         jScrollPane1.setViewportView(barraRolagem);
 
-        historyButton.setText("Historico");
-        historyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        mainButton.setText("Principal");
+        mainButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                historyButtonMouseClicked(evt);
+                mainButtonMouseClicked(evt);
             }
         });
-        jMenuBar1.add(historyButton);
+        jMenuBar1.add(mainButton);
 
         logoutButton.setText("Sair");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -153,7 +156,7 @@ public class Catalogo extends javax.swing.JFrame {
                     a1.setPreferredSize(new java.awt.Dimension(158, 230));
         	a1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+xFilme.getName_file()+".png"));
            
-           	a1.addActionListener(new EventsH( new MovieInformation(xFilme.getName_file(),xFilme.getTags_file(),xFilme.getDescription(), xFilme.getQuantity(), xFilme.getCategory())));
+           	a1.addActionListener(new EventsR( new MovieInformation(xFilme.getName_file(),xFilme.getTags_file(),xFilme.getDescription(), xFilme.getQuantity(), xFilme.getCategory())));
            	d.add(a1);
                   
            	jScrollPane1.setViewportView(d);
@@ -168,13 +171,13 @@ public class Catalogo extends javax.swing.JFrame {
            String search =  searchField.getText().trim();
            clientController.search(search);
        } catch (IOException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
        } catch (InterruptedException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SearchSucessException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SearchFailException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
        }
            
     
@@ -187,9 +190,9 @@ public class Catalogo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, clientController.getClient().getLogin());
             clientController.logout(clientController.getClient().getLogin());
         } catch (IOException ex) {
-            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LogoutSucessException ex) {
                 JOptionPane.showMessageDialog(null, "Você foi desconectado" );
                 this.dispose();
@@ -198,11 +201,11 @@ public class Catalogo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logoutButtonMouseClicked
 
-    private void historyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyButtonMouseClicked
+    private void mainButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainButtonMouseClicked
         // TODO add your handling code here:
-        new Historico(clientController).setVisible(true);
+        new Catalogo(clientController).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_historyButtonMouseClicked
+    }//GEN-LAST:event_mainButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,14 +224,22 @@ public class Catalogo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Historico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Historico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Historico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Historico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -242,26 +253,26 @@ public class Catalogo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
 			public void run() {
-                new Catalogo().setVisible(true);
+                new Historico().setVisible(true);
             }
         });
     }
     private ControllerClient clientController ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraRolagem;
-    private javax.swing.JMenu historyButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu logoutButton;
+    private javax.swing.JMenu mainButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }
-class EventsH implements ActionListener{
+class EventsR implements ActionListener{
 	
 	private MovieInformation mov;
 	
-	public EventsH(MovieInformation xs) {
+	public EventsR(MovieInformation xs) {
 		mov = xs;
 	}
 	
