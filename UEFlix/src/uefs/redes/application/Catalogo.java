@@ -49,7 +49,16 @@ public class Catalogo extends javax.swing.JFrame {
          
            movies = clientController.getMovies();
 	           addButtonsInter();
-	    }
+    }
+    public Catalogo(ControllerClient x, ArrayList<MovieInformation> f)
+    {
+       
+        clientController = x;
+          initComponents();
+         
+           movies = f;
+	           addButtonsInter();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +73,7 @@ public class Catalogo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         barraRolagem = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        buttonMain = new javax.swing.JMenu();
         historyButton = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenu();
 
@@ -85,6 +95,19 @@ public class Catalogo extends javax.swing.JFrame {
         barraRolagem.setBackground(new java.awt.Color(204, 204, 204));
         barraRolagem.setPreferredSize(new java.awt.Dimension(640, 400));
         jScrollPane1.setViewportView(barraRolagem);
+
+        buttonMain.setText("Inicio");
+        buttonMain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonMainMouseClicked(evt);
+            }
+        });
+        buttonMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMainActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(buttonMain);
 
         historyButton.setText("Historico");
         historyButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,9 +195,10 @@ public class Catalogo extends javax.swing.JFrame {
        } catch (InterruptedException ex) {
            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SearchSucessException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           new Catalogo(clientController,clientController.getClient().getSearch()).setVisible(true);
+           this.dispose();
        } catch (SearchFailException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+          JOptionPane.showMessageDialog(null, "Não há filmes com essas caracteristicas.");
        }
            
     
@@ -203,6 +227,18 @@ public class Catalogo extends javax.swing.JFrame {
         new Historico(clientController).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_historyButtonMouseClicked
+
+    private void buttonMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMainActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_buttonMainActionPerformed
+
+    private void buttonMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMainMouseClicked
+        // TODO add your handling code here:
+        
+        new Catalogo(clientController).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buttonMainMouseClicked
 
     /**
      * @param args the command line arguments
@@ -249,6 +285,7 @@ public class Catalogo extends javax.swing.JFrame {
     private ControllerClient clientController ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraRolagem;
+    private javax.swing.JMenu buttonMain;
     private javax.swing.JMenu historyButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -257,6 +294,7 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }
+
 class EventsH implements ActionListener{
 	
 	private MovieInformation mov;

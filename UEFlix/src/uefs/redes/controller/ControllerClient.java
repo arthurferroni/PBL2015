@@ -48,7 +48,7 @@ public class ControllerClient {
 		login_pack.addInformation(name);
 		login_pack.addInformation(password);
 		this.send_pack(login_pack);
-                Thread.sleep(500);
+                Thread.sleep(50);
                if( client_acess.req() == Constants.LOGIN_REP)
                {
                    this.getImage();
@@ -63,17 +63,17 @@ public class ControllerClient {
 	}
 	public void getImage() throws IOException, InterruptedException
 	{
-		System.out.println(moviesInformation.size());
+		//System.out.println(moviesInformation.size());
 		for(MovieInformation xMovie: this.moviesInformation)
 		{
 			String movie_name = xMovie.getName_file();
-			System.out.println(movie_name);
+			//System.out.println(movie_name);
 			
 				Pack pack_image = new Pack(Constants.DOWNLOAD_IMAGE_REQ);
 				pack_image.addInformation(movie_name);
 				ClientTransferation client_channel = this.send_pack_file(pack_image);
 				client_channel.getFileFromeServerImage(movie_name);
-                                Thread.sleep(500);
+                                Thread.sleep(50);
 		}
 	}
 	public void search(String datagrams) throws IOException, InterruptedException, SearchSucessException, SearchFailException
@@ -81,8 +81,9 @@ public class ControllerClient {
 		Pack search_pack = new Pack(Constants.SEARCH_REQ);
 		search_pack.addInformation(datagrams);
 		this.send_pack(search_pack);
-                 Thread.sleep(500);
-		if( client_acess.req() == Constants.SEARCH_REP)
+                 Thread.sleep(50);
+		
+                if( client_acess.req() == Constants.SEARCH_REP)
                    throw new SearchSucessException();
                 else
                     throw new SearchFailException();
@@ -92,7 +93,7 @@ public class ControllerClient {
 		Pack logout_pack = new Pack(Constants.LOGOUT_REQ);
 		logout_pack.addInformation(login);
 		this.send_pack(logout_pack);
-                Thread.sleep(500);
+                Thread.sleep(50);
                if( client_acess.req() == Constants.LOGOUT_REP)
                    throw new LogoutSucessException();
                else
@@ -102,9 +103,18 @@ public class ControllerClient {
 	}
 	public void donwload_movie(String name, String type) throws UnknownHostException, IOException, InterruptedException
 	{
+            Pack download_pack = new Pack(Constants.DOWNLOAD_REQ);
+                download_pack.addInformation(name);
+                
+                this.send_pack(download_pack);
+                Thread.sleep(50);
+		
+                // servi de arquivo 
+                
 		name = name+"-"+type;
-		Pack download_pack = new Pack(Constants.DOWNLOAD_REQ);
+		download_pack = new Pack(Constants.DOWNLOAD_REQ);
 		download_pack.addInformation(name);
+                
 		ClientTransferation client_channel = send_pack_file(download_pack);
 		
 		client_channel.getFileFromServeR(name);
@@ -119,7 +129,7 @@ public class ControllerClient {
 		out.flush();
 		return client_channel;
 	}
-	public void register(String name, String login, String password) throws IOException, InterruptedException
+	public void register(String name, String login, String password) throws IOException, InterruptedException, RegisterSucessException, RegisterFailException
 	{
 		Pack register_pack = new Pack(Constants.REGISTER_REQ);
 		register_pack.addInformation(name);
@@ -127,6 +137,14 @@ public class ControllerClient {
 		// codigo para encryp
 		register_pack.addInformation(password);
 		this.send_pack(register_pack);
+                
+                 Thread.sleep(50);
+		
+                if( client_acess.req() == Constants.REGISTER_REP)
+                   throw new RegisterSucessException();
+                else
+                    throw new RegisterFailException();
+                
 	}
 	public void setMoviesInformation(ArrayList<MovieInformation> moviesInformation) {
 		this.moviesInformation = moviesInformation;

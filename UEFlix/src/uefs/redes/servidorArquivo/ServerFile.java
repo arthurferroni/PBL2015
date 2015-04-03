@@ -37,7 +37,7 @@ public class ServerFile implements Runnable{
 					switch(pack_reqs.getCode()) {
 					
 						case Constants.DOWNLOAD_REQ:
-							System.out.println("DONW-REQ");
+							//System.out.println("DONW-REQ");
 							//
 							String x = (String) pack_reqs.getInformation(0);
 							sendMovie(x);
@@ -68,7 +68,7 @@ public class ServerFile implements Runnable{
 		} 
 		catch (Exception e)
 		{
-		System.out.println("cliente desco");								
+		System.out.println("Cliente desconectou.");								
 		}	
 	}
 	
@@ -91,20 +91,20 @@ public class ServerFile implements Runnable{
 			String x = new File("").getAbsolutePath();
 			File file = new File( x + "\\movie\\" + name_file + ".mp4");
 			fileIn = new FileInputStream(file);
-			System.out.println("Lendo arquivo...");
+			//System.out.println("Lendo arquivo...");
 			
 			
 			// Criando canal de transferencia
 			socketOut = socket.getOutputStream();
 
 			// Lendo arquivo criado e enviado para o canal de transferencia
-			System.out.println("Enviando Arquivo...");
+			//System.out.println("Enviando Arquivo...");
 			while ((bytesRead = fileIn.read(cbuffer)) != -1) {
 				socketOut.write(cbuffer, 0, bytesRead);
 				socketOut.flush();
 			}
 
-			System.out.println("Arquivo Enviado!");
+			//System.out.println("Arquivo Enviado!");
 		} catch (Exception e) {
 			// Mostra erro no console
 			e.printStackTrace();
@@ -156,20 +156,20 @@ public class ServerFile implements Runnable{
                         
 			File file = new File(x+"\\picture\\"+name_file+".png");
 			fileIn = new FileInputStream(file);
-			System.out.println("Lendo arquivo...");
+			//System.out.println("Lendo arquivo...");
 			
 			
 			// Criando canal de transferencia
 			socketOut = socket.getOutputStream();
 
 			// Lendo arquivo criado e enviado para o canal de transferencia
-			System.out.println("Enviando Arquivo...");
+			//System.out.println("Enviando Arquivo...");
 			while ((bytesRead = fileIn.read(cbuffer)) != -1) {
 				socketOut.write(cbuffer, 0, bytesRead);
 				socketOut.flush();
 			}
 
-			System.out.println("Arquivo Enviado!");
+			//System.out.println("Arquivo Enviado!");
 		} catch (Exception e) {
 			// Mostra erro no console
 			e.printStackTrace();

@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ public class ServerAcess implements Runnable{
 	
 					switch(pack_reqs.getCode()) {
 					case Constants.LOGIN_REQ:
-						System.out.println("login-REQ");
+						//System.out.println("login-REQ");
 						//
 						 name = (String)pack_reqs.getInformation(0);
 						 pass = (String)pack_reqs.getInformation(1);
@@ -78,8 +79,9 @@ public class ServerAcess implements Runnable{
 					case Constants.LOGOUT_REQ:
 						
 						pack_reqs.setCode(Constants.LOGOUT_REP);
-						pack_reqs.addInformation(Constants.MESSAGE_INFORMATION+"Logout.");
+						pack_reqs.addInformation(Constants.MESSAGE_INFORMATION+" Logout.");
 						this.send_pack(pack_reqs);
+                                                socket.close();
 						break;
 					case Constants.REGISTER_REQ:
 						 
@@ -109,7 +111,7 @@ public class ServerAcess implements Runnable{
 							else{
 								
 								pack_reqs = new Pack(Constants.REGISTER_RER);
-								pack_reqs.addInformation(Constants.MESSAGE_ERROR+"Cadastrado Usu�rio j� existe.");
+								pack_reqs.addInformation(Constants.MESSAGE_ERROR+" Cadastrado Usuário já existe.");
 								
 								
 							}
@@ -120,11 +122,10 @@ public class ServerAcess implements Runnable{
 					case Constants.SEARCH_REQ:
 						String tag_movie;
 						tag_movie = (String)pack_reqs.getInformation(0);
-						System.out.println(tag_movie);
+						//System.out.println(tag_movie);
 						
 						ArrayList<MovieInformation> movieslist = searchMovies(tag_movie);
-							
-						
+                                                
 							if(movieslist.isEmpty())
 							{
 								pack_reqs = new Pack(Constants.SEARCH_RER);
@@ -146,8 +147,9 @@ public class ServerAcess implements Runnable{
 						tag_movie1 = (String) pack_reqs.getInformation(0);
 						MovieInformation movieslists = getMovies(tag_movie1);
 						client_information.addMoiveHistory(movieslists);
-					//	pack_reqs.setCode(Constants.DOWNLOAD_REP);
-					//	this.send_pack(pack_reqs);
+                                                pack_reqs.setCode(Constants.DOWNLOAD_REP);
+                                                pack_reqs.addInformation(client_information.getMyMovies());
+                                                this.send_pack(pack_reqs);
 						break;
 					default:
 						
@@ -162,7 +164,7 @@ public class ServerAcess implements Runnable{
 		} 
 		catch (Exception e)
 		{
-		System.out.println("cliente desco");								
+		System.out.println(client_information.getName()+" foi desconectado.");								
 		}	
 	}
 	private void send_pack(Pack pack) throws IOException
@@ -182,10 +184,11 @@ public class ServerAcess implements Runnable{
 			for(String y:x)
 			{
 				if(y.equals(tag_movie))
-					if(!list.contains(movies))
-						list.add(movies);
+                                   list.add(movies);
 			}
+                      
 		}
+                
 		return list;
 	}
 	private MovieInformation getMovies(String tag_movie)
@@ -199,6 +202,7 @@ public class ServerAcess implements Runnable{
 				if(x.equals(tag_movie))
 					list = movies;
 		}
+                
 		return list;
 	}
 	

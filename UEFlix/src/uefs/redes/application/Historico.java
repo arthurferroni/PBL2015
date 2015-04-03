@@ -71,7 +71,7 @@ public class Historico extends javax.swing.JFrame {
         logoutButton = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Catalógo de Filmes");
+        setTitle("Histórico de Filmes");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 

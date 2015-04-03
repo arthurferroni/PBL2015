@@ -27,7 +27,10 @@ public class ClientInformation implements Serializable {
 		this.login = login;
 		this.password =password;
 	}
-	
+	public ArrayList<MovieInformation> getMyMovies()
+        {
+            return history;
+        }
 	public void addMoiveHistory(MovieInformation x )
 	{
 		if(!history.contains(x))
