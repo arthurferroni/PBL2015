@@ -6,8 +6,12 @@
 package uefs.redes.application;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import uefs.redes.controller.ControllerClient;
+import uefs.redes.exceptions.RegisterFailException;
+import uefs.redes.exceptions.RegisterSucessException;
 
 /**
  *
@@ -192,7 +196,16 @@ public class Register extends javax.swing.JFrame {
             }
             else
             {
-                Login.clientController.register(name,login ,pass);
+                try {
+                    Login.clientController.register(name,login ,pass);
+                } catch (RegisterSucessException ex) {
+                   
+                    JOptionPane.showMessageDialog(null, "Cadastro realizado.");
+                    
+                } catch (RegisterFailException ex) {
+                   
+                    JOptionPane.showMessageDialog(null, "Cadastro não efetuado, Utilize outro login. ");
+                }
                 
             }
             

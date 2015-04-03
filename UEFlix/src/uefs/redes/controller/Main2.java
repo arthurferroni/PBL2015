@@ -7,6 +7,10 @@ import java.util.logging.Logger;
 
 import uefs.redes.exceptions.LoginFailException;
 import uefs.redes.exceptions.LoginSucessException;
+import uefs.redes.exceptions.RegisterFailException;
+import uefs.redes.exceptions.RegisterSucessException;
+import uefs.redes.exceptions.SearchFailException;
+import uefs.redes.exceptions.SearchSucessException;
 
 public class Main2 {
 
@@ -26,7 +30,17 @@ public class Main2 {
 		Scanner c = new Scanner(System.in);
 		
 		
-		//x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
+            try {
+                x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
+            } catch (IOException ex) {
+                Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (RegisterSucessException ex) {
+               
+            } catch (RegisterFailException ex) {
+               
+            }
      
                 //x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
                 try {
@@ -34,16 +48,26 @@ public class Main2 {
 				} catch (IOException | InterruptedException
 						| LoginSucessException | LoginFailException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}
+            try {
                 //x.logout();
                 //x.register("Arthur", "Arthur-LOGIN", "Arthur-PASS");
-                // x.search("tag1");
+                x.search("DRAGON");
                 //  System.out.println("s");
                 //  x.search("tags1");
                 //	x.donwload_movie("ss", "s");
                 
                 //
+            } catch (IOException ex) {
+                Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SearchSucessException ex) {
+              System.out.printf("sim");
+            } catch (SearchFailException ex) {
+                
+            }
            
 		
 	}
