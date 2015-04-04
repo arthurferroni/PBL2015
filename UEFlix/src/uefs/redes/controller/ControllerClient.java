@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+<<<<<<< HEAD
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+import java.util.ArrayList;
+>>>>>>> origin/master
 import uefs.redes.exceptions.*;
 import uefs.redes.define.Constants;
 import uefs.redes.define.Pack;
@@ -46,6 +50,7 @@ public class ControllerClient {
 		out.flush();
 		
 	}
+<<<<<<< HEAD
 	public void login(String login, String password) throws IOException, InterruptedException, LoginSucessException, LoginFailException
 	{
 		Pack login_pack = new Pack(Constants.LOGIN_REQ);
@@ -58,6 +63,15 @@ public class ControllerClient {
 		login_pack.addInformation(passE);
 		this.send_pack(login_pack);
                 Thread.sleep(200);
+=======
+	public void login(String name, String password) throws IOException, InterruptedException, LoginSucessException, LoginFailException
+	{
+		Pack login_pack = new Pack(Constants.LOGIN_REQ);
+		login_pack.addInformation(name);
+		login_pack.addInformation(password);
+		this.send_pack(login_pack);
+                Thread.sleep(500);
+>>>>>>> origin/master
                if( client_acess.req() == Constants.LOGIN_REP)
                {
                    this.getImage();
@@ -72,17 +86,29 @@ public class ControllerClient {
 	}
 	public void getImage() throws IOException, InterruptedException
 	{
+<<<<<<< HEAD
 		//System.out.println(moviesInformation.size());
 		for(MovieInformation xMovie: this.moviesInformation)
 		{
 			String movie_name = xMovie.getName_file();
 			//System.out.println(movie_name);
+=======
+		System.out.println(moviesInformation.size());
+		for(MovieInformation xMovie: this.moviesInformation)
+		{
+			String movie_name = xMovie.getName_file();
+			System.out.println(movie_name);
+>>>>>>> origin/master
 			
 				Pack pack_image = new Pack(Constants.DOWNLOAD_IMAGE_REQ);
 				pack_image.addInformation(movie_name);
 				ClientTransferation client_channel = this.send_pack_file(pack_image);
 				client_channel.getFileFromeServerImage(movie_name);
+<<<<<<< HEAD
                                 Thread.sleep(50);
+=======
+                                Thread.sleep(500);
+>>>>>>> origin/master
 		}
 	}
 	public void search(String datagrams) throws IOException, InterruptedException, SearchSucessException, SearchFailException
@@ -90,9 +116,14 @@ public class ControllerClient {
 		Pack search_pack = new Pack(Constants.SEARCH_REQ);
 		search_pack.addInformation(datagrams);
 		this.send_pack(search_pack);
+<<<<<<< HEAD
                  Thread.sleep(200);
 		
                 if( client_acess.req() == Constants.SEARCH_REP)
+=======
+                 Thread.sleep(500);
+		if( client_acess.req() == Constants.SEARCH_REP)
+>>>>>>> origin/master
                    throw new SearchSucessException();
                 else
                     throw new SearchFailException();
@@ -102,7 +133,11 @@ public class ControllerClient {
 		Pack logout_pack = new Pack(Constants.LOGOUT_REQ);
 		logout_pack.addInformation(login);
 		this.send_pack(logout_pack);
+<<<<<<< HEAD
                 Thread.sleep(200);
+=======
+                Thread.sleep(500);
+>>>>>>> origin/master
                if( client_acess.req() == Constants.LOGOUT_REP)
                    throw new LogoutSucessException();
                else
@@ -110,6 +145,7 @@ public class ControllerClient {
                 
                 
 	}
+<<<<<<< HEAD
 	public void donwload_movie(String name, String type) throws UnknownHostException, IOException, InterruptedException, DownloadSucessException, DownloadFailException
 	{
             Pack download_pack = new Pack(Constants.DOWNLOAD_REQ);
@@ -120,10 +156,18 @@ public class ControllerClient {
 		download_pack = new Pack(Constants.DOWNLOAD_REQ);
 		download_pack.addInformation(name);
                 
+=======
+	public void donwload_movie(String name, String type) throws UnknownHostException, IOException, InterruptedException
+	{
+		name = name+"-"+type;
+		Pack download_pack = new Pack(Constants.DOWNLOAD_REQ);
+		download_pack.addInformation(name);
+>>>>>>> origin/master
 		ClientTransferation client_channel = send_pack_file(download_pack);
 		
 		client_channel.getFileFromServeR(name);
 		// pedir pra assistir o filme
+<<<<<<< HEAD
                 
                 download_pack = new Pack(Constants.DOWNLOAD_REQ);
                 download_pack.addInformation(name1);
@@ -135,6 +179,8 @@ public class ControllerClient {
                 else
                     throw new DownloadFailException();
 		
+=======
+>>>>>>> origin/master
 	}
 	public ClientTransferation send_pack_file(Object pack) throws IOException, InterruptedException
 	{
@@ -145,6 +191,7 @@ public class ControllerClient {
 		out.flush();
 		return client_channel;
 	}
+<<<<<<< HEAD
 	public void register(String name, String login, String password) throws IOException, InterruptedException, RegisterSucessException, RegisterFailException
 	{
 		Pack register_pack = new Pack(Constants.REGISTER_REQ);
@@ -164,6 +211,16 @@ public class ControllerClient {
                 else
                     throw new RegisterFailException();
                 
+=======
+	public void register(String name, String login, String password) throws IOException, InterruptedException
+	{
+		Pack register_pack = new Pack(Constants.REGISTER_REQ);
+		register_pack.addInformation(name);
+		register_pack.addInformation(login);
+		// codigo para encryp
+		register_pack.addInformation(password);
+		this.send_pack(register_pack);
+>>>>>>> origin/master
 	}
 	public void setMoviesInformation(ArrayList<MovieInformation> moviesInformation) {
 		this.moviesInformation = moviesInformation;
@@ -172,6 +229,7 @@ public class ControllerClient {
         {
             REP_REQS = x;
         }
+<<<<<<< HEAD
 	public String Encrypt(String data) 
         {
             String password = data;
@@ -204,5 +262,9 @@ public class ControllerClient {
              return hexString.toString();
             
         }
+=======
+		
+        
+>>>>>>> origin/master
 
 }

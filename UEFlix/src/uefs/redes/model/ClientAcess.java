@@ -22,7 +22,11 @@ public class ClientAcess implements Runnable {
 	private int en_req;
 	private ControllerClient controll_client = null;
 	private ArrayList<MovieInformation>history = new  ArrayList<MovieInformation>();
+<<<<<<< HEAD
 	private ArrayList<MovieInformation>search = new ArrayList<MovieInformation>();
+=======
+	
+>>>>>>> origin/master
 	
 	public ClientAcess(Socket sock, ControllerClient cCLient) throws IOException
 	{
@@ -33,7 +37,26 @@ public class ClientAcess implements Runnable {
 	{
 		socket = sock;
 	}
+<<<<<<< HEAD
        
+=======
+        public ArrayList<MovieInformation> getHistory()
+        {
+            return this.history;
+        }
+	public int req()
+        {
+            return en_req;
+        }
+        public String getLogin()
+        {
+            return login_client;
+        }
+        public Socket getSocket()
+        {
+            return socket;
+        }
+>>>>>>> origin/master
 	@SuppressWarnings("unused")
 	@Override
 	public void run() 											//	INHERIT THE RUN METHOD FROM THE Runnable INTERFACE
@@ -44,7 +67,10 @@ public class ClientAcess implements Runnable {
 			ObjectInputStream in = null;
 			ObjectOutputStream out = null;
 			String message;
+<<<<<<< HEAD
                         en_req=0;
+=======
+>>>>>>> origin/master
 			do
 			{
 				in =  new  ObjectInputStream(socket.getInputStream());
@@ -54,12 +80,20 @@ public class ClientAcess implements Runnable {
 				case Constants.LOGIN_REP:
 					ClientInformation client_info = (ClientInformation) pack_reqs.getInformation(0);
 					message = (String) pack_reqs.getInformation(2);
+<<<<<<< HEAD
 					//System.out.println(message);
                                         login_client = client_info.getLogin();
                                         name_client = client_info.getName();
                                         pass_client = client_info.getPassword();
 					history = client_info.getMyMovies();
                                         // da a mensagem na interface.
+=======
+					System.out.println(message);
+                                        login_client = client_info.getLogin();
+                                        name_client = client_info.getName();
+                                        pass_client = client_info.getPassword();
+					// da a mensagem na interface.
+>>>>>>> origin/master
 					ArrayList<MovieInformation> moviesInformation =  (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
 					
                                         controll_client.setMoviesInformation(moviesInformation);
@@ -69,7 +103,11 @@ public class ClientAcess implements Runnable {
 				case Constants.LOGIN_RER:
 					
 					message = (String) pack_reqs.getInformation(0);
+<<<<<<< HEAD
 					//System.out.println(message);
+=======
+					System.out.println(message);
+>>>>>>> origin/master
 					// apresenta a messagem e 
 					// muda para a interface de fazer login 
                                        en_req = Constants.LOGIN_RER;
@@ -77,7 +115,11 @@ public class ClientAcess implements Runnable {
 				case Constants.LOGOUT_REP:
 					
 					message = (String) pack_reqs.getInformation(0);
+<<<<<<< HEAD
 					//System.out.println(message);
+=======
+					System.out.println(message);
+>>>>>>> origin/master
                                         en_req = Constants.LOGOUT_REP;
 					// apresenta a messagem e 
 					// muda para a interface de fazer login 
@@ -85,25 +127,39 @@ public class ClientAcess implements Runnable {
 					break;
 				case Constants.REGISTER_REP:
 					message = (String) pack_reqs.getInformation(0);
+<<<<<<< HEAD
 					//System.out.println(message);
                                         en_req =Constants.REGISTER_REP;
+=======
+					System.out.println(message);
+                                        
+>>>>>>> origin/master
 					// apresenta a messagem e 
                                         
 					// muda para a interface de fazer login 
 					break;
 				case Constants.REGISTER_RER:
 					message = (String) pack_reqs.getInformation(0);
+<<<<<<< HEAD
 					//System.out.println(message);
                                         en_req =Constants.REGISTER_RER;
+=======
+					System.out.println(message);
+>>>>>>> origin/master
 					// apresenta a messagem e 
 					// muda para a interface de fazer Cadastro
 					
 					break;
 				case Constants.SEARCH_REP:
 					message = (String) pack_reqs.getInformation(0);
+<<<<<<< HEAD
 					//System.out.println(message);
 					 search = (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
                                         // System.out.print(search.size());
+=======
+					System.out.println(message);
+					ArrayList<MovieInformation> listMovies = (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
+>>>>>>> origin/master
 					 en_req = Constants.SEARCH_REP;
                                         // apresenta a messagem e 
 					// muda para a interface apresentando a lista de filmes envontrados
@@ -116,6 +172,7 @@ public class ClientAcess implements Runnable {
 					// muda para a interface de fazer Cadastro
 					break;
 				case Constants.DOWNLOAD_REP:
+<<<<<<< HEAD
 					
                                    // history = (ArrayList<MovieInformation> )pack_reqs.getInformation(0);
                                     
@@ -124,6 +181,10 @@ public class ClientAcess implements Runnable {
                                    
                                     en_req = Constants.DOWNLOAD_REP;
                                     break;
+=======
+					System.out.println("donw-REP");
+					break;
+>>>>>>> origin/master
                                 
 				default:
                                    
@@ -138,6 +199,7 @@ public class ClientAcess implements Runnable {
 		}
 		catch (Exception e)
 		{
+<<<<<<< HEAD
 			JOptionPane.showMessageDialog(null, " Conexão com o servidor fechada. ");
 		} 
 	}
@@ -165,6 +227,11 @@ public class ClientAcess implements Runnable {
         {
             return socket;
         }
+=======
+			JOptionPane.showMessageDialog(null, "CONEXÇão" );
+		} 
+	}
+>>>>>>> origin/master
 	
 
 }

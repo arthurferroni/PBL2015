@@ -7,6 +7,7 @@ package uefs.redes.application;
 
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,11 @@ import javax.swing.JOptionPane;
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.exceptions.DownloadFailException;
 import uefs.redes.exceptions.DownloadSucessException;
+=======
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uefs.redes.controller.ControllerClient;
+>>>>>>> origin/master
 import uefs.redes.model.MovieInformation;
 
 /**
@@ -36,7 +42,11 @@ public class MovieDesc extends javax.swing.JFrame {
         
         
         infMov = y;
+<<<<<<< HEAD
         
+=======
+        System.out.print(infMov.getName_file()+" "+infMov.getDescription());
+>>>>>>> origin/master
         initComponents();
        
         textAreaDesc.setText(infMov.getDescription());
@@ -44,13 +54,20 @@ public class MovieDesc extends javax.swing.JFrame {
         String x = new File("").getAbsolutePath();
         jButton1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+infMov.getName_file()+".png"));
         movieTitle.setText(infMov.getName_file());
+<<<<<<< HEAD
         jLabel1.setText(infMov.getCategory());
+=======
+>>>>>>> origin/master
     }
      public MovieDesc(MovieInformation y)
     {
         clientController = Login.clientController;
         infMov = y;
+<<<<<<< HEAD
   
+=======
+        System.out.print(infMov.getName_file()+" "+infMov.getDescription());
+>>>>>>> origin/master
         initComponents();
         
         textAreaDesc.setText(infMov.getDescription());
@@ -58,7 +75,10 @@ public class MovieDesc extends javax.swing.JFrame {
         String x = new File("").getAbsolutePath();
         jButton1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+infMov.getName_file()+".png"));
         movieTitle.setText(infMov.getName_file());
+<<<<<<< HEAD
         jLabel1.setText(infMov.getCategory());
+=======
+>>>>>>> origin/master
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,7 +101,10 @@ public class MovieDesc extends javax.swing.JFrame {
         watchButton = new javax.swing.JButton();
         closerWindowsMovie = new javax.swing.JButton();
         movieTitle = new javax.swing.JLabel();
+<<<<<<< HEAD
         jLabel1 = new javax.swing.JLabel();
+=======
+>>>>>>> origin/master
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Descrição do Filme");
@@ -183,8 +206,11 @@ public class MovieDesc extends javax.swing.JFrame {
 
         movieTitle.setText("jLabel1");
 
+<<<<<<< HEAD
         jLabel1.setText("jLabel1");
 
+=======
+>>>>>>> origin/master
         javax.swing.GroupLayout geralPanelLayout = new javax.swing.GroupLayout(geralPanel);
         geralPanel.setLayout(geralPanelLayout);
         geralPanelLayout.setHorizontalGroup(
@@ -193,8 +219,12 @@ public class MovieDesc extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pictureMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                     .addComponent(movieTitle)
                     .addComponent(jLabel1))
+=======
+                    .addComponent(movieTitle))
+>>>>>>> origin/master
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(secondPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -211,8 +241,11 @@ public class MovieDesc extends javax.swing.JFrame {
                         .addComponent(pictureMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(movieTitle)
+<<<<<<< HEAD
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
+=======
+>>>>>>> origin/master
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(geralPanelLayout.createSequentialGroup()
                         .addComponent(movieDescription)
@@ -236,7 +269,11 @@ public class MovieDesc extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGap(0, 327, Short.MAX_VALUE)
+=======
+            .addGap(0, 307, Short.MAX_VALUE)
+>>>>>>> origin/master
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(12, 12, 12)
@@ -255,18 +292,27 @@ public class MovieDesc extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String x = (String) combQualMovie.getSelectedItem();
+<<<<<<< HEAD
         //System.out.print(x);
+=======
+        System.out.print(x);
+>>>>>>> origin/master
         if(x.equals("Alta"))
             x = "high";
         else
             x = "low";
+<<<<<<< HEAD
                
+=======
+        
+>>>>>>> origin/master
         try {
             clientController.donwload_movie(infMov.getName_file(),x);
         } catch (IOException ex) {
             Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
+<<<<<<< HEAD
         } catch (DownloadSucessException ex) {
             String xs = infMov.getName_file()+ " Terminou de baixar, Deseja assistir o filme ?";
             
@@ -285,6 +331,9 @@ public class MovieDesc extends javax.swing.JFrame {
         }
         
           
+=======
+        }
+>>>>>>> origin/master
                 
     }//GEN-LAST:event_watchButtonActionPerformed
 
@@ -335,7 +384,10 @@ public class MovieDesc extends javax.swing.JFrame {
     private javax.swing.JScrollPane fieldDescrition;
     private javax.swing.JPanel geralPanel;
     private javax.swing.JButton jButton1;
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel1;
+=======
+>>>>>>> origin/master
     private javax.swing.JLabel labelMovie;
     private javax.swing.JLabel movieDescription;
     private javax.swing.JLabel movieTitle;

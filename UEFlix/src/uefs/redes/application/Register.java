@@ -184,6 +184,7 @@ public class Register extends javax.swing.JFrame {
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         try {
             
+<<<<<<< HEAD
            // System.out.print(nameField.getText().trim() + loginField.getText().trim()+passField.getText().trim());
                    
             String name = nameField.getText().trim();
@@ -192,6 +193,14 @@ public class Register extends javax.swing.JFrame {
             login = login.toUpperCase();
             String pass = passField.getText().trim() ; 
             pass=pass.toUpperCase();
+=======
+            System.out.print(nameField.getText().trim() + loginField.getText().trim()+passField.getText().trim());
+                   
+            String name = nameField.getText().trim();
+            
+            String login = loginField.getText().trim();
+            String pass = passField.getText().trim() ; 
+>>>>>>> origin/master
             if( name.equals("") || login.equals("") || pass.equals(""))
             {
                 JOptionPane.showMessageDialog(null, "Algum Campo está incorreto.");

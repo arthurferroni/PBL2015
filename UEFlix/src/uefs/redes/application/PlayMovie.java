@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.io.File;
+=======
+>>>>>>> origin/master
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -92,7 +95,10 @@ public class PlayMovie extends javax.swing.JFrame {
    	//Scanner scan = new Scanner(System.in);
       // String path = scan.nextLine();
       // scan.close();
+<<<<<<< HEAD
        
+=======
+>>>>>>> origin/master
        Media media = new Media("file:///"+movie);
        setTitle(movie); 
        mediaPlayer = new MediaPlayer(media);

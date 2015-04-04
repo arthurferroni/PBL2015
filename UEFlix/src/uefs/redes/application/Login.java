@@ -6,7 +6,10 @@
 package uefs.redes.application;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.io.FileOutputStream;
+=======
+>>>>>>> origin/master
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +31,10 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+<<<<<<< HEAD
     boolean  conected = false;
+=======
+>>>>>>> origin/master
     public Login() {
         initComponents();
         try {
@@ -129,6 +135,7 @@ public class Login extends javax.swing.JFrame {
             geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, geralPanelLayout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(geralPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -140,6 +147,19 @@ public class Login extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1))
                     .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(login_name_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(geralPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, 18)
+                .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(geralPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1)))
+>>>>>>> origin/master
                 .addGap(18, 18, 18)
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton)
@@ -191,8 +211,11 @@ public class Login extends javax.swing.JFrame {
 
             @Override
             public void run() {
+<<<<<<< HEAD
                 
                 
+=======
+>>>>>>> origin/master
                 PlayMovie browser = new PlayMovie("D:/AA.mp4", 1280, 720);
                 browser.setVisible(true);
                 browser.setResizable(false);
@@ -204,8 +227,13 @@ public class Login extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         try {
+<<<<<<< HEAD
        
             clientController.login(login_name_field.getText().toUpperCase(), passField.getText().toUpperCase());
+=======
+            
+            clientController.login(login_name_field.getText(), passField.getText());
+>>>>>>> origin/master
          
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

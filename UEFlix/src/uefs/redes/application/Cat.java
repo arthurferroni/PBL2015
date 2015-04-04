@@ -27,49 +27,29 @@ import uefs.redes.model.MovieInformation;
  *
  * @author Arthur
  */
-public class Catalogo extends javax.swing.JFrame {
+public class Cat extends javax.swing.JFrame {
 
     /**
      * Creates new form Catalógo
      */
    private ArrayList<MovieInformation> movies ;
-    public Catalogo() {
+    public Cat() {
         initComponents();
         movies = clientController.getMovies();
-<<<<<<< HEAD
-        wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
-=======
->>>>>>> origin/master
         addButtonsInter();
        
     }
 
    
-    public Catalogo(ControllerClient x)
+    public Cat(ControllerClient x)
     {
        
         clientController = x;
           initComponents();
          
            movies = clientController.getMovies();
-<<<<<<< HEAD
-           wellcome.setText("Wellcome to UEFLIX  "+clientController.getClient().getName());
-	           addButtonsInter();
-    }
-    public Catalogo(ControllerClient x, ArrayList<MovieInformation> f)
-    {
-       
-        clientController = x;
-          initComponents();
-         
-           movies = f;
-           wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
-	           addButtonsInter();
-    }
-=======
 	           addButtonsInter();
 	    }
->>>>>>> origin/master
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,13 +63,7 @@ public class Catalogo extends javax.swing.JFrame {
         searchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         barraRolagem = new javax.swing.JPanel();
-<<<<<<< HEAD
-        wellcome = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        buttonMain = new javax.swing.JMenu();
-=======
-        jMenuBar1 = new javax.swing.JMenuBar();
->>>>>>> origin/master
         historyButton = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenu();
 
@@ -101,11 +75,7 @@ public class Catalogo extends javax.swing.JFrame {
         searchField.setText("Search");
 
         searchButton.setBackground(new java.awt.Color(204, 204, 204));
-<<<<<<< HEAD
-        searchButton.setText("search");
-=======
         searchButton.setText("s");
->>>>>>> origin/master
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
@@ -116,24 +86,6 @@ public class Catalogo extends javax.swing.JFrame {
         barraRolagem.setPreferredSize(new java.awt.Dimension(640, 400));
         jScrollPane1.setViewportView(barraRolagem);
 
-<<<<<<< HEAD
-        wellcome.setText("Name");
-
-        buttonMain.setText("Inicio");
-        buttonMain.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonMainMouseClicked(evt);
-            }
-        });
-        buttonMain.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonMainActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(buttonMain);
-
-=======
->>>>>>> origin/master
         historyButton.setText("Historico");
         historyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -159,20 +111,11 @@ public class Catalogo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(wellcome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-=======
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
->>>>>>> origin/master
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -180,17 +123,9 @@ public class Catalogo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-<<<<<<< HEAD
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(searchButton))
-                    .addComponent(wellcome))
-=======
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
->>>>>>> origin/master
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -231,26 +166,15 @@ public class Catalogo extends javax.swing.JFrame {
            // TODO add your handling code here:
            
            String search =  searchField.getText().trim();
-<<<<<<< HEAD
-           search = search.toUpperCase();
-=======
->>>>>>> origin/master
            clientController.search(search);
        } catch (IOException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        } catch (InterruptedException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SearchSucessException ex) {
-<<<<<<< HEAD
-           new Catalogo(clientController,clientController.getClient().getSearch()).setVisible(true);
-           this.dispose();
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SearchFailException ex) {
-          JOptionPane.showMessageDialog(null, "Não há filmes com essas caracteristicas.");
-=======
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (SearchFailException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
->>>>>>> origin/master
+           Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
        }
            
     
@@ -260,15 +184,12 @@ public class Catalogo extends javax.swing.JFrame {
         
         try {
             
-<<<<<<< HEAD
-=======
                     JOptionPane.showMessageDialog(null, clientController.getClient().getLogin());
->>>>>>> origin/master
             clientController.logout(clientController.getClient().getLogin());
         } catch (IOException ex) {
-            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cat.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LogoutSucessException ex) {
                 JOptionPane.showMessageDialog(null, "Você foi desconectado" );
                 this.dispose();
@@ -283,21 +204,6 @@ public class Catalogo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_historyButtonMouseClicked
 
-<<<<<<< HEAD
-    private void buttonMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMainActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_buttonMainActionPerformed
-
-    private void buttonMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMainMouseClicked
-        // TODO add your handling code here:
-        
-        new Catalogo(clientController).setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_buttonMainMouseClicked
-
-=======
->>>>>>> origin/master
     /**
      * @param args the command line arguments
      */
@@ -315,14 +221,22 @@ public class Catalogo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -336,32 +250,21 @@ public class Catalogo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
 			public void run() {
-                new Catalogo().setVisible(true);
+                new Cat().setVisible(true);
             }
         });
     }
     private ControllerClient clientController ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraRolagem;
-<<<<<<< HEAD
-    private javax.swing.JMenu buttonMain;
-=======
->>>>>>> origin/master
     private javax.swing.JMenu historyButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu logoutButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
-<<<<<<< HEAD
-    private javax.swing.JLabel wellcome;
     // End of variables declaration//GEN-END:variables
 }
-
-=======
-    // End of variables declaration//GEN-END:variables
-}
->>>>>>> origin/master
 class EventsH implements ActionListener{
 	
 	private MovieInformation mov;
@@ -372,11 +275,7 @@ class EventsH implements ActionListener{
 	
         @Override
     public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-        
-=======
         System.out.print(mov);
->>>>>>> origin/master
         new MovieDesc(mov).setVisible(true);
     
     }
