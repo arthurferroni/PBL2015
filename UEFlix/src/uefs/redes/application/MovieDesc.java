@@ -7,9 +7,13 @@ package uefs.redes.application;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import uefs.redes.controller.ControllerClient;
+import uefs.redes.exceptions.DownloadFailException;
+import uefs.redes.exceptions.DownloadSucessException;
 import uefs.redes.model.MovieInformation;
 
 /**
@@ -32,7 +36,7 @@ public class MovieDesc extends javax.swing.JFrame {
         
         
         infMov = y;
-        System.out.print(infMov.getName_file()+" "+infMov.getDescription());
+        
         initComponents();
        
         textAreaDesc.setText(infMov.getDescription());
@@ -46,7 +50,7 @@ public class MovieDesc extends javax.swing.JFrame {
     {
         clientController = Login.clientController;
         infMov = y;
-        System.out.print(infMov.getName_file()+" "+infMov.getDescription());
+  
         initComponents();
         
         textAreaDesc.setText(infMov.getDescription());
@@ -251,19 +255,36 @@ public class MovieDesc extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String x = (String) combQualMovie.getSelectedItem();
-        System.out.print(x);
+        //System.out.print(x);
         if(x.equals("Alta"))
             x = "high";
         else
             x = "low";
-        
+               
         try {
             clientController.donwload_movie(infMov.getName_file(),x);
         } catch (IOException ex) {
             Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DownloadSucessException ex) {
+            String xs = infMov.getName_file()+ " Terminou de baixar, Deseja assistir o filme ?";
+            
+         int reply = JOptionPane.showConfirmDialog(null, xs, "Donwload Finished", 
+               JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                 System.out.println("yes");
+                 // aqui é onde vc vai chamar a função pra executar o play ( filme )
+             } else {
+                  System.out.println("no");
+             }
+                
+          
+        } catch (DownloadFailException ex) {
+            Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+          
                 
     }//GEN-LAST:event_watchButtonActionPerformed
 

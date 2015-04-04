@@ -44,6 +44,7 @@ public class ClientAcess implements Runnable {
 			ObjectInputStream in = null;
 			ObjectOutputStream out = null;
 			String message;
+                        en_req=0;
 			do
 			{
 				in =  new  ObjectInputStream(socket.getInputStream());
@@ -57,7 +58,8 @@ public class ClientAcess implements Runnable {
                                         login_client = client_info.getLogin();
                                         name_client = client_info.getName();
                                         pass_client = client_info.getPassword();
-					// da a mensagem na interface.
+					history = client_info.getMyMovies();
+                                        // da a mensagem na interface.
 					ArrayList<MovieInformation> moviesInformation =  (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
 					
                                         controll_client.setMoviesInformation(moviesInformation);
@@ -115,9 +117,12 @@ public class ClientAcess implements Runnable {
 					break;
 				case Constants.DOWNLOAD_REP:
 					
-                                    history = (ArrayList<MovieInformation> )pack_reqs.getInformation(0);
-                              
+                                   // history = (ArrayList<MovieInformation> )pack_reqs.getInformation(0);
                                     
+                                    for(int i=0; i<history.size(); i++)
+                                    System.out.println(((MovieInformation)history.get(i)).getName_file() );
+                                   
+                                    en_req = Constants.DOWNLOAD_REP;
                                     break;
                                 
 				default:
@@ -133,7 +138,7 @@ public class ClientAcess implements Runnable {
 		}
 		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(null, "Caiu a conexao com o servidor. tente novamente mais tarde !" );
+			JOptionPane.showMessageDialog(null, " Conexão com o servidor fechada. ");
 		} 
 	}
         public ArrayList<MovieInformation> getHistory()
@@ -151,6 +156,10 @@ public class ClientAcess implements Runnable {
         public String getLogin()
         {
             return login_client;
+        }
+         public String getName()
+        {
+            return name_client;
         }
         public Socket getSocket()
         {

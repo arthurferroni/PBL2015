@@ -1,4 +1,6 @@
 package uefs.redes.servidorAcesso;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -33,7 +35,7 @@ public class ServerAcess implements Runnable{
 		{
 			Pack pack_reqs ;
 			ObjectInputStream in;
-			
+			int countSave = 0;
 			do
 			{
 				String name;
@@ -106,7 +108,7 @@ public class ServerAcess implements Runnable{
 								clients.add(clientInfor);
 								pack_reqs = new Pack(Constants.REGISTER_REP);
 								pack_reqs.addInformation(Constants.MESSAGE_INFORMATION+"Cadastro.");
-								
+                                                                countSave++;
 							}
 							else{
 								
@@ -115,6 +117,13 @@ public class ServerAcess implements Runnable{
 								
 								
 							}
+                                                        
+                                                        if(countSave == 10)
+                                                        {
+                                                            save_movies();
+                                                            countSave = 0;
+                                                        }
+                                                        
 						  // CODIGO
 						 this.send_pack(pack_reqs);
 						 hasClient = false;
@@ -146,9 +155,13 @@ public class ServerAcess implements Runnable{
 						
 						tag_movie1 = (String) pack_reqs.getInformation(0);
 						MovieInformation movieslists = getMovies(tag_movie1);
+                                                
+                                               
+                                                System.out.print( movieslists.getName_file());
+                                                
 						client_information.addMoiveHistory(movieslists);
                                                 pack_reqs.setCode(Constants.DOWNLOAD_REP);
-                                                pack_reqs.addInformation(client_information.getMyMovies());
+                                                //pack_reqs.addInformation(client_information.getMyMovies());
                                                 this.send_pack(pack_reqs);
 						break;
 					default:
@@ -164,7 +177,7 @@ public class ServerAcess implements Runnable{
 		} 
 		catch (Exception e)
 		{
-		System.out.println(client_information.getName()+" foi desconectado.");								
+                    System.out.println(client_information.getName()+" foi desconectado.");								
 		}	
 	}
 	private void send_pack(Pack pack) throws IOException
@@ -210,5 +223,15 @@ public class ServerAcess implements Runnable{
 	{
 		this.clients = x;
 		this.moviesInformation = y;
+	}
+        public void save_movies() throws SecurityException, IOException
+	{
+		File arq = new File ("dataServer.dat");
+		ObjectOutputStream out; 
+		out = new ObjectOutputStream(new FileOutputStream(arq));
+		out.writeObject(this.clients);
+		out.writeObject(this.moviesInformation);
+		out.close();	
+		
 	}
 }

@@ -86,7 +86,12 @@ public class videos {
                     x1.add("AÇÃO");
                 xs = "Sequência do sucesso \"Os Vingadores\", que reúne mais uma vez a equipe de super-heróis formada por Capitão América (Chris Evans), Homem de Ferro (Robert Downey Jr.), Thor (Chris Hemsworth), Hulk (Mark Ruffalo), Viúva Negra (Scarlett Johansson) e Gavião Arqueiro (Jeremy Renner).";
 		x.addMovies("Vingadores_Era_de_Ultron", x1, xs, 1, "Ação");   
-		
+                
+                
+                
+                
+		x.registerTEMP("ADMIN", "ADMIN","ADMIN");
+                x.registerTEMP("Arthur", "Arthur","123456789");
                 
             try {
                 x.save_movies();

@@ -9,9 +9,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import uefs.redes.define.Constants;
+import uefs.redes.exceptions.RegisterFailException;
+import uefs.redes.exceptions.RegisterSucessException;
 import uefs.redes.model.ClientInformation;
 import uefs.redes.model.MovieInformation;
 import uefs.redes.servidorAcesso.ServerAcess;
@@ -69,7 +75,7 @@ public class ControllerServers {
 		this.clients = (ArrayList<ClientInformation>)getIn.readObject();
 		this.moviesInformation = (ArrayList<MovieInformation>)getIn.readObject();
 		getIn.close();
-		System.out.println(moviesInformation.size());
+		System.out.println(moviesInformation.size() +"-"+ clients.size());
 		
 		
 	}
@@ -91,6 +97,55 @@ public class ControllerServers {
 		MovieInformation movie = new MovieInformation(name,tags ,description, quantity, category);
 		this.moviesInformation.add(movie);
 	}
+        
+        
+        public String Encrypt(String data) 
+        {
+            String password = data;
+ 
+        MessageDigest md = null;
+            try {
+                md = MessageDigest.getInstance("MD5");
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(ControllerClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        md.update(password.getBytes());
+ 
+        byte byteData[] = md.digest();
+ 
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+ 
+      //  System.out.println("Digest(in hex format):: " + sb.toString());
+ 
+        //convert the byte to hex format method 2
+        StringBuffer hexString = new StringBuffer();
+    	for (int i=0;i<byteData.length;i++) {
+    		String hex=Integer.toHexString(0xff & byteData[i]);
+   	     	if(hex.length()==1) hexString.append('0');
+   	     	hexString.append(hex);
+    	}
+             return hexString.toString();
+            
+        }
+        
+        
+        public void registerTEMP(String name, String login, String password) {
+		
+		String loginE = Encrypt(login);
+                String passE = Encrypt(password);
+                
+                ClientInformation x = new ClientInformation(name,loginE,passE);
+                clients.add(x);
+                    
+		
+	}
+        
+        
+        
 	
 }
 

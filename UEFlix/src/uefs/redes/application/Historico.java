@@ -39,6 +39,7 @@ public class Historico extends javax.swing.JFrame {
     public Historico() {
         initComponents();
         movies = clientController.getClient().getHistory();
+        wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
         addButtonsInter();
        
     }
@@ -49,10 +50,21 @@ public class Historico extends javax.swing.JFrame {
        
         clientController = x;
           initComponents();
-         
+           
+         wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
            movies =  clientController.getClient().getHistory();
 	           addButtonsInter();
-	    }
+    }
+      public Historico(ControllerClient x,ArrayList<MovieInformation> m)
+    {
+       
+        clientController = x;
+          initComponents();
+           
+         wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
+           movies =  m;
+	           addButtonsInter();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +78,7 @@ public class Historico extends javax.swing.JFrame {
         searchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         barraRolagem = new javax.swing.JPanel();
+        wellcome = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mainButton = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenu();
@@ -76,9 +89,14 @@ public class Historico extends javax.swing.JFrame {
         setResizable(false);
 
         searchField.setText("Search");
+        searchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFieldActionPerformed(evt);
+            }
+        });
 
         searchButton.setBackground(new java.awt.Color(204, 204, 204));
-        searchButton.setText("s");
+        searchButton.setText("search my movies");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
@@ -88,6 +106,8 @@ public class Historico extends javax.swing.JFrame {
         barraRolagem.setBackground(new java.awt.Color(204, 204, 204));
         barraRolagem.setPreferredSize(new java.awt.Dimension(640, 400));
         jScrollPane1.setViewportView(barraRolagem);
+
+        wellcome.setText("Name");
 
         mainButton.setText("Principal");
         mainButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,11 +134,12 @@ public class Historico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(wellcome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addComponent(searchButton))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -128,7 +149,8 @@ public class Historico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton))
+                    .addComponent(searchButton)
+                    .addComponent(wellcome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -165,29 +187,42 @@ public class Historico extends javax.swing.JFrame {
     }
   
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-       try {
-           // TODO add your handling code here:
-           
+  
            String search =  searchField.getText().trim();
-           clientController.search(search);
-       } catch (IOException ex) {
-           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (InterruptedException ex) {
-           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (SearchSucessException ex) {
-           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (SearchFailException ex) {
-           Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
-       }
-           
-    
+            search = search.toUpperCase();
+           ArrayList<MovieInformation> l = searchMovies(search);
+           if(l.size()> 0)
+           {
+               new Historico(clientController, l).setVisible(true);
+               this.dispose();
+           }
+           else
+           {
+               JOptionPane.showMessageDialog(null, "There aren't moveis.");
+           }
     }//GEN-LAST:event_searchButtonActionPerformed
-
+    private ArrayList<MovieInformation> searchMovies(String tag_movie)
+	{
+		
+		ArrayList<MovieInformation> list = new ArrayList<MovieInformation>();
+		for(MovieInformation movies:this.movies)
+		{
+			ArrayList<String> x = movies.getTags_file();
+			for(String y:x)
+			{
+				if(y.equals(tag_movie))
+                                   list.add(movies);
+			}
+                      
+		}
+		return list;
+	}
+    
+       
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         
         try {
-            
-                    JOptionPane.showMessageDialog(null, clientController.getClient().getLogin());
+                   // JOptionPane.showMessageDialog(null, clientController.getClient().getLogin());
             clientController.logout(clientController.getClient().getLogin());
         } catch (IOException ex) {
             Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,6 +241,10 @@ public class Historico extends javax.swing.JFrame {
         new Catalogo(clientController).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mainButtonMouseClicked
+
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,21 +272,7 @@ public class Historico extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Historico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -266,6 +291,7 @@ public class Historico extends javax.swing.JFrame {
     private javax.swing.JMenu mainButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
+    private javax.swing.JLabel wellcome;
     // End of variables declaration//GEN-END:variables
 }
 class EventsR implements ActionListener{
@@ -278,7 +304,7 @@ class EventsR implements ActionListener{
 	
         @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.print(mov);
+      
         new MovieDesc(mov).setVisible(true);
     
     }

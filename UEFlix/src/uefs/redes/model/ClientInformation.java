@@ -33,22 +33,17 @@ public class ClientInformation implements Serializable {
         }
 	public void addMoiveHistory(MovieInformation x )
 	{
-		if(!history.contains(x))
+            int i = 0 ;
+		for(MovieInformation y:this.history)
 		{
-			this.history.add(x);
-		}else
-		{
-			int i = 0 ;
-			for(MovieInformation y:this.history)
+			if(y.getName_file().equals(x.getName_file()))
 			{
-				if(y.getName_file().equals(x.getName_file()))
-				{
-					history.remove(x);
-					break;
-				}
+				history.remove(x);
+				break;
 			}
-			history.add(x);
 		}
+            history.add(x);
+		
 	}
 	public String getName() {
 		return name;
