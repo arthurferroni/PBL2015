@@ -21,6 +21,7 @@
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
 <fullyQualifiedTypeName name="uefs.redes.model.ClientInformation"/>
 <fullyQualifiedTypeName name="uefs.redes.controller.ControllerServers"/>
+<fullyQualifiedTypeName name="uefs.redes.model.MovieInformation"/>
 <fullyQualifiedTypeName name="uefs.redes.controller.ControllerClient"/>
 <fullyQualifiedTypeName name="uefs.redes.application.Login"/>
 <fullyQualifiedTypeName name="javax.print.attribute.standard.Media"/>
@@ -29,5 +30,4 @@
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollBar"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
-<fullyQualifiedTypeName name="uefs.redes.model.MovieInformation"/>
 </qualifiedTypeNameHistroy>
