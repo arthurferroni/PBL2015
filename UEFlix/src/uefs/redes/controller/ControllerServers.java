@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+<<<<<<< HEAD
 <<<<<<< OURS
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -148,6 +149,8 @@ public class ControllerServers {
         
         
 =======
+=======
+>>>>>>> parent of 997e155... A porra toda FUNCIONANDO só falta o teu bagui mulek
 import java.util.ArrayList;
 
 import uefs.redes.define.Constants;
@@ -230,7 +233,10 @@ public class ControllerServers {
 		MovieInformation movie = new MovieInformation(name,tags ,description, quantity, category);
 		this.moviesInformation.add(movie);
 	}
+<<<<<<< HEAD
 >>>>>>> THEIRS
+=======
+>>>>>>> parent of 997e155... A porra toda FUNCIONANDO só falta o teu bagui mulek
 	
 }
 
