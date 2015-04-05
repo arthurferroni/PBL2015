@@ -1,5 +1,5 @@
-
 package uefs.redes.application;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -25,44 +25,43 @@ import uefs.redes.model.MovieInformation;
 public class Historico extends javax.swing.JFrame {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * Creates new form Catalógo
      */
-   private ArrayList<MovieInformation> movies ;
+    private ArrayList<MovieInformation> movies;
+
     public Historico() {
         initComponents();
         movies = clientController.getClient().getHistory();
-        wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
+        wellcome.setText("Wellcome to UEFLIX " + clientController.getClient().getName());
 
         addButtonsInter();
-       
+
     }
 
-   
-    public Historico(ControllerClient x)
-    {
-       
+    public Historico(ControllerClient x) {
+
         clientController = x;
-          initComponents();
-           
-         wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
-           movies =  clientController.getClient().getHistory();
-	           addButtonsInter();
+        initComponents();
+
+        wellcome.setText("Wellcome to UEFLIX " + clientController.getClient().getName());
+        movies = clientController.getClient().getHistory();
+        addButtonsInter();
     }
-      public Historico(ControllerClient x,ArrayList<MovieInformation> m)
-    {
-       
+
+    public Historico(ControllerClient x, ArrayList<MovieInformation> m) {
+
         clientController = x;
-          initComponents();
-           
-         wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
-           movies =  m;
-	           addButtonsInter();
+        initComponents();
+
+        wellcome.setText("Wellcome to UEFLIX " + clientController.getClient().getName());
+        movies = m;
+        addButtonsInter();
     }
-   
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -157,69 +156,60 @@ public class Historico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonsInter()
-    {
+    private void addButtonsInter() {
 
         barraRolagem.setLayout(new FlowLayout());
-        jScrollPane1.setPreferredSize(new Dimension(640,409));
+        jScrollPane1.setPreferredSize(new Dimension(640, 409));
         String x = new File("").getAbsolutePath();
         JPanel d = new JPanel();
         d.setPreferredSize(new java.awt.Dimension(158, 230));
-       
-        
-        for(MovieInformation xFilme:movies)
-        { 
-        	
-        	JButton a1 = new JButton("");
-        	
-        	a1.setForeground(new java.awt.Color(204, 204, 204));
-                    a1.setPreferredSize(new java.awt.Dimension(158, 230));
-        	a1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+xFilme.getName_file()+".png"));
-           
-           	a1.addActionListener(new EventsR( new MovieInformation(xFilme.getName_file(),xFilme.getTags_file(),xFilme.getDescription(), xFilme.getQuantity(), xFilme.getCategory())));
-           	d.add(a1);
-                  
-           	jScrollPane1.setViewportView(d);
+
+        for (MovieInformation xFilme : movies) {
+
+            JButton a1 = new JButton("");
+
+            a1.setForeground(new java.awt.Color(204, 204, 204));
+            a1.setPreferredSize(new java.awt.Dimension(158, 230));
+            a1.setIcon(new javax.swing.ImageIcon(x + "\\clientpicture\\" + xFilme.getName_file() + ".png"));
+
+            a1.addActionListener(new EventsR(new MovieInformation(xFilme.getName_file(), xFilme.getTags_file(), xFilme.getDescription(), xFilme.getQuantity(), xFilme.getCategory())));
+            d.add(a1);
+
+            jScrollPane1.setViewportView(d);
         }
-     
+
     }
-  
+
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
-  
-           String search =  searchField.getText().trim();
-            search = search.toUpperCase();
-           ArrayList<MovieInformation> l = searchMovies(search);
-           if(l.size()> 0)
-           {
-               new Historico(clientController, l).setVisible(true);
-               this.dispose();
-           }
-           else
-           {
-               JOptionPane.showMessageDialog(null, "There aren't moveis.");
-           }
+        String search = searchField.getText().trim();
+        search = search.toUpperCase();
+        ArrayList<MovieInformation> l = searchMovies(search);
+        if (l.size() > 0) {
+            new Historico(clientController, l).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "There aren't moveis.");
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
-    private ArrayList<MovieInformation> searchMovies(String tag_movie)
-	{
-		
-		ArrayList<MovieInformation> list = new ArrayList<MovieInformation>();
-		for(MovieInformation movies:this.movies)
-		{
-			ArrayList<String> x = movies.getTags_file();
-			for(String y:x)
-			{
-				if(y.equals(tag_movie))
-                                   list.add(movies);
-			}
-                      
-		}
-		return list;
-	}
-    
-       
+    private ArrayList<MovieInformation> searchMovies(String tag_movie) {
+
+        ArrayList<MovieInformation> list = new ArrayList<MovieInformation>();
+        for (MovieInformation movies : this.movies) {
+            ArrayList<String> x = movies.getTags_file();
+            for (String y : x) {
+                if (y.equals(tag_movie)) {
+                    list.add(movies);
+                }
+            }
+
+        }
+        return list;
+    }
+
+
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
-        
+
         try {
             clientController.logout(clientController.getClient().getLogin());
         } catch (IOException ex) {
@@ -227,10 +217,11 @@ public class Historico extends javax.swing.JFrame {
         } catch (InterruptedException ex) {
             Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LogoutSucessException ex) {
-                JOptionPane.showMessageDialog(null, "Você foi desconectado" );
-                this.dispose();
+            JOptionPane.showMessageDialog(null, "Você foi desconectado");
+            new Login(clientController).setVisible(true);
+            this.dispose();
         } catch (LogoutFailException ex) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao deslogar" );
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao deslogar");
         }
     }//GEN-LAST:event_logoutButtonMouseClicked
 
@@ -274,12 +265,12 @@ public class Historico extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-			public void run() {
+            public void run() {
                 new Historico().setVisible(true);
             }
         });
     }
-    private ControllerClient clientController ;
+    private ControllerClient clientController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraRolagem;
     private javax.swing.JMenuBar jMenuBar1;
@@ -292,18 +283,19 @@ public class Historico extends javax.swing.JFrame {
 
     // End of variables declaration//GEN-END:variables
 }
-class EventsR implements ActionListener{
-	
-	private MovieInformation mov;
-	
-	public EventsR(MovieInformation xs) {
-		mov = xs;
-	}
-	
-        @Override
+
+class EventsR implements ActionListener {
+
+    private MovieInformation mov;
+
+    public EventsR(MovieInformation xs) {
+        mov = xs;
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
 
         new MovieDesc(mov).setVisible(true);
-    
+
     }
 }

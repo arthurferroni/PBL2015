@@ -7,125 +7,125 @@ import java.io.InputStream;
 import java.net.Socket;
 
 public class ClientTransferation {
-	private Socket sockServer;
-	
-	public ClientTransferation (Socket s)
-	{
-		sockServer = s;
-	}
 
-	public  void getFileFromServeR(String name) {
-		
-		FileOutputStream fos = null;
-		InputStream is = null;
+    private Socket sockServer;
 
-		try {
-			// Criando conex�o com o servidor
-			System.out.println("Conectando com Servidor porta 13267");
-			
-			is = sockServer.getInputStream();
+    public ClientTransferation(Socket s) {
+        sockServer = s;
+    }
 
-			// Cria arquivo local no cliente
-			String x = new File("").getAbsolutePath();
-			fos = new FileOutputStream(new File(x+"\\clientmovie\\"+name+".mp4"));
-			
-			// Prepara variaveis para transferencia
-			byte[] cbuffer = new byte[1024];
-			int bytesRead;
+    public void getFileFromServeR(String name) {
 
-			// Copia conteudo do canal
-			System.out.println("Recebendo arquivo...");
-			while ((bytesRead = is.read(cbuffer)) != -1) {
-				fos.write(cbuffer, 0, bytesRead);
-				fos.flush();
-			}
-			
-			System.out.println("Arquivo recebido!");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (sockServer != null) {
-				try {
-					sockServer.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
+        FileOutputStream fos = null;
+        InputStream is = null;
 
-			if (fos != null) {
-				try {
-					fos.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
+        try {
+            // Criando conex�o com o servidor
+            System.out.println("Conectando com Servidor porta 13267");
 
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
+            is = sockServer.getInputStream();
 
-	}
+            // Cria arquivo local no cliente
+            String x = new File("").getAbsolutePath();
+            fos = new FileOutputStream(new File(x + "\\clientmovie\\" + name + ".mp4"));
 
-	public  void getFileFromeServerImage(String name) {
-		
-		FileOutputStream fos = null;
-		InputStream is = null;
+            // Prepara variaveis para transferencia
+            byte[] cbuffer = new byte[1024];
+            int bytesRead;
 
-		try {
-			// Criando conex�o com o servidor
-			System.out.println("Conectando com Servidor porta 13267");
-			
-			is = sockServer.getInputStream();
+            // Copia conteudo do canal
+            System.out.println("Recebendo arquivo...");
+            while ((bytesRead = is.read(cbuffer)) != -1) {
+                fos.write(cbuffer, 0, bytesRead);
+                fos.flush();
+            }
 
-			// Cria arquivo local no cliente
-			String x = new File("").getAbsolutePath();
-			fos = new FileOutputStream(new File(x+"\\clientpicture\\"+name+".png"));
-			
-			// Prepara variaveis para transferencia
-			byte[] cbuffer = new byte[1024];
-			int bytesRead;
+            System.out.println("Arquivo recebido!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sockServer != null) {
+                try {
+                    sockServer.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
 
-			// Copia conteudo do canal
-			System.out.println("Recebendo arquivo...");
-			while ((bytesRead = is.read(cbuffer)) != -1) {
-				fos.write(cbuffer, 0, bytesRead);
-				fos.flush();
-			}
-			
-			System.out.println("Arquivo recebido!");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (sockServer != null) {
-				try {
-					sockServer.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
 
-			if (fos != null) {
-				try {
-					fos.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
 
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
+    }
 
-	}
+    public void getFileFromeServerImage(String name) {
+
+        FileOutputStream fos = null;
+        InputStream is = null;
+
+        try {
+            // Criando conex�o com o servidor
+            System.out.println("Conectando com Servidor porta 13267");
+
+            is = sockServer.getInputStream();
+
+            // Cria arquivo local no cliente
+            String x = new File("").getAbsolutePath();
+            fos = new FileOutputStream(new File(x + "\\clientpicture\\" + name + ".png"));
+
+            // Prepara variaveis para transferencia
+            byte[] cbuffer = new byte[1024];
+            int bytesRead;
+
+            // Copia conteudo do canal
+            System.out.println("Recebendo arquivo...");
+            while ((bytesRead = is.read(cbuffer)) != -1) {
+                fos.write(cbuffer, 0, bytesRead);
+                fos.flush();
+            }
+
+            System.out.println("Arquivo recebido!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sockServer != null) {
+                try {
+                    sockServer.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+
+    }
 
 }

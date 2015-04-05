@@ -29,45 +29,44 @@ public class MovieDesc extends javax.swing.JFrame {
      * Creates new form MovieDesc
      */
     private MovieInformation infMov;
+
     public MovieDesc() {
         initComponents();
     }
 
-     public MovieDesc(ControllerClient x1, MovieInformation y)
-    {
+    public MovieDesc(ControllerClient x1, MovieInformation y) {
         clientController = x1;
-        
-        
+
         infMov = y;
-        
 
         initComponents();
-       
+
         textAreaDesc.setText(infMov.getDescription());
-        
+
         String x = new File("").getAbsolutePath();
-        jButton1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+infMov.getName_file()+".png"));
+        jButton1.setIcon(new javax.swing.ImageIcon(x + "\\clientpicture\\" + infMov.getName_file() + ".png"));
         movieTitle.setText(infMov.getName_file());
 
         jLabel1.setText(infMov.getCategory());
 
     }
-     public MovieDesc(MovieInformation y)
-    {
+
+    public MovieDesc(MovieInformation y) {
         clientController = Login.clientController;
         infMov = y;
 
         initComponents();
-        
+
         textAreaDesc.setText(infMov.getDescription());
-        
+
         String x = new File("").getAbsolutePath();
-        jButton1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+infMov.getName_file()+".png"));
+        jButton1.setIcon(new javax.swing.ImageIcon(x + "\\clientpicture\\" + infMov.getName_file() + ".png"));
         movieTitle.setText(infMov.getName_file());
 
         jLabel1.setText(infMov.getCategory());
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -270,42 +269,40 @@ public class MovieDesc extends javax.swing.JFrame {
 
     private void watchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchButtonActionPerformed
         // TODO add your handling code here:
-        
+
         String x = (String) combQualMovie.getSelectedItem();
 
         //System.out.print(x);
-
-        if(x.equals("Alta"))
+        if (x.equals("Alta")) {
             x = "high";
-        else
+        } else {
             x = "low";
-
+        }
 
         try {
-            clientController.donwload_movie(infMov.getName_file(),x);
+            clientController.donwload_movie(infMov.getName_file(), x);
         } catch (IOException ex) {
             Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
 
         } catch (DownloadSucessException ex) {
-            String xs = infMov.getName_file()+ " Terminou de baixar, Deseja assistir o filme ?";
-            
-         int reply = JOptionPane.showConfirmDialog(null, xs, "Donwload Finished", 
-               JOptionPane.YES_NO_OPTION);
+            String xs = infMov.getName_file() + " Terminou de baixar, Deseja assistir o filme ?";
+
+            int reply = JOptionPane.showConfirmDialog(null, xs, "Donwload Finished",
+                    JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                 System.out.println("yes");
-                 // aqui é onde vc vai chamar a função pra executar o play ( filme )
-             } else {
-                  System.out.println("no");
-             }
-                
-          
+                System.out.println("yes");
+                // aqui é onde vc vai chamar a função pra executar o play ( filme )
+            } else {
+                System.out.println("no");
+            }
+
         } catch (DownloadFailException ex) {
             Logger.getLogger(MovieDesc.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-                
+
     }//GEN-LAST:event_watchButtonActionPerformed
 
     private void closerWindowsMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closerWindowsMovieActionPerformed
@@ -343,12 +340,12 @@ public class MovieDesc extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-			public void run() {
+            public void run() {
                 new MovieDesc().setVisible(true);
             }
         });
     }
-    private ControllerClient clientController ;
+    private ControllerClient clientController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closerWindowsMovie;
     private javax.swing.JComboBox combQualMovie;
@@ -366,5 +363,4 @@ public class MovieDesc extends javax.swing.JFrame {
     private javax.swing.JTextArea textAreaDesc;
     private javax.swing.JButton watchButton;
     // End of variables declaration//GEN-END:variables
-}                
-    
+}

@@ -7,14 +7,12 @@
 package uefs.redes.application;
 
 import java.io.File;
-
 import java.io.FileOutputStream;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -31,21 +29,30 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    boolean conected = false;
 
-    boolean  conected = false;
     public Login() {
-        initComponents();
+
         try {
             clientController.connect();
         } catch (IOException ex) {
-           // JOptionPane.showMessageDialog(null, "Você foi desconectado" );
+            // JOptionPane.showMessageDialog(null, "Você foi desconectado" );
         } catch (InterruptedException ex) {
-           // Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            // Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        initComponents();
     }
-     public Login(ControllerClient x) {
-         clientController = x;
-     }
+
+    public Login(ControllerClient x) {
+        clientController = x;
+        try {
+            clientController.connect();
+        } catch (IOException | InterruptedException e) {
+
+        }
+        initComponents();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,7 +107,8 @@ public class Login extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(204, 204, 204));
         jButton3.setForeground(new java.awt.Color(153, 153, 153));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Arthur\\Desktop\\ESSEESTOPO\\netbeans\\UEFlix\\img\\login1.png")); // NOI18N
+        String x = new File("").getAbsolutePath();
+        jButton3.setIcon(new javax.swing.ImageIcon(x+"\\img\\login1.png"));
         jButton3.setBorder(null);
         jButton3.setDefaultCapable(false);
         jButton3.setOpaque(false);
@@ -133,7 +141,6 @@ public class Login extends javax.swing.JFrame {
             geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, geralPanelLayout.createSequentialGroup()
-
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(geralPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -145,7 +152,6 @@ public class Login extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1))
                     .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-
                 .addGap(18, 18, 18)
                 .addGroup(geralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton)
@@ -185,8 +191,8 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseClicked
-     
-        Register registerPanel =   new Register();
+
+        Register registerPanel = new Register();
         registerPanel.setVisible(true);
     }//GEN-LAST:event_registerButtonMouseClicked
 
@@ -209,21 +215,19 @@ public class Login extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         try {
-       
+                clientController.connect();
             clientController.login(login_name_field.getText().toUpperCase(), passField.getText().toUpperCase());
 
-         
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LoginSucessException ex) {
-           
-            
+
             new Catalogo(clientController).setVisible(true);
             this.dispose();
         } catch (LoginFailException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao realizar um login" );
+            JOptionPane.showMessageDialog(null, "Falha ao realizar um login");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -265,12 +269,12 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-			public void run() {
+            public void run() {
                 new Login().setVisible(true);
-                
+
             }
         });
-         
+
     }
     public static ControllerClient clientController = new ControllerClient();
     // Variables declaration - do not modify//GEN-BEGIN:variables

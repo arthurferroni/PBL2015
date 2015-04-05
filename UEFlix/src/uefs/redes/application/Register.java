@@ -23,18 +23,18 @@ public class Register extends javax.swing.JFrame {
     /**
      * Creates new form Register
      */
-    
     public Register() {
         initComponents();
-        
-        
+
     }
-    private ControllerClient clientController ;
-     public Register(ControllerClient x) {
-        
+    private ControllerClient clientController;
+
+    public Register(ControllerClient x) {
+
         clientController = x;
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -171,7 +171,7 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
@@ -184,38 +184,34 @@ public class Register extends javax.swing.JFrame {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         try {
-            
-  
+
             String name = nameField.getText().trim();
             name = name.toUpperCase();
             String login = loginField.getText().trim();
             login = login.toUpperCase();
-            String pass = passField.getText().trim() ; 
-            pass=pass.toUpperCase();
+            String pass = passField.getText().trim();
+            pass = pass.toUpperCase();
 
-            if( name.equals("") || login.equals("") || pass.equals(""))
-            {
+            if (name.equals("") || login.equals("") || pass.equals("")) {
                 JOptionPane.showMessageDialog(null, "Algum Campo está incorreto.");
-            }
-            else
-            {
+            } else {
                 try {
-                    Login.clientController.register(name,login ,pass);
+                    Login.clientController.register(name, login, pass);
                 } catch (RegisterSucessException ex) {
-                   
+
                     JOptionPane.showMessageDialog(null, "Cadastro realizado.");
-                    
+
                 } catch (RegisterFailException ex) {
-                   
+
                     JOptionPane.showMessageDialog(null, "Cadastro não efetuado, Utilize outro login. ");
                 }
-                
+
             }
-            
+
         } catch (IOException ex) {
-          
+
         } catch (InterruptedException ex) {
-            
+
         }
         this.dispose();
     }//GEN-LAST:event_registerButtonActionPerformed
@@ -250,13 +246,13 @@ public class Register extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-			public void run() {
+            public void run() {
                 new Register().setVisible(true);
             }
         });
     }
-    
-   
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel geralPanel;

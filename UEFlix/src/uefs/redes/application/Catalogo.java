@@ -1,4 +1,3 @@
-
 package uefs.redes.application;
 
 import java.awt.Dimension;
@@ -21,42 +20,38 @@ import uefs.redes.model.MovieInformation;
 
 public class Catalogo extends javax.swing.JFrame {
 
-    
-   private ArrayList<MovieInformation> movies ;
-    
-   public Catalogo() {
+    private ArrayList<MovieInformation> movies;
+
+    public Catalogo() {
         initComponents();
         movies = clientController.getMovies();
 
-        wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
+        wellcome.setText("Wellcome to UEFLIX " + clientController.getClient().getName());
 
         addButtonsInter();
-       
+
     }
 
-   
-    public Catalogo(ControllerClient x)
-    {
-       
+    public Catalogo(ControllerClient x) {
+
         clientController = x;
-          initComponents();
-         
-           movies = clientController.getMovies();
+        initComponents();
 
-           wellcome.setText("Wellcome to UEFLIX  "+clientController.getClient().getName());
-	           addButtonsInter();
+        movies = clientController.getMovies();
+
+        wellcome.setText("Wellcome to UEFLIX  " + clientController.getClient().getName());
+        addButtonsInter();
     }
-    public Catalogo(ControllerClient x, ArrayList<MovieInformation> f)
-    {
-       
+
+    public Catalogo(ControllerClient x, ArrayList<MovieInformation> f) {
+
         clientController = x;
-          initComponents();
-         
-           movies = f;
-           wellcome.setText("Wellcome to UEFLIX "+clientController.getClient().getName());
-	           addButtonsInter();
-    }
+        initComponents();
 
+        movies = f;
+        wellcome.setText("Wellcome to UEFLIX " + clientController.getClient().getName());
+        addButtonsInter();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -167,60 +162,57 @@ public class Catalogo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonsInter()
-    {
+    private void addButtonsInter() {
 
         barraRolagem.setLayout(new FlowLayout());
-        jScrollPane1.setPreferredSize(new Dimension(640,409));
+        jScrollPane1.setPreferredSize(new Dimension(640, 409));
         String x = new File("").getAbsolutePath();
         JPanel d = new JPanel();
         d.setPreferredSize(new java.awt.Dimension(158, 230));
-       
-        
-        for(MovieInformation xFilme:movies)
-        { 
-        	
-        	JButton a1 = new JButton("");
-        	
-        	a1.setForeground(new java.awt.Color(204, 204, 204));
-                    a1.setPreferredSize(new java.awt.Dimension(158, 230));
-        	a1.setIcon(new javax.swing.ImageIcon(x+"\\clientpicture\\"+xFilme.getName_file()+".png"));
-           
-           	a1.addActionListener(new EventsH( new MovieInformation(xFilme.getName_file(),xFilme.getTags_file(),xFilme.getDescription(), xFilme.getQuantity(), xFilme.getCategory())));
-           	d.add(a1);
-                  
-           	jScrollPane1.setViewportView(d);
+
+        for (MovieInformation xFilme : movies) {
+
+            JButton a1 = new JButton("");
+
+            a1.setForeground(new java.awt.Color(204, 204, 204));
+            a1.setPreferredSize(new java.awt.Dimension(158, 230));
+            a1.setIcon(new javax.swing.ImageIcon(x + "\\clientpicture\\" + xFilme.getName_file() + ".png"));
+
+            a1.addActionListener(new EventsH(new MovieInformation(xFilme.getName_file(), xFilme.getTags_file(), xFilme.getDescription(), xFilme.getQuantity(), xFilme.getCategory())));
+            d.add(a1);
+
+            jScrollPane1.setViewportView(d);
         }
-     
+
     }
-  
+
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-       try {
+        try {
            // TODO add your handling code here:
-           
-           String search =  searchField.getText().trim();
 
-           search = search.toUpperCase();
+            String search = searchField.getText().trim();
 
-           clientController.search(search);
-       } catch (IOException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (InterruptedException ex) {
-           Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (SearchSucessException ex) {
+            search = search.toUpperCase();
 
-           new Catalogo(clientController,clientController.getClient().getSearch()).setVisible(true);
-           this.dispose();
-       } catch (SearchFailException ex) {
-          JOptionPane.showMessageDialog(null, "Não há filmes com essas caracteristicas.");
+            clientController.search(search);
+        } catch (IOException ex) {
+            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SearchSucessException ex) {
 
-       }
-           
-    
+            new Catalogo(clientController, clientController.getClient().getSearch()).setVisible(true);
+            this.dispose();
+        } catch (SearchFailException ex) {
+            JOptionPane.showMessageDialog(null, "Não há filmes com essas caracteristicas.");
+
+        }
+
+
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
-        
+
         try {
 
             clientController.logout(clientController.getClient().getLogin());
@@ -229,10 +221,11 @@ public class Catalogo extends javax.swing.JFrame {
         } catch (InterruptedException ex) {
             Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LogoutSucessException ex) {
-                JOptionPane.showMessageDialog(null, "Você foi desconectado" );
-                this.dispose();
+            JOptionPane.showMessageDialog(null, "Você foi desconectado");
+            new Login(clientController).setVisible(true);
+            this.dispose();
         } catch (LogoutFailException ex) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao deslogar" );
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao deslogar");
         }
     }//GEN-LAST:event_logoutButtonMouseClicked
 
@@ -245,17 +238,15 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void buttonMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMainActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_buttonMainActionPerformed
 
     private void buttonMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMainMouseClicked
         // TODO add your handling code here:
-        
+
         new Catalogo(clientController).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonMainMouseClicked
-
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -284,12 +275,12 @@ public class Catalogo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-			public void run() {
+            public void run() {
                 new Catalogo().setVisible(true);
             }
         });
     }
-    private ControllerClient clientController ;
+    private ControllerClient clientController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraRolagem;
 
@@ -306,18 +297,16 @@ public class Catalogo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
+class EventsH implements ActionListener {
 
-class EventsH implements ActionListener{
-	
-	private MovieInformation mov;
-	
-	public EventsH(MovieInformation xs) {
-		mov = xs;
-	}
-	
-        @Override
+    private MovieInformation mov;
+
+    public EventsH(MovieInformation xs) {
+        mov = xs;
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         new MovieDesc(mov).setVisible(true);
     }
 }
-
