@@ -25,6 +25,7 @@ public class ControllerClient {
     private ArrayList<MovieInformation> moviesInformation = new ArrayList<MovieInformation>();
 
     public void connect() throws UnknownHostException, IOException, InterruptedException {
+       
         ControllerClient.client_socket = new Socket(Constants.HOST, Constants.PORT_ACESS);
         client_acess = new ClientAcess(ControllerClient.client_socket, this);
         Thread threadClient = new Thread(client_acess);
