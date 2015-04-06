@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import uefs.redes.exceptions.DownloadSucessException;
 
 public class ClientTransferation {
 
@@ -14,7 +15,7 @@ public class ClientTransferation {
         sockServer = s;
     }
 
-    public void getFileFromServeR(String name) {
+    public void getFileFromServeR(String name) throws DownloadSucessException  {
 
         FileOutputStream fos = null;
         InputStream is = null;
@@ -41,6 +42,7 @@ public class ClientTransferation {
             }
 
             System.out.println("Arquivo recebido!");
+                throw new DownloadSucessException();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

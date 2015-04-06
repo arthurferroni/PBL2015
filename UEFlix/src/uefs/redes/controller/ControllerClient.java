@@ -57,8 +57,8 @@ public class ControllerClient {
         login_pack.addInformation(loginE);
         login_pack.addInformation(passE);
         this.send_pack(login_pack);
+        
         Thread.sleep(200);
-
         if (client_acess.req() == Constants.LOGIN_REP) {
             this.getImage();
             throw new LoginSucessException();
@@ -78,7 +78,7 @@ public class ControllerClient {
             pack_image.addInformation(movie_name);
             ClientTransferation client_channel = this.send_pack_file(pack_image);
             client_channel.getFileFromeServerImage(movie_name);
-            Thread.sleep(50);
+          
         }
     }
 
@@ -127,12 +127,6 @@ public class ControllerClient {
         download_pack.addInformation(name1);
 
         this.send_pack(download_pack);
-        Thread.sleep(200);
-        if (client_acess.req() == Constants.DOWNLOAD_REP) {
-            throw new DownloadSucessException();
-        } else {
-            throw new DownloadFailException();
-        }
 
     }
 
