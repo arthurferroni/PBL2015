@@ -116,3 +116,4 @@ public class PlayMovie extends javax.swing.JFrame {
        //mediaPlayer.setAutoPlay(true);
        mediaPlayer.play();
    }
+}
