@@ -20,9 +20,9 @@ public class Constants {
 							REGISTER_RER = 15,
 							DOWNLOAD_IMAGE_REQ = 16,
 							DOWNLOAD_IMAGE_REP =17,
-							PORT_ACESS = 6677,
-							PORT_FILE = 13267;
-	public final static String 	HOST = "10.0.0.102",
+							PORT_ACESS = 4545,
+							PORT_FILE = 4546;
+	public final static String 	HOST = "172.16.209.106",
 								MESSAGE_ERROR = "Houve um Erro ao relalizar ",
 								MESSAGE_INFORMATION = "Você conseguiu realizar  "
 							;
