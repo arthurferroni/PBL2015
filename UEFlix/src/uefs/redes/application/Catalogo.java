@@ -200,8 +200,13 @@ public class Catalogo extends javax.swing.JFrame {
         } catch (InterruptedException ex) {
             Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SearchSucessException ex) {
+<<<<<<< HEAD
             ArrayList<MovieInformation> list = clientController.getClient().getSearch();
             new Catalogo(clientController,list).setVisible(true);
+=======
+
+            new Catalogo(clientController, clientController.getClient().getSearch()).setVisible(true);
+>>>>>>> origin/master
             this.dispose();
         } catch (SearchFailException ex) {
             JOptionPane.showMessageDialog(null, "Não há filmes com essas caracteristicas.");
