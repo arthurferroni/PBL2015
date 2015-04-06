@@ -88,10 +88,7 @@ public class ControllerClient {
         this.send_pack(search_pack);
 
         Thread.sleep(200);
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
         if (client_acess.req() == Constants.SEARCH_REP) {
             throw new SearchSucessException();
         } else {
