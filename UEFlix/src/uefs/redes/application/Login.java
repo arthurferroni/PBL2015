@@ -215,7 +215,9 @@ public class Login extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         try {
+                clientController.connect();
             clientController.login(login_name_field.getText().toUpperCase(), passField.getText().toUpperCase());
+
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
@@ -269,6 +271,7 @@ public class Login extends javax.swing.JFrame {
             @Override
             public void run() {
                 new Login().setVisible(true);
+
             }
         });
 
