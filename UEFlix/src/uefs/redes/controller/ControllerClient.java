@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.TIMEOUT;
 
 import uefs.redes.exceptions.*;
 import uefs.redes.define.Constants;
@@ -18,15 +19,24 @@ import uefs.redes.model.ClientTransferation;
 import uefs.redes.model.MovieInformation;
 
 public class ControllerClient {
+    
+    
+    
 
     private ClientAcess client_acess;
-    static private Socket client_socket;
+    private Socket client_socket;
     private int REP_REQS = 0;
     private ArrayList<MovieInformation> moviesInformation = new ArrayList<MovieInformation>();
 
     public void connect() throws UnknownHostException, IOException, InterruptedException {
-        ControllerClient.client_socket = new Socket(Constants.HOST, Constants.PORT_ACESS);
-        client_acess = new ClientAcess(ControllerClient.client_socket, this);
+       
+        System.out.print("aqui");
+        client_socket = new Socket(Constants.HOST, Constants.PORT_ACESS);
+        
+        if(client_socket == null)
+            System.out.print("s");
+        client_acess = new ClientAcess(client_socket, this);
+         
         Thread threadClient = new Thread(client_acess);
         threadClient.start();
 
@@ -59,7 +69,7 @@ public class ControllerClient {
         Thread.sleep(200);
 
         if (client_acess.req() == Constants.LOGIN_REP) {
-            this.getImage();
+          //  this.getImage();
             throw new LoginSucessException();
         } else {
             throw new LoginFailException();
