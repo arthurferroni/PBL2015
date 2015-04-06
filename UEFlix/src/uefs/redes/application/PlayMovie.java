@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.io.File;
 
 import javafx.embed.swing.JFXPanel;
@@ -19,6 +18,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 
 
@@ -46,10 +46,14 @@ public class PlayMovie extends javax.swing.JFrame {
 
   /* public static void main(String[] args) {
        SwingUtilities.invokeLater(new Runnable() {
-
+    	 
+    	   String away = new File("").getAbsolutePath();
+    	   String  ls = away + "\\clientmovie\\Batman_Contra_Superman-low.mp4";
+    	   	String  tes = ls.replace("\\","/");
+    	   //String tes = "C:/Users/Jeyel/Desktop/PBLLogica3/UEFlix/clientmovie/Batman_Contra_Superman-low.mp4";
            @Override
            public void run() {
-               PlayMovie browser = new PlayMovie("D:/AA.mp4", 1280, 720);
+               PlayMovie browser = new PlayMovie(tes, 1280, 720);
                browser.setVisible(true);
                browser.setResizable(false);
                //browser.loadURL("http://oracle.com");
@@ -95,7 +99,7 @@ public class PlayMovie extends javax.swing.JFrame {
    	//Scanner scan = new Scanner(System.in);
       // String path = scan.nextLine();
       // scan.close();
-
+   		movie = movie.replace("\\","/");
        Media media = new Media("file:///"+movie);
        setTitle(movie); 
        mediaPlayer = new MediaPlayer(media);
@@ -105,12 +109,13 @@ public class PlayMovie extends javax.swing.JFrame {
        System.out.println(media.getDuration());
        
       
-
+       
        MediaView mediaView = new MediaView(mediaPlayer);
        mediaView.autosize();
        Scene scene = new Scene(box, width, height);
        ((VBox) scene.getRoot()).getChildren().add(mediaView);
        jfxPanel.setScene(scene);
+  
       // jfxPanel.setMinimumSize(new Dimension(320, 280));
       // jfxPanel.setSize(new Dimension(width, height));
        //mediaPlayer.setAutoPlay(true);
