@@ -22,7 +22,7 @@ public class Constants {
 							DOWNLOAD_IMAGE_REP =17,
 							PORT_ACESS = 6677,
 							PORT_FILE = 13267;
-	public final static String 	HOST = "localhost",
+	public final static String 	HOST = "10.0.0.102",
 								MESSAGE_ERROR = "Houve um Erro ao relalizar ",
 								MESSAGE_INFORMATION = "Você conseguiu realizar  "
 							;
