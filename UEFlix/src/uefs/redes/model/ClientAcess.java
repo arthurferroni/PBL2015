@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import uefs.redes.application.Catalogo;
 
 import uefs.redes.controller.ControllerClient;
 import uefs.redes.define.Constants;
@@ -95,7 +96,6 @@ public class ClientAcess implements Runnable {
                         break;
                     case Constants.REGISTER_RER:
                         message = (String) pack_reqs.getInformation(0);
-
                         //System.out.println(message);
                         en_req = Constants.REGISTER_RER;
 
@@ -108,7 +108,7 @@ public class ClientAcess implements Runnable {
                         //System.out.println(message);
                         search = (ArrayList<MovieInformation>) pack_reqs.getInformation(1);
                         // System.out.print(search.size());
-
+                           
                         en_req = Constants.SEARCH_REP;
                                         // apresenta a messagem e 
                         // muda para a interface apresentando a lista de filmes envontrados
